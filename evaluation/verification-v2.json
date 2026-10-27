@@ -1,0 +1,141 @@
+{
+  "verified_at_utc": "2026-10-15T07:54:47.085207+00:00",
+  "frozen_files_unchanged": 23,
+  "original_app_test_files_unchanged": 6,
+  "preserved_core_files": [
+    "app.py",
+    "src/parser.py",
+    "src/models.py",
+    "src/view.py",
+    "requirements.txt"
+  ],
+  "semantic_scoring_functions_identical": true,
+  "aggregate_function_identical": true,
+  "baseline_metrics_reproduced_exactly": true,
+  "dataset_json_jsonl_cases_identical": true,
+  "dataset_sha256": "c9f2ff620a01a0524006b8962fb6c0a6a5f688b958648266f65d3bf14d8570fa",
+  "holdout_created_after_freeze": true,
+  "holdout_sha256": "8587de5112e8c4b2b56c9f6361a6ff2605123efeb674b5ff89d1648dece3be2a",
+  "holdout_expectations_match_before_after": true,
+  "reports_metrics_recomputed_and_csv_consistent": {
+    "results.json": {
+      "cases": 42,
+      "runtime_validated": {
+        "numerator": 42,
+        "denominator": 42,
+        "percent": 100.0
+      },
+      "strict_pass": {
+        "numerator": 12,
+        "denominator": 42,
+        "percent": 28.57
+      },
+      "coverage": {
+        "numerator": 42,
+        "denominator": 42,
+        "percent": 100.0
+      }
+    },
+    "baseline-rescored/results.json": {
+      "cases": 42,
+      "runtime_validated": {
+        "numerator": 42,
+        "denominator": 42,
+        "percent": 100.0
+      },
+      "strict_pass": {
+        "numerator": 12,
+        "denominator": 42,
+        "percent": 28.57
+      },
+      "coverage": {
+        "numerator": 42,
+        "denominator": 42,
+        "percent": 100.0
+      }
+    },
+    "after/results.json": {
+      "cases": 42,
+      "runtime_validated": {
+        "numerator": 42,
+        "denominator": 42,
+        "percent": 100.0
+      },
+      "strict_pass": {
+        "numerator": 28,
+        "denominator": 42,
+        "percent": 66.67
+      },
+      "coverage": {
+        "numerator": 42,
+        "denominator": 42,
+        "percent": 100.0
+      }
+    },
+    "after-transient-timeout/results.json": {
+      "cases": 42,
+      "runtime_validated": {
+        "numerator": 41,
+        "denominator": 42,
+        "percent": 97.62
+      },
+      "strict_pass": {
+        "numerator": 27,
+        "denominator": 42,
+        "percent": 64.29
+      },
+      "coverage": {
+        "numerator": 42,
+        "denominator": 42,
+        "percent": 100.0
+      }
+    },
+    "holdout/before/results.json": {
+      "cases": 20,
+      "runtime_validated": {
+        "numerator": 20,
+        "denominator": 20,
+        "percent": 100.0
+      },
+      "strict_pass": {
+        "numerator": 10,
+        "denominator": 20,
+        "percent": 50.0
+      },
+      "coverage": {
+        "numerator": 20,
+        "denominator": 20,
+        "percent": 100.0
+      }
+    },
+    "holdout/after/results.json": {
+      "cases": 20,
+      "runtime_validated": {
+        "numerator": 20,
+        "denominator": 20,
+        "percent": 100.0
+      },
+      "strict_pass": {
+        "numerator": 19,
+        "denominator": 20,
+        "percent": 95.0
+      },
+      "coverage": {
+        "numerator": 20,
+        "denominator": 20,
+        "percent": 100.0
+      }
+    }
+  },
+  "pytest_actual_run": {
+    "baseline_app": 208,
+    "baseline_evaluator": 34,
+    "app": 319,
+    "evaluator": 42,
+    "total": 361,
+    "passed": 361,
+    "seconds": 27.49,
+    "command": "python -X utf8 -m pytest tests evaluation/tests -q --basetemp <fresh-workspace-temp> -o cache_dir=<workspace-cache> --tb=short"
+  },
+  "limitations": "Hash and result consistency checks; not a new accuracy estimate or a proof of no dataset-specific behavior."
+}

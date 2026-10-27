@@ -1,0 +1,26 @@
+{
+  "original_archive": "error-learning-assistant-ast.zip",
+  "original_archive_files_unchanged": 24,
+  "baseline_manifest_unchanged": true,
+  "evaluation_method_source_hashes_match": true,
+  "dataset_json_jsonl_cases_identical": true,
+  "case_count": 42,
+  "json_csv_statuses_match": true,
+  "metrics_recomputed_match": true,
+  "all_runtime_expectations_reproduced": true,
+  "tests": {
+    "existing_app": {
+      "command": "python -m pytest tests -q",
+      "passed": 208,
+      "failed": 0,
+      "seconds": 44.73
+    },
+    "evaluation": {
+      "command": "python -m pytest evaluation/tests -q",
+      "passed": 34,
+      "failed": 0,
+      "seconds": 2.05
+    }
+  },
+  "notes": "Test results transcribed from actual terminal runs. Evaluator source did not modify existing app files."
+}

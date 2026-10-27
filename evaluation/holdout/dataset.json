@@ -1,0 +1,362 @@
+{
+  "dataset_name": "Post-freeze structural holdout v1",
+  "num_cases": 20,
+  "created_at_utc": "2026-10-15T07:45:33.017454+00:00",
+  "implementation_frozen_at_utc": "2026-10-15T07:24:39.062743+00:00",
+  "protocol": "Created after implementation and evaluator freeze. No implementation changes or expectation edits after execution. Same fixed scoring as the 42-case evaluation; no per-ID scoring.",
+  "stdin_fixture": "20\\n repeated 16 times (unchanged evaluator)",
+  "cases": [
+    {
+      "id": "H-01",
+      "title": "必須keyword-only引数の省略",
+      "difficulty": "intermediate",
+      "code": "def configure(*, retries):\n    return retries\nconfigure()",
+      "expected": {
+        "execution": "error",
+        "exception_type": "TypeError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "1引数必要"
+        ],
+        "should_not_claim": []
+      },
+      "structural_rationale": "単純な位置引数不足から、keyword-onlyの必須引数へ構造を変更。"
+    },
+    {
+      "id": "H-02",
+      "title": "位置引数とkeywordによる同一引数の重複",
+      "difficulty": "intermediate",
+      "code": "def display(text):\n    return text\ndisplay(\"ready\", text=\"again\")",
+      "expected": {
+        "execution": "error",
+        "exception_type": "TypeError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "structural_rationale": "不足・過多と異なる、引数束縛時の重複。既存の意味分類には専用概念がないため警告判定を測る。"
+    },
+    {
+      "id": "H-03",
+      "title": "boolキー辞書で別のboolキーを参照",
+      "difficulty": "intermediate",
+      "code": "flags = {False: \"off\"}\nprint(flags[True])",
+      "expected": {
+        "execution": "error",
+        "exception_type": "KeyError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "辞書のキー True は存在しない"
+        ],
+        "should_not_claim": []
+      },
+      "structural_rationale": "文字列キーから、boolの等値・ハッシュ規則に依存する辞書へ変更。"
+    },
+    {
+      "id": "H-04",
+      "title": "負の位置変数でタプルを参照",
+      "difficulty": "intermediate",
+      "code": "position = -4\nprint((\"north\", \"south\")[position])",
+      "expected": {
+        "execution": "error",
+        "exception_type": "IndexError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "範囲外"
+        ],
+        "should_not_claim": []
+      },
+      "structural_rationale": "負の添字、タプルのインラインリテラル、添字変数の伝播を組み合わせる。"
+    },
+    {
+      "id": "H-05",
+      "title": "直接呼び出す関数内部のNone属性参照",
+      "difficulty": "intermediate",
+      "code": "def create_label():\n    marker = None\n    return marker.upper()\ncreate_label()",
+      "expected": {
+        "execution": "error",
+        "exception_type": "AttributeError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "marker が None"
+        ],
+        "should_not_claim": []
+      },
+      "structural_rationale": "モジュール直下の代入から、呼び出された関数内部のローカル変数へ変更。"
+    },
+    {
+      "id": "H-06",
+      "title": "両分岐で異なる文字列を代入した後の加算",
+      "difficulty": "intermediate",
+      "code": "if input():\n    label = \"active\"\nelse:\n    label = \"idle\"\nprint(label + 3)",
+      "expected": {
+        "execution": "error",
+        "exception_type": "TypeError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "不正な加算"
+        ],
+        "should_not_claim": []
+      },
+      "structural_rationale": "単一代入ではなく、値が違う同型の分岐合流を必要とする。"
+    },
+    {
+      "id": "H-07",
+      "title": "関数内の小数添字",
+      "difficulty": "intermediate",
+      "code": "def sample():\n    offset = 0.5\n    return (7, 8)[offset]\nsample()",
+      "expected": {
+        "execution": "error",
+        "exception_type": "TypeError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "添字がfloat"
+        ],
+        "should_not_claim": []
+      },
+      "structural_rationale": "タプル、関数ローカル、添字変数を組み合わせる。"
+    },
+    {
+      "id": "H-08",
+      "title": "Falseを法とした剰余演算",
+      "difficulty": "intermediate",
+      "code": "def remainder():\n    enabled = False\n    return 12 % enabled\nremainder()",
+      "expected": {
+        "execution": "error",
+        "exception_type": "ZeroDivisionError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "0で除算"
+        ],
+        "should_not_claim": []
+      },
+      "structural_rationale": "通常の割り算ではなく、boolの数値扱いと剰余演算を組み合わせる。"
+    },
+    {
+      "id": "H-09",
+      "title": "二つの条件分岐を越えた未束縛候補",
+      "difficulty": "intermediate",
+      "code": "choice = int(input())\nif choice < 0:\n    token = \"negative\"\nif choice > 0:\n    other = \"positive\"\nprint(token)",
+      "expected": {
+        "execution": "error",
+        "exception_type": "NameError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "token は一部の経路で未定義"
+        ],
+        "should_not_claim": []
+      },
+      "structural_rationale": "単一ifから、入力依存の比較と複数の分岐を越えた参照へ変更。"
+    },
+    {
+      "id": "H-10",
+      "title": "関数内部の複数行リストが閉じていない",
+      "difficulty": "intermediate",
+      "code": "def table():\n    rows = [\n        [1, 2],\n        [3, 4]\n    return rows\nprint(table())",
+      "expected": {
+        "execution": "error",
+        "exception_type": "SyntaxError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "括弧が閉じられていない"
+        ],
+        "should_not_claim": []
+      },
+      "structural_rationale": "複数行の入れ子リスト内で括弧が欠け、後続行が誤りとして見える状況。"
+    },
+    {
+      "id": "H-11",
+      "title": "位置専用・可変長・既定・任意keywordを併用",
+      "difficulty": "intermediate",
+      "code": "def collect(head, /, *tail, sep=\":\", **metadata):\n    return head\nprint(collect(\"x\", \"y\", sep=\"-\", version=2))",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "structural_rationale": "複数の引数形式を同時に使う正常呼び出し。"
+    },
+    {
+      "id": "H-12",
+      "title": "両分岐で初期化してから安全に連結",
+      "difficulty": "intermediate",
+      "code": "if input():\n    branch = \"left\"\nelse:\n    branch = \"right\"\nprint(branch + \"!\")",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": [
+          "branch は未定義"
+        ]
+      },
+      "structural_rationale": "全経路で定義された変数を未束縛扱いしないことを確認。"
+    },
+    {
+      "id": "H-13",
+      "title": "辞書の別名からupdateした後の参照",
+      "difficulty": "intermediate",
+      "code": "store = {}\nalias = store\nalias.update({\"ready\": 1})\nprint(store[\"ready\"])",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "structural_rationale": "別名を通した変更により、古い空辞書のキー情報が無効になる。"
+    },
+    {
+      "id": "H-14",
+      "title": "関数に渡したリストへの追加後の参照",
+      "difficulty": "intermediate",
+      "code": "def fill(target):\n    target.append(\"ready\")\nrecords = []\nfill(records)\nprint(records[0])",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "structural_rationale": "呼び出し前の長さを、関数引数経由の変更後に利用しない。"
+    },
+    {
+      "id": "H-15",
+      "title": "例外型タプルでTypeErrorを処理",
+      "difficulty": "intermediate",
+      "code": "try:\n    \"ok\" + 1\nexcept (ValueError, TypeError):\n    print(\"fallback\")",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "TypeError は except で処理"
+        ],
+        "should_not_claim": [
+          "TypeError で停止する"
+        ]
+      },
+      "structural_rationale": "単一例外型ではなく、タプル形式のhandlerによる正常な復旧。"
+    },
+    {
+      "id": "H-16",
+      "title": "変換エラーを別の例外にして外側で処理",
+      "difficulty": "intermediate",
+      "code": "try:\n    try:\n        int(\"bad\")\n    except ValueError:\n        raise TypeError(\"conversion\")\nexcept TypeError:\n    print(\"recovered\")",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": [
+          "このコードは必ず停止する"
+        ]
+      },
+      "structural_rationale": "入れ子handlerと明示的な再送出を含むが、最終的には正常終了する。"
+    },
+    {
+      "id": "H-17",
+      "title": "generator式のローカル変数とbuiltins",
+      "difficulty": "intermediate",
+      "code": "total = sum(n * n for n in range(4))\nprint(total)",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": [
+          "n は未定義"
+        ]
+      },
+      "structural_rationale": "generator式内部のスコープと複数builtinsを組み合わせる。"
+    },
+    {
+      "id": "H-18",
+      "title": "import別名と関数呼び出し結果のリスト",
+      "difficulty": "intermediate",
+      "code": "from math import sqrt as root\nvalues = [root(9), root(16)]\nprint(values[-1])",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "root は import 済み"
+        ],
+        "should_not_claim": [
+          "root は未定義"
+        ]
+      },
+      "structural_rationale": "import別名を要素生成に使い、安全な負の添字を参照。"
+    },
+    {
+      "id": "H-19",
+      "title": "boolの添字は正常な整数添字",
+      "difficulty": "intermediate",
+      "code": "choices = (\"no\", \"yes\")\nprint(choices[True])",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "structural_rationale": "float添字の拒否から一般化しすぎてboolを誤拒否しない。"
+    },
+    {
+      "id": "H-20",
+      "title": "実行されない枝のNone属性参照",
+      "difficulty": "intermediate",
+      "code": "if False:\n    result = None\n    result.upper()\nelse:\n    print(\"skipped\")",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "structural_rationale": "明白な属性エラーを含むが、その枝が実行されない正常コード。"
+    }
+  ]
+}

@@ -1,0 +1,5063 @@
+{
+  "generated_at_utc": "2026-10-27T03:02:10.637025+00:00",
+  "legacy_42": {
+    "metrics": {
+      "error_type_accuracy": {
+        "before": {
+          "numerator": 37,
+          "denominator": 37,
+          "percent": 100.0
+        },
+        "after": {
+          "numerator": 37,
+          "denominator": 37,
+          "percent": 100.0
+        }
+      },
+      "error_no_error_accuracy_static": {
+        "before": {
+          "numerator": 32,
+          "denominator": 42,
+          "percent": 76.19
+        },
+        "after": {
+          "numerator": 33,
+          "denominator": 42,
+          "percent": 78.57
+        }
+      },
+      "error_no_error_accuracy_log_assisted": {
+        "before": {
+          "numerator": 42,
+          "denominator": 42,
+          "percent": 100.0
+        },
+        "after": {
+          "numerator": 42,
+          "denominator": 42,
+          "percent": 100.0
+        }
+      },
+      "false_positive_rate": {
+        "before": {
+          "numerator": 0,
+          "denominator": 5,
+          "percent": 0.0
+        },
+        "after": {
+          "numerator": 0,
+          "denominator": 5,
+          "percent": 0.0
+        }
+      },
+      "normal_cases_unevaluable": {
+        "before": 0,
+        "after": 0
+      },
+      "ast_diagnosis_accuracy": {
+        "before": {
+          "numerator": 24,
+          "denominator": 36,
+          "percent": 66.67
+        },
+        "after": {
+          "numerator": 25,
+          "denominator": 36,
+          "percent": 69.44
+        }
+      },
+      "ast_expectation_recall": {
+        "before": {
+          "numerator": 32,
+          "denominator": 45,
+          "percent": 71.11
+        },
+        "after": {
+          "numerator": 34,
+          "denominator": 45,
+          "percent": 75.56
+        }
+      },
+      "combined_diagnosis_accuracy": {
+        "before": {
+          "numerator": 37,
+          "denominator": 42,
+          "percent": 88.1
+        },
+        "after": {
+          "numerator": 37,
+          "denominator": 42,
+          "percent": 88.1
+        }
+      },
+      "combined_expectation_recall": {
+        "before": {
+          "numerator": 47,
+          "denominator": 53,
+          "percent": 88.68
+        },
+        "after": {
+          "numerator": 48,
+          "denominator": 53,
+          "percent": 90.57
+        }
+      },
+      "incorrect_claim_rate": {
+        "before": {
+          "numerator": 0,
+          "denominator": 14,
+          "percent": 0.0
+        },
+        "after": {
+          "numerator": 0,
+          "denominator": 14,
+          "percent": 0.0
+        }
+      },
+      "incorrect_claim_rate_all_cases": {
+        "before": {
+          "numerator": 0,
+          "denominator": 42,
+          "percent": 0.0
+        },
+        "after": {
+          "numerator": 0,
+          "denominator": 42,
+          "percent": 0.0
+        }
+      },
+      "coverage": {
+        "before": {
+          "numerator": 42,
+          "denominator": 42,
+          "percent": 100.0
+        },
+        "after": {
+          "numerator": 42,
+          "denominator": 42,
+          "percent": 100.0
+        }
+      },
+      "strict_pass": {
+        "before": {
+          "numerator": 28,
+          "denominator": 42,
+          "percent": 66.67
+        },
+        "after": {
+          "numerator": 28,
+          "denominator": 42,
+          "percent": 66.67
+        }
+      },
+      "runtime_validated": {
+        "before": {
+          "numerator": 42,
+          "denominator": 42,
+          "percent": 100.0
+        },
+        "after": {
+          "numerator": 42,
+          "denominator": 42,
+          "percent": 100.0
+        }
+      },
+      "confusion_matrix_static": {
+        "before": {
+          "true_positive": 27,
+          "false_negative": 10,
+          "true_negative": 5,
+          "false_positive": 0,
+          "unevaluable": 0
+        },
+        "after": {
+          "true_positive": 28,
+          "false_negative": 9,
+          "true_negative": 5,
+          "false_positive": 0,
+          "unevaluable": 0
+        }
+      },
+      "unmapped_detection_items": {
+        "before": 0,
+        "after": 0
+      },
+      "unmapped_prohibited_items": {
+        "before": 0,
+        "after": 0
+      },
+      "prohibited_items": {
+        "before": 17,
+        "after": 17
+      },
+      "confidence_labels": {
+        "before": {
+          "medium": 6,
+          "high": 22
+        },
+        "after": {
+          "medium": 6,
+          "high": 27
+        }
+      }
+    },
+    "by_difficulty": {
+      "beginner": {
+        "before": {
+          "numerator": 17,
+          "denominator": 21,
+          "percent": 80.95
+        },
+        "after": {
+          "numerator": 17,
+          "denominator": 21,
+          "percent": 80.95
+        }
+      },
+      "intermediate": {
+        "before": {
+          "numerator": 3,
+          "denominator": 4,
+          "percent": 75.0
+        },
+        "after": {
+          "numerator": 3,
+          "denominator": 4,
+          "percent": 75.0
+        }
+      },
+      "rare": {
+        "before": {
+          "numerator": 2,
+          "denominator": 9,
+          "percent": 22.22
+        },
+        "after": {
+          "numerator": 2,
+          "denominator": 9,
+          "percent": 22.22
+        }
+      },
+      "adversarial": {
+        "before": {
+          "numerator": 6,
+          "denominator": 8,
+          "percent": 75.0
+        },
+        "after": {
+          "numerator": 6,
+          "denominator": 8,
+          "percent": 75.0
+        }
+      }
+    },
+    "strict_transitions": {
+      "improved": [],
+      "regressed": [],
+      "unchanged": [
+        "PY-001",
+        "PY-002",
+        "PY-003",
+        "PY-004",
+        "PY-005",
+        "PY-006",
+        "PY-007",
+        "PY-008",
+        "PY-009",
+        "PY-010",
+        "PY-011",
+        "PY-012",
+        "PY-013",
+        "PY-014",
+        "PY-015",
+        "PY-016",
+        "PY-017",
+        "PY-018",
+        "PY-019",
+        "PY-020",
+        "PY-021",
+        "PY-022",
+        "PY-023",
+        "PY-024",
+        "PY-025",
+        "PY-026",
+        "PY-027",
+        "PY-028",
+        "PY-029",
+        "PY-030",
+        "PY-031",
+        "PY-032",
+        "PY-033",
+        "PY-034",
+        "PY-035",
+        "PY-036",
+        "PY-037",
+        "PY-038",
+        "PY-039",
+        "PY-040",
+        "PY-041",
+        "PY-042"
+      ]
+    },
+    "diagnostic_transitions": {
+      "improved": [
+        "PY-029",
+        "PY-034"
+      ],
+      "regressed": [],
+      "mixed": [],
+      "unchanged": [
+        "PY-001",
+        "PY-002",
+        "PY-003",
+        "PY-004",
+        "PY-005",
+        "PY-006",
+        "PY-007",
+        "PY-008",
+        "PY-009",
+        "PY-010",
+        "PY-011",
+        "PY-012",
+        "PY-013",
+        "PY-014",
+        "PY-015",
+        "PY-016",
+        "PY-017",
+        "PY-018",
+        "PY-019",
+        "PY-020",
+        "PY-021",
+        "PY-022",
+        "PY-023",
+        "PY-024",
+        "PY-025",
+        "PY-026",
+        "PY-027",
+        "PY-028",
+        "PY-030",
+        "PY-031",
+        "PY-032",
+        "PY-033",
+        "PY-035",
+        "PY-036",
+        "PY-037",
+        "PY-038",
+        "PY-039",
+        "PY-040",
+        "PY-041",
+        "PY-042"
+      ]
+    },
+    "cases": [
+      {
+        "id": "PY-001",
+        "title": "変数名のタイプミス",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-002",
+        "title": "定義前に変数を使用",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-003",
+        "title": "文字列と整数の加算",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-004",
+        "title": "inputの戻り値を整数として使用",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-005",
+        "title": "リストの範囲外アクセス",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-006",
+        "title": "辞書に存在しないキー",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-007",
+        "title": "ゼロ除算",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-008",
+        "title": "存在しないメソッド",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-009",
+        "title": "存在しないモジュール",
+        "difficulty": "beginner",
+        "before": "FAIL",
+        "after": "FAIL",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          false,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          false,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": [
+          "コードだけの警告: expected=True, actual=False"
+        ]
+      },
+      {
+        "id": "PY-010",
+        "title": "存在しない名前をimport",
+        "difficulty": "beginner",
+        "before": "FAIL",
+        "after": "FAIL",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          false,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          false,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": [
+          "コードだけの警告: expected=True, actual=False"
+        ]
+      },
+      {
+        "id": "PY-011",
+        "title": "存在しないファイルを開く",
+        "difficulty": "beginner",
+        "before": "FAIL",
+        "after": "FAIL",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          false,
+          true,
+          0,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          false,
+          true,
+          0,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": [
+          "コードだけの警告: expected=True, actual=False"
+        ]
+      },
+      {
+        "id": "PY-012",
+        "title": "int変換失敗",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-013",
+        "title": "if文のコロン忘れ",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          2,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          2,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-014",
+        "title": "閉じ括弧忘れ",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-015",
+        "title": "インデント忘れ",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-016",
+        "title": "予期しない深いインデント",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-017",
+        "title": "代入演算子と比較演算子の混同",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          2,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          2,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-018",
+        "title": "文字列の閉じ忘れ",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-019",
+        "title": "ローカル変数の参照前代入",
+        "difficulty": "intermediate",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-020",
+        "title": "Noneにメソッドを呼び出す",
+        "difficulty": "intermediate",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-021",
+        "title": "関数の引数不足",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-022",
+        "title": "関数へ引数を渡しすぎる",
+        "difficulty": "beginner",
+        "before": "FAIL",
+        "after": "FAIL",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": [
+          "期待した診断が欠落: hello の定義より多い位置引数 (too_many_arguments)"
+        ]
+      },
+      {
+        "id": "PY-023",
+        "title": "存在しないキーワード引数",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-024",
+        "title": "リストと整数の大小比較",
+        "difficulty": "intermediate",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-025",
+        "title": "無限再帰",
+        "difficulty": "rare",
+        "before": "FAIL",
+        "after": "FAIL",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          false,
+          true,
+          0,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          false,
+          true,
+          0,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": [
+          "コードだけの警告: expected=True, actual=False"
+        ]
+      },
+      {
+        "id": "PY-026",
+        "title": "空イテレータへのnext",
+        "difficulty": "rare",
+        "before": "FAIL",
+        "after": "FAIL",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          false,
+          true,
+          0,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          false,
+          true,
+          0,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": [
+          "コードだけの警告: expected=True, actual=False"
+        ]
+      },
+      {
+        "id": "PY-027",
+        "title": "assert失敗",
+        "difficulty": "rare",
+        "before": "FAIL",
+        "after": "FAIL",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          false,
+          true,
+          0,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          false,
+          true,
+          0,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": [
+          "コードだけの警告: expected=True, actual=False"
+        ]
+      },
+      {
+        "id": "PY-028",
+        "title": "辞書を反復中に変更",
+        "difficulty": "rare",
+        "before": "FAIL",
+        "after": "FAIL",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          false,
+          true,
+          0,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          false,
+          true,
+          0,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": [
+          "コードだけの警告: expected=True, actual=False"
+        ]
+      },
+      {
+        "id": "PY-029",
+        "title": "setを反復中に変更",
+        "difficulty": "rare",
+        "before": "FAIL",
+        "after": "FAIL",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "improved",
+        "before_scores": [
+          true,
+          true,
+          false,
+          true,
+          0,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          false,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": [
+          "コードだけの警告: expected=True, actual=False"
+        ]
+      },
+      {
+        "id": "PY-030",
+        "title": "Unicodeデコード失敗",
+        "difficulty": "rare",
+        "before": "FAIL",
+        "after": "FAIL",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          false,
+          true,
+          0,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          false,
+          true,
+          0,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": [
+          "コードだけの警告: expected=True, actual=False"
+        ]
+      },
+      {
+        "id": "PY-031",
+        "title": "bytesとstrの加算",
+        "difficulty": "rare",
+        "before": "FAIL",
+        "after": "FAIL",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": [
+          "期待した診断が欠落: bytes と str の混在 (mixed_bytes_string)"
+        ]
+      },
+      {
+        "id": "PY-032",
+        "title": "リスト添字にfloat",
+        "difficulty": "rare",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-033",
+        "title": "hash化できないリストを辞書キーに使用",
+        "difficulty": "rare",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-034",
+        "title": "自作クラスの存在しない属性",
+        "difficulty": "intermediate",
+        "before": "FAIL",
+        "after": "FAIL",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "improved",
+        "before_scores": [
+          true,
+          true,
+          false,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": [
+          "期待した診断が欠落: name 属性は存在 (present_attribute)"
+        ]
+      },
+      {
+        "id": "PY-035",
+        "title": "似た変数名が複数存在",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-036",
+        "title": "builtinsを未定義扱いしない",
+        "difficulty": "adversarial",
+        "before": "FAIL",
+        "after": "FAIL",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": [
+          "期待した診断が欠落: print と len は builtins (builtin_resolution)"
+        ]
+      },
+      {
+        "id": "PY-037",
+        "title": "import済みモジュールを未定義扱いしない",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-038",
+        "title": "from import済み名称を未定義扱いしない",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-039",
+        "title": "分岐次第で未定義になる変数",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-040",
+        "title": "空ループ後の未定義変数",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-041",
+        "title": "関数スコープとグローバルの同名変数",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-042",
+        "title": "例外処理済みのZeroDivisionError",
+        "difficulty": "adversarial",
+        "before": "FAIL",
+        "after": "FAIL",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": [
+          "期待した診断が欠落: ZeroDivisionError は except で処理される (handled_exception)"
+        ]
+      }
+    ]
+  },
+  "structured_42": {
+    "metrics": {
+      "error_type_accuracy": {
+        "before": {
+          "numerator": 37,
+          "denominator": 37,
+          "percent": 100.0
+        },
+        "after": {
+          "numerator": 37,
+          "denominator": 37,
+          "percent": 100.0
+        }
+      },
+      "error_no_error_accuracy_static": {
+        "before": {
+          "numerator": 32,
+          "denominator": 42,
+          "percent": 76.19
+        },
+        "after": {
+          "numerator": 37,
+          "denominator": 42,
+          "percent": 88.1
+        }
+      },
+      "error_no_error_accuracy_log_assisted": {
+        "before": {
+          "numerator": 42,
+          "denominator": 42,
+          "percent": 100.0
+        },
+        "after": {
+          "numerator": 42,
+          "denominator": 42,
+          "percent": 100.0
+        }
+      },
+      "false_positive_rate": {
+        "before": {
+          "numerator": 0,
+          "denominator": 5,
+          "percent": 0.0
+        },
+        "after": {
+          "numerator": 0,
+          "denominator": 5,
+          "percent": 0.0
+        }
+      },
+      "normal_cases_unevaluable": {
+        "before": 0,
+        "after": 0
+      },
+      "ast_diagnosis_accuracy": {
+        "before": {
+          "numerator": 24,
+          "denominator": 36,
+          "percent": 66.67
+        },
+        "after": {
+          "numerator": 33,
+          "denominator": 36,
+          "percent": 91.67
+        }
+      },
+      "ast_expectation_recall": {
+        "before": {
+          "numerator": 32,
+          "denominator": 45,
+          "percent": 71.11
+        },
+        "after": {
+          "numerator": 42,
+          "denominator": 45,
+          "percent": 93.33
+        }
+      },
+      "combined_diagnosis_accuracy": {
+        "before": {
+          "numerator": 37,
+          "denominator": 42,
+          "percent": 88.1
+        },
+        "after": {
+          "numerator": 42,
+          "denominator": 42,
+          "percent": 100.0
+        }
+      },
+      "combined_expectation_recall": {
+        "before": {
+          "numerator": 47,
+          "denominator": 53,
+          "percent": 88.68
+        },
+        "after": {
+          "numerator": 53,
+          "denominator": 53,
+          "percent": 100.0
+        }
+      },
+      "incorrect_claim_rate": {
+        "before": {
+          "numerator": 0,
+          "denominator": 14,
+          "percent": 0.0
+        },
+        "after": {
+          "numerator": 0,
+          "denominator": 14,
+          "percent": 0.0
+        }
+      },
+      "incorrect_claim_rate_all_cases": {
+        "before": {
+          "numerator": 0,
+          "denominator": 42,
+          "percent": 0.0
+        },
+        "after": {
+          "numerator": 0,
+          "denominator": 42,
+          "percent": 0.0
+        }
+      },
+      "coverage": {
+        "before": {
+          "numerator": 42,
+          "denominator": 42,
+          "percent": 100.0
+        },
+        "after": {
+          "numerator": 42,
+          "denominator": 42,
+          "percent": 100.0
+        }
+      },
+      "strict_pass": {
+        "before": {
+          "numerator": 28,
+          "denominator": 42,
+          "percent": 66.67
+        },
+        "after": {
+          "numerator": 37,
+          "denominator": 42,
+          "percent": 88.1
+        }
+      },
+      "runtime_validated": {
+        "before": {
+          "numerator": 42,
+          "denominator": 42,
+          "percent": 100.0
+        },
+        "after": {
+          "numerator": 42,
+          "denominator": 42,
+          "percent": 100.0
+        }
+      },
+      "confusion_matrix_static": {
+        "before": {
+          "true_positive": 27,
+          "false_negative": 10,
+          "true_negative": 5,
+          "false_positive": 0,
+          "unevaluable": 0
+        },
+        "after": {
+          "true_positive": 32,
+          "false_negative": 5,
+          "true_negative": 5,
+          "false_positive": 0,
+          "unevaluable": 0
+        }
+      },
+      "unmapped_detection_items": {
+        "before": 0,
+        "after": 0
+      },
+      "unmapped_prohibited_items": {
+        "before": 0,
+        "after": 0
+      },
+      "prohibited_items": {
+        "before": 17,
+        "after": 17
+      },
+      "confidence_labels": {
+        "before": {
+          "medium": 6,
+          "high": 22
+        },
+        "after": {
+          "medium": 6,
+          "high": 27
+        }
+      }
+    },
+    "by_difficulty": {
+      "beginner": {
+        "before": {
+          "numerator": 17,
+          "denominator": 21,
+          "percent": 80.95
+        },
+        "after": {
+          "numerator": 18,
+          "denominator": 21,
+          "percent": 85.71
+        }
+      },
+      "intermediate": {
+        "before": {
+          "numerator": 3,
+          "denominator": 4,
+          "percent": 75.0
+        },
+        "after": {
+          "numerator": 4,
+          "denominator": 4,
+          "percent": 100.0
+        }
+      },
+      "rare": {
+        "before": {
+          "numerator": 2,
+          "denominator": 9,
+          "percent": 22.22
+        },
+        "after": {
+          "numerator": 7,
+          "denominator": 9,
+          "percent": 77.78
+        }
+      },
+      "adversarial": {
+        "before": {
+          "numerator": 6,
+          "denominator": 8,
+          "percent": 75.0
+        },
+        "after": {
+          "numerator": 8,
+          "denominator": 8,
+          "percent": 100.0
+        }
+      }
+    },
+    "strict_transitions": {
+      "improved": [
+        "PY-022",
+        "PY-026",
+        "PY-027",
+        "PY-028",
+        "PY-029",
+        "PY-031",
+        "PY-034",
+        "PY-036",
+        "PY-042"
+      ],
+      "regressed": [],
+      "unchanged": [
+        "PY-001",
+        "PY-002",
+        "PY-003",
+        "PY-004",
+        "PY-005",
+        "PY-006",
+        "PY-007",
+        "PY-008",
+        "PY-009",
+        "PY-010",
+        "PY-011",
+        "PY-012",
+        "PY-013",
+        "PY-014",
+        "PY-015",
+        "PY-016",
+        "PY-017",
+        "PY-018",
+        "PY-019",
+        "PY-020",
+        "PY-021",
+        "PY-023",
+        "PY-024",
+        "PY-025",
+        "PY-030",
+        "PY-032",
+        "PY-033",
+        "PY-035",
+        "PY-037",
+        "PY-038",
+        "PY-039",
+        "PY-040",
+        "PY-041"
+      ]
+    },
+    "diagnostic_transitions": {
+      "improved": [
+        "PY-022",
+        "PY-026",
+        "PY-027",
+        "PY-028",
+        "PY-029",
+        "PY-031",
+        "PY-034",
+        "PY-036",
+        "PY-042"
+      ],
+      "regressed": [],
+      "mixed": [],
+      "unchanged": [
+        "PY-001",
+        "PY-002",
+        "PY-003",
+        "PY-004",
+        "PY-005",
+        "PY-006",
+        "PY-007",
+        "PY-008",
+        "PY-009",
+        "PY-010",
+        "PY-011",
+        "PY-012",
+        "PY-013",
+        "PY-014",
+        "PY-015",
+        "PY-016",
+        "PY-017",
+        "PY-018",
+        "PY-019",
+        "PY-020",
+        "PY-021",
+        "PY-023",
+        "PY-024",
+        "PY-025",
+        "PY-030",
+        "PY-032",
+        "PY-033",
+        "PY-035",
+        "PY-037",
+        "PY-038",
+        "PY-039",
+        "PY-040",
+        "PY-041"
+      ]
+    },
+    "cases": [
+      {
+        "id": "PY-001",
+        "title": "変数名のタイプミス",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-002",
+        "title": "定義前に変数を使用",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-003",
+        "title": "文字列と整数の加算",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-004",
+        "title": "inputの戻り値を整数として使用",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-005",
+        "title": "リストの範囲外アクセス",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-006",
+        "title": "辞書に存在しないキー",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-007",
+        "title": "ゼロ除算",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-008",
+        "title": "存在しないメソッド",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-009",
+        "title": "存在しないモジュール",
+        "difficulty": "beginner",
+        "before": "FAIL",
+        "after": "FAIL",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          false,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          false,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": [
+          "コードだけの警告: expected=True, actual=False"
+        ]
+      },
+      {
+        "id": "PY-010",
+        "title": "存在しない名前をimport",
+        "difficulty": "beginner",
+        "before": "FAIL",
+        "after": "FAIL",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          false,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          false,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": [
+          "コードだけの警告: expected=True, actual=False"
+        ]
+      },
+      {
+        "id": "PY-011",
+        "title": "存在しないファイルを開く",
+        "difficulty": "beginner",
+        "before": "FAIL",
+        "after": "FAIL",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          false,
+          true,
+          0,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          false,
+          true,
+          0,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": [
+          "コードだけの警告: expected=True, actual=False"
+        ]
+      },
+      {
+        "id": "PY-012",
+        "title": "int変換失敗",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-013",
+        "title": "if文のコロン忘れ",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          2,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          2,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-014",
+        "title": "閉じ括弧忘れ",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-015",
+        "title": "インデント忘れ",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-016",
+        "title": "予期しない深いインデント",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-017",
+        "title": "代入演算子と比較演算子の混同",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          2,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          2,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-018",
+        "title": "文字列の閉じ忘れ",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-019",
+        "title": "ローカル変数の参照前代入",
+        "difficulty": "intermediate",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-020",
+        "title": "Noneにメソッドを呼び出す",
+        "difficulty": "intermediate",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-021",
+        "title": "関数の引数不足",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-022",
+        "title": "関数へ引数を渡しすぎる",
+        "difficulty": "beginner",
+        "before": "FAIL",
+        "after": "PASS",
+        "strict_transition": "improved",
+        "diagnostic_transition": "improved",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-023",
+        "title": "存在しないキーワード引数",
+        "difficulty": "beginner",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-024",
+        "title": "リストと整数の大小比較",
+        "difficulty": "intermediate",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-025",
+        "title": "無限再帰",
+        "difficulty": "rare",
+        "before": "FAIL",
+        "after": "FAIL",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          false,
+          true,
+          0,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          false,
+          true,
+          0,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": [
+          "コードだけの警告: expected=True, actual=False"
+        ]
+      },
+      {
+        "id": "PY-026",
+        "title": "空イテレータへのnext",
+        "difficulty": "rare",
+        "before": "FAIL",
+        "after": "PASS",
+        "strict_transition": "improved",
+        "diagnostic_transition": "improved",
+        "before_scores": [
+          true,
+          true,
+          false,
+          true,
+          0,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-027",
+        "title": "assert失敗",
+        "difficulty": "rare",
+        "before": "FAIL",
+        "after": "PASS",
+        "strict_transition": "improved",
+        "diagnostic_transition": "improved",
+        "before_scores": [
+          true,
+          true,
+          false,
+          true,
+          0,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-028",
+        "title": "辞書を反復中に変更",
+        "difficulty": "rare",
+        "before": "FAIL",
+        "after": "PASS",
+        "strict_transition": "improved",
+        "diagnostic_transition": "improved",
+        "before_scores": [
+          true,
+          true,
+          false,
+          true,
+          0,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-029",
+        "title": "setを反復中に変更",
+        "difficulty": "rare",
+        "before": "FAIL",
+        "after": "PASS",
+        "strict_transition": "improved",
+        "diagnostic_transition": "improved",
+        "before_scores": [
+          true,
+          true,
+          false,
+          true,
+          0,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-030",
+        "title": "Unicodeデコード失敗",
+        "difficulty": "rare",
+        "before": "FAIL",
+        "after": "FAIL",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          false,
+          true,
+          0,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          false,
+          true,
+          0,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": [
+          "コードだけの警告: expected=True, actual=False"
+        ]
+      },
+      {
+        "id": "PY-031",
+        "title": "bytesとstrの加算",
+        "difficulty": "rare",
+        "before": "FAIL",
+        "after": "PASS",
+        "strict_transition": "improved",
+        "diagnostic_transition": "improved",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-032",
+        "title": "リスト添字にfloat",
+        "difficulty": "rare",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-033",
+        "title": "hash化できないリストを辞書キーに使用",
+        "difficulty": "rare",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-034",
+        "title": "自作クラスの存在しない属性",
+        "difficulty": "intermediate",
+        "before": "FAIL",
+        "after": "PASS",
+        "strict_transition": "improved",
+        "diagnostic_transition": "improved",
+        "before_scores": [
+          true,
+          true,
+          false,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-035",
+        "title": "似た変数名が複数存在",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          2,
+          2,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-036",
+        "title": "builtinsを未定義扱いしない",
+        "difficulty": "adversarial",
+        "before": "FAIL",
+        "after": "PASS",
+        "strict_transition": "improved",
+        "diagnostic_transition": "improved",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-037",
+        "title": "import済みモジュールを未定義扱いしない",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-038",
+        "title": "from import済み名称を未定義扱いしない",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-039",
+        "title": "分岐次第で未定義になる変数",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-040",
+        "title": "空ループ後の未定義変数",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-041",
+        "title": "関数スコープとグローバルの同名変数",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "PY-042",
+        "title": "例外処理済みのZeroDivisionError",
+        "difficulty": "adversarial",
+        "before": "FAIL",
+        "after": "PASS",
+        "strict_transition": "improved",
+        "diagnostic_transition": "improved",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      }
+    ]
+  },
+  "existing_holdout_20": {
+    "metrics": {
+      "error_type_accuracy": {
+        "before": {
+          "numerator": 10,
+          "denominator": 10,
+          "percent": 100.0
+        },
+        "after": {
+          "numerator": 10,
+          "denominator": 10,
+          "percent": 100.0
+        }
+      },
+      "error_no_error_accuracy_static": {
+        "before": {
+          "numerator": 20,
+          "denominator": 20,
+          "percent": 100.0
+        },
+        "after": {
+          "numerator": 20,
+          "denominator": 20,
+          "percent": 100.0
+        }
+      },
+      "error_no_error_accuracy_log_assisted": {
+        "before": {
+          "numerator": 20,
+          "denominator": 20,
+          "percent": 100.0
+        },
+        "after": {
+          "numerator": 20,
+          "denominator": 20,
+          "percent": 100.0
+        }
+      },
+      "false_positive_rate": {
+        "before": {
+          "numerator": 0,
+          "denominator": 10,
+          "percent": 0.0
+        },
+        "after": {
+          "numerator": 0,
+          "denominator": 10,
+          "percent": 0.0
+        }
+      },
+      "normal_cases_unevaluable": {
+        "before": 0,
+        "after": 0
+      },
+      "ast_diagnosis_accuracy": {
+        "before": {
+          "numerator": 9,
+          "denominator": 10,
+          "percent": 90.0
+        },
+        "after": {
+          "numerator": 10,
+          "denominator": 10,
+          "percent": 100.0
+        }
+      },
+      "ast_expectation_recall": {
+        "before": {
+          "numerator": 9,
+          "denominator": 10,
+          "percent": 90.0
+        },
+        "after": {
+          "numerator": 10,
+          "denominator": 10,
+          "percent": 100.0
+        }
+      },
+      "combined_diagnosis_accuracy": {
+        "before": {
+          "numerator": 10,
+          "denominator": 11,
+          "percent": 90.91
+        },
+        "after": {
+          "numerator": 11,
+          "denominator": 11,
+          "percent": 100.0
+        }
+      },
+      "combined_expectation_recall": {
+        "before": {
+          "numerator": 10,
+          "denominator": 11,
+          "percent": 90.91
+        },
+        "after": {
+          "numerator": 11,
+          "denominator": 11,
+          "percent": 100.0
+        }
+      },
+      "incorrect_claim_rate": {
+        "before": {
+          "numerator": 0,
+          "denominator": 5,
+          "percent": 0.0
+        },
+        "after": {
+          "numerator": 0,
+          "denominator": 5,
+          "percent": 0.0
+        }
+      },
+      "incorrect_claim_rate_all_cases": {
+        "before": {
+          "numerator": 0,
+          "denominator": 20,
+          "percent": 0.0
+        },
+        "after": {
+          "numerator": 0,
+          "denominator": 20,
+          "percent": 0.0
+        }
+      },
+      "coverage": {
+        "before": {
+          "numerator": 20,
+          "denominator": 20,
+          "percent": 100.0
+        },
+        "after": {
+          "numerator": 20,
+          "denominator": 20,
+          "percent": 100.0
+        }
+      },
+      "strict_pass": {
+        "before": {
+          "numerator": 19,
+          "denominator": 20,
+          "percent": 95.0
+        },
+        "after": {
+          "numerator": 20,
+          "denominator": 20,
+          "percent": 100.0
+        }
+      },
+      "runtime_validated": {
+        "before": {
+          "numerator": 20,
+          "denominator": 20,
+          "percent": 100.0
+        },
+        "after": {
+          "numerator": 20,
+          "denominator": 20,
+          "percent": 100.0
+        }
+      },
+      "confusion_matrix_static": {
+        "before": {
+          "true_positive": 10,
+          "false_negative": 0,
+          "true_negative": 10,
+          "false_positive": 0,
+          "unevaluable": 0
+        },
+        "after": {
+          "true_positive": 10,
+          "false_negative": 0,
+          "true_negative": 10,
+          "false_positive": 0,
+          "unevaluable": 0
+        }
+      },
+      "unmapped_detection_items": {
+        "before": 0,
+        "after": 0
+      },
+      "unmapped_prohibited_items": {
+        "before": 0,
+        "after": 0
+      },
+      "prohibited_items": {
+        "before": 5,
+        "after": 5
+      },
+      "confidence_labels": {
+        "before": {
+          "high": 9,
+          "medium": 1
+        },
+        "after": {
+          "high": 9,
+          "medium": 1
+        }
+      }
+    },
+    "by_difficulty": {
+      "intermediate": {
+        "before": {
+          "numerator": 19,
+          "denominator": 20,
+          "percent": 95.0
+        },
+        "after": {
+          "numerator": 20,
+          "denominator": 20,
+          "percent": 100.0
+        }
+      }
+    },
+    "strict_transitions": {
+      "improved": [
+        "H-15"
+      ],
+      "regressed": [],
+      "unchanged": [
+        "H-01",
+        "H-02",
+        "H-03",
+        "H-04",
+        "H-05",
+        "H-06",
+        "H-07",
+        "H-08",
+        "H-09",
+        "H-10",
+        "H-11",
+        "H-12",
+        "H-13",
+        "H-14",
+        "H-16",
+        "H-17",
+        "H-18",
+        "H-19",
+        "H-20"
+      ]
+    },
+    "diagnostic_transitions": {
+      "improved": [
+        "H-15"
+      ],
+      "regressed": [],
+      "mixed": [],
+      "unchanged": [
+        "H-01",
+        "H-02",
+        "H-03",
+        "H-04",
+        "H-05",
+        "H-06",
+        "H-07",
+        "H-08",
+        "H-09",
+        "H-10",
+        "H-11",
+        "H-12",
+        "H-13",
+        "H-14",
+        "H-16",
+        "H-17",
+        "H-18",
+        "H-19",
+        "H-20"
+      ]
+    },
+    "cases": [
+      {
+        "id": "H-01",
+        "title": "必須keyword-only引数の省略",
+        "difficulty": "intermediate",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "H-02",
+        "title": "位置引数とkeywordによる同一引数の重複",
+        "difficulty": "intermediate",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "H-03",
+        "title": "boolキー辞書で別のboolキーを参照",
+        "difficulty": "intermediate",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "H-04",
+        "title": "負の位置変数でタプルを参照",
+        "difficulty": "intermediate",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "H-05",
+        "title": "直接呼び出す関数内部のNone属性参照",
+        "difficulty": "intermediate",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "H-06",
+        "title": "両分岐で異なる文字列を代入した後の加算",
+        "difficulty": "intermediate",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "H-07",
+        "title": "関数内の小数添字",
+        "difficulty": "intermediate",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "H-08",
+        "title": "Falseを法とした剰余演算",
+        "difficulty": "intermediate",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "H-09",
+        "title": "二つの条件分岐を越えた未束縛候補",
+        "difficulty": "intermediate",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "H-10",
+        "title": "関数内部の複数行リストが閉じていない",
+        "difficulty": "intermediate",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "H-11",
+        "title": "位置専用・可変長・既定・任意keywordを併用",
+        "difficulty": "intermediate",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "H-12",
+        "title": "両分岐で初期化してから安全に連結",
+        "difficulty": "intermediate",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "H-13",
+        "title": "辞書の別名からupdateした後の参照",
+        "difficulty": "intermediate",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "H-14",
+        "title": "関数に渡したリストへの追加後の参照",
+        "difficulty": "intermediate",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "H-15",
+        "title": "例外型タプルでTypeErrorを処理",
+        "difficulty": "intermediate",
+        "before": "FAIL",
+        "after": "PASS",
+        "strict_transition": "improved",
+        "diagnostic_transition": "improved",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "H-16",
+        "title": "変換エラーを別の例外にして外側で処理",
+        "difficulty": "intermediate",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "H-17",
+        "title": "generator式のローカル変数とbuiltins",
+        "difficulty": "intermediate",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "H-18",
+        "title": "import別名と関数呼び出し結果のリスト",
+        "difficulty": "intermediate",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          1,
+          1,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "H-19",
+        "title": "boolの添字は正常な整数添字",
+        "difficulty": "intermediate",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "H-20",
+        "title": "実行されない枝のNone属性参照",
+        "difficulty": "intermediate",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      }
+    ]
+  },
+  "new_normal_30": {
+    "metrics": {
+      "error_type_accuracy": {
+        "before": {
+          "numerator": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "after": {
+          "numerator": 0,
+          "denominator": 0,
+          "percent": null
+        }
+      },
+      "error_no_error_accuracy_static": {
+        "before": {
+          "numerator": 29,
+          "denominator": 30,
+          "percent": 96.67
+        },
+        "after": {
+          "numerator": 29,
+          "denominator": 30,
+          "percent": 96.67
+        }
+      },
+      "error_no_error_accuracy_log_assisted": {
+        "before": {
+          "numerator": 29,
+          "denominator": 30,
+          "percent": 96.67
+        },
+        "after": {
+          "numerator": 29,
+          "denominator": 30,
+          "percent": 96.67
+        }
+      },
+      "false_positive_rate": {
+        "before": {
+          "numerator": 1,
+          "denominator": 30,
+          "percent": 3.33
+        },
+        "after": {
+          "numerator": 1,
+          "denominator": 30,
+          "percent": 3.33
+        }
+      },
+      "normal_cases_unevaluable": {
+        "before": 0,
+        "after": 0
+      },
+      "ast_diagnosis_accuracy": {
+        "before": {
+          "numerator": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "after": {
+          "numerator": 0,
+          "denominator": 0,
+          "percent": null
+        }
+      },
+      "ast_expectation_recall": {
+        "before": {
+          "numerator": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "after": {
+          "numerator": 0,
+          "denominator": 0,
+          "percent": null
+        }
+      },
+      "combined_diagnosis_accuracy": {
+        "before": {
+          "numerator": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "after": {
+          "numerator": 0,
+          "denominator": 0,
+          "percent": null
+        }
+      },
+      "combined_expectation_recall": {
+        "before": {
+          "numerator": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "after": {
+          "numerator": 0,
+          "denominator": 0,
+          "percent": null
+        }
+      },
+      "incorrect_claim_rate": {
+        "before": {
+          "numerator": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "after": {
+          "numerator": 0,
+          "denominator": 0,
+          "percent": null
+        }
+      },
+      "incorrect_claim_rate_all_cases": {
+        "before": {
+          "numerator": 0,
+          "denominator": 30,
+          "percent": 0.0
+        },
+        "after": {
+          "numerator": 0,
+          "denominator": 30,
+          "percent": 0.0
+        }
+      },
+      "coverage": {
+        "before": {
+          "numerator": 30,
+          "denominator": 30,
+          "percent": 100.0
+        },
+        "after": {
+          "numerator": 30,
+          "denominator": 30,
+          "percent": 100.0
+        }
+      },
+      "strict_pass": {
+        "before": {
+          "numerator": 29,
+          "denominator": 30,
+          "percent": 96.67
+        },
+        "after": {
+          "numerator": 29,
+          "denominator": 30,
+          "percent": 96.67
+        }
+      },
+      "runtime_validated": {
+        "before": {
+          "numerator": 30,
+          "denominator": 30,
+          "percent": 100.0
+        },
+        "after": {
+          "numerator": 30,
+          "denominator": 30,
+          "percent": 100.0
+        }
+      },
+      "confusion_matrix_static": {
+        "before": {
+          "true_positive": 0,
+          "false_negative": 0,
+          "true_negative": 29,
+          "false_positive": 1,
+          "unevaluable": 0
+        },
+        "after": {
+          "true_positive": 0,
+          "false_negative": 0,
+          "true_negative": 29,
+          "false_positive": 1,
+          "unevaluable": 0
+        }
+      },
+      "unmapped_detection_items": {
+        "before": 0,
+        "after": 0
+      },
+      "unmapped_prohibited_items": {
+        "before": 0,
+        "after": 0
+      },
+      "prohibited_items": {
+        "before": 0,
+        "after": 0
+      },
+      "confidence_labels": {
+        "before": {
+          "medium": 1
+        },
+        "after": {
+          "medium": 1
+        }
+      }
+    },
+    "by_difficulty": {
+      "adversarial": {
+        "before": {
+          "numerator": 29,
+          "denominator": 30,
+          "percent": 96.67
+        },
+        "after": {
+          "numerator": 29,
+          "denominator": 30,
+          "percent": 96.67
+        }
+      }
+    },
+    "strict_transitions": {
+      "improved": [],
+      "regressed": [],
+      "unchanged": [
+        "N-01",
+        "N-02",
+        "N-03",
+        "N-04",
+        "N-05",
+        "N-06",
+        "N-07",
+        "N-08",
+        "N-09",
+        "N-10",
+        "N-11",
+        "N-12",
+        "N-13",
+        "N-14",
+        "N-15",
+        "N-16",
+        "N-17",
+        "N-18",
+        "N-19",
+        "N-20",
+        "N-21",
+        "N-22",
+        "N-23",
+        "N-24",
+        "N-25",
+        "N-26",
+        "N-27",
+        "N-28",
+        "N-29",
+        "N-30"
+      ]
+    },
+    "diagnostic_transitions": {
+      "improved": [],
+      "regressed": [],
+      "mixed": [],
+      "unchanged": [
+        "N-01",
+        "N-02",
+        "N-03",
+        "N-04",
+        "N-05",
+        "N-06",
+        "N-07",
+        "N-08",
+        "N-09",
+        "N-10",
+        "N-11",
+        "N-12",
+        "N-13",
+        "N-14",
+        "N-15",
+        "N-16",
+        "N-17",
+        "N-18",
+        "N-19",
+        "N-20",
+        "N-21",
+        "N-22",
+        "N-23",
+        "N-24",
+        "N-25",
+        "N-26",
+        "N-27",
+        "N-28",
+        "N-29",
+        "N-30"
+      ]
+    },
+    "cases": [
+      {
+        "id": "N-01",
+        "title": "公式例：スタック操作",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-02",
+        "title": "公式例：平方数の内包表記",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-03",
+        "title": "公式例：フィルタとabs",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-04",
+        "title": "公式例：入れ子リストの平坦化",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-05",
+        "title": "公式例：文字列の長さを走査",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-06",
+        "title": "公式例：コピーの走査中に元辞書を変更",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-07",
+        "title": "公式例：素数とfor else",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-08",
+        "title": "公式例：if elif elseとinput",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-09",
+        "title": "公式例：tryを含む入力ループ",
+        "difficulty": "adversarial",
+        "before": "FAIL",
+        "after": "FAIL",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          false,
+          false,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          false,
+          false,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": [
+          "コードだけの警告: expected=False, actual=True",
+          "ログ併用のError/No-error判定が期待と異なる"
+        ]
+      },
+      {
+        "id": "N-10",
+        "title": "公式例：finallyによる後処理",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-11",
+        "title": "既定値とkeyword-onlyの正常呼び出し",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-12",
+        "title": "位置専用とkeyword-onlyを同時に渡す",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-13",
+        "title": "呼び出し側のkeyword展開",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-14",
+        "title": "複数回呼び出す可変default",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-15",
+        "title": "単純クラスの対象外となる通常メソッド",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-16",
+        "title": "条件付き初期化が実行されるクラス",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-17",
+        "title": "生成後に属性を追加",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-18",
+        "title": "関数経由でインスタンスへ属性を追加",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-19",
+        "title": "リスト化したキーを走査して元辞書を削除",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-20",
+        "title": "集合の変更後に即break",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-21",
+        "title": "空ではないリストのpopとassert",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-22",
+        "title": "AssertionErrorを捕捉して復旧",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-23",
+        "title": "空イテレータにnextの既定値",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-24",
+        "title": "消費後のnextに既定値を指定",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-25",
+        "title": "finally returnが例外を抑制",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-26",
+        "title": "NoneとFalseの比較で到達しない枝",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-27",
+        "title": "入力文字列のメソッドと変換",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-28",
+        "title": "外側のローカル変数を内側から参照",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-29",
+        "title": "辞書の走査中に値だけを変更",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      },
+      {
+        "id": "N-30",
+        "title": "enumerateを使う辞書内包表記",
+        "difficulty": "adversarial",
+        "before": "PASS",
+        "after": "PASS",
+        "strict_transition": "unchanged",
+        "diagnostic_transition": "unchanged",
+        "before_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "after_scores": [
+          true,
+          true,
+          true,
+          true,
+          0,
+          0,
+          0
+        ],
+        "remaining_failure_reasons": []
+      }
+    ]
+  }
+}

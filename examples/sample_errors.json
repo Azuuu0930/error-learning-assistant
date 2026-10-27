@@ -1,0 +1,170 @@
+[
+  {
+    "id": "name_error",
+    "title": "NameError｜まだ作っていない変数",
+    "code": "user_age = 20\n\n# 名前を表示してみましょう\n# user_name はまだ定義されていません\n\n\n\nprint(user_name)\n",
+    "error_log": "Traceback (most recent call last):\n  File \"name_error.py\", line 8, in <module>\n    print(user_name)\n          ^^^^^^^^^\nNameError: name 'user_name' is not defined. Did you mean: 'user_age'?",
+    "error_type": "NameError",
+    "cause": "変数が使用前に作られていない、スペルが違う、または使える範囲の外にある可能性があります。",
+    "checkpoints": [
+      "その名前を使う前に値を代入しているか確認してください。",
+      "定義した名前と、大文字・小文字を含めてスペルが一致するか確認してください。",
+      "関数の中で作った変数を、関数の外から使っていないか確認してください。"
+    ],
+    "fix_example": "user_age = 20\nuser_name = \"Taro\"\nprint(user_name)\n"
+  },
+  {
+    "id": "syntax_error",
+    "title": "SyntaxError｜コロンの付け忘れ",
+    "code": "age = 20\nif age >= 18\n    print(\"成人です\")\n",
+    "error_log": "File \"syntax_error.py\", line 2\n    if age >= 18\n                ^\nSyntaxError: expected ':'",
+    "error_type": "SyntaxError",
+    "cause": "コロン・括弧・引用符などの不足や、文法に合わない書き方が考えられます。",
+    "checkpoints": [
+      "表示された行だけでなく、直前の行も確認してください。",
+      "if / for / def などの末尾に : があるか確認してください。",
+      "括弧と引用符が閉じているか、ログの ^ が指す位置も確認してください。"
+    ],
+    "fix_example": "age = 20\nif age >= 18:\n    print(\"成人です\")\n"
+  },
+  {
+    "id": "indentation_error",
+    "title": "IndentationError｜字下げの不足",
+    "code": "if True:\nprint(\"こんにちは\")\n",
+    "error_log": "File \"indentation_error.py\", line 2\n    print(\"こんにちは\")\n    ^^^^^\nIndentationError: expected an indented block after 'if' statement on line 1",
+    "error_type": "IndentationError",
+    "cause": "字下げが必要な場所に空白がない、または同じまとまりの字下げが揃っていない可能性があります。",
+    "checkpoints": [
+      "if / for / def の次の行を字下げしているか確認してください。",
+      "同じまとまりの行は、空白の数を揃えてください。",
+      "タブとスペースを混ぜていないか、エディタの空白表示で確認してください。"
+    ],
+    "fix_example": "if True:\n    print(\"こんにちは\")\n"
+  },
+  {
+    "id": "type_error",
+    "title": "TypeError｜文字列と数値を足す",
+    "code": "age = \"20\"\nprint(age + 1)\n",
+    "error_log": "Traceback (most recent call last):\n  File \"type_error.py\", line 2, in <module>\n    print(age + 1)\n          ~~~~^~~\nTypeError: can only concatenate str (not \"int\") to str",
+    "error_type": "TypeError",
+    "cause": "操作が受け取れるデータの種類や、関数の呼び出し方が合っていない可能性があります。",
+    "checkpoints": [
+      "関係する値を type(値) で調べ、文字列・数値などの種類を確認してください。",
+      "その操作が、その種類のデータで使えるか確認してください。",
+      "input() の結果は文字列です。数値として使う場合は変換できる内容か確認してください。"
+    ],
+    "fix_example": "age = \"20\"\nprint(int(age) + 1)\n"
+  },
+  {
+    "id": "value_error",
+    "title": "ValueError｜数字でない文字を変換",
+    "code": "text = \"abc\"\nnumber = int(text)\nprint(number)\n",
+    "error_log": "Traceback (most recent call last):\n  File \"value_error.py\", line 2, in <module>\n    number = int(text)\n             ^^^^^^^^^\nValueError: invalid literal for int() with base 10: 'abc'",
+    "error_type": "ValueError",
+    "cause": "例えば int() に「abc」を渡すと、整数として読めないため失敗します。メッセージで対象の処理を確認してください。",
+    "checkpoints": [
+      "変換・処理しようとした元の値を確認してください。",
+      "空文字や数値ではない文字が混じっていないか確認してください。",
+      "想定外の入力を受け付ける場合は、失敗したときの案内も用意してください。"
+    ],
+    "fix_example": "text = \"abc\"\ntry:\n    number = int(text)\nexcept ValueError:\n    print(\"整数を入力してください\")\nelse:\n    print(number)\n"
+  },
+  {
+    "id": "index_error",
+    "title": "IndexError｜リストの範囲外",
+    "code": "names = [\"Taro\", \"Hanako\", \"Jiro\"]\nprint(names[3])\n",
+    "error_log": "Traceback (most recent call last):\n  File \"index_error.py\", line 2, in <module>\n    print(names[3])\n          ~~~~~^^^\nIndexError: list index out of range",
+    "error_type": "IndexError",
+    "cause": "位置は0から数えます。3個のリストの位置は0・1・2で、3は範囲外です。",
+    "checkpoints": [
+      "len(対象) で要素の数を確認してください。",
+      "正の位置は 0 以上 len(対象) 未満か確認してください。負の位置にも範囲があります。",
+      "空のリストになっていないか、ループが最後を越えていないか確認してください。"
+    ],
+    "fix_example": "names = [\"Taro\", \"Hanako\", \"Jiro\"]\nprint(names[2])\n"
+  },
+  {
+    "id": "key_error",
+    "title": "KeyError｜辞書にないキー",
+    "code": "user = {\"name\": \"Taro\"}\nprint(user[\"age\"])\n",
+    "error_log": "Traceback (most recent call last):\n  File \"key_error.py\", line 2, in <module>\n    print(user[\"age\"])\n          ~~~~^^^^^^^\nKeyError: 'age'",
+    "error_type": "KeyError",
+    "cause": "辞書は番号ではなく名前（キー）で値を探します。キーの不足やスペル違いが考えられます。",
+    "checkpoints": [
+      "辞書の keys() を表示して、存在するキーを確認してください。",
+      "キーの大文字・小文字や、文字列と数値の違いを確認してください。",
+      "キーがない場合を許す設計なら、in で確認してから取り出してください。"
+    ],
+    "fix_example": "user = {\"name\": \"Taro\"}\nif \"age\" in user:\n    print(user[\"age\"])\nelse:\n    print(\"年齢は登録されていません\")\n"
+  },
+  {
+    "id": "attribute_error",
+    "title": "AttributeError｜その型にない機能",
+    "code": "names = \"Taro\"\nnames.append(\"Hanako\")\n",
+    "error_log": "Traceback (most recent call last):\n  File \"attribute_error.py\", line 2, in <module>\n    names.append(\"Hanako\")\n    ^^^^^^^^^^^^\nAttributeError: 'str' object has no attribute 'append'",
+    "error_type": "AttributeError",
+    "cause": "データの種類に合わない機能を呼んでいる、スペルが違う、または値が None の可能性があります。",
+    "checkpoints": [
+      "ドットの左側にある値を type() で確認してください。",
+      "その種類のデータに、指定した機能があるか確認してください。",
+      "名前のスペルや、関数が None を返していないか確認してください。"
+    ],
+    "fix_example": "names = [\"Taro\"]\nnames.append(\"Hanako\")\nprint(names)\n"
+  },
+  {
+    "id": "module_not_found",
+    "title": "ModuleNotFoundError｜モジュール名の間違い",
+    "code": "import mathe\nprint(mathe.sqrt(9))\n",
+    "error_log": "Traceback (most recent call last):\n  File \"module_not_found.py\", line 1, in <module>\n    import mathe\nModuleNotFoundError: No module named 'mathe'",
+    "error_type": "ModuleNotFoundError",
+    "cause": "名前のスペル違い、未インストール、または実行するPython環境の違いが考えられます。",
+    "checkpoints": [
+      "import に書いたモジュール名が正しいか確認してください。",
+      "配布名とimport名は違う場合があります。公式のインストール方法を確認してください。",
+      "実行中のPythonと同じ環境に入っているか、python -m pip show 配布名 で確認してください。"
+    ],
+    "fix_example": "import math\nprint(math.sqrt(9))\n"
+  },
+  {
+    "id": "import_error",
+    "title": "ImportError｜読み込みたい名前がない",
+    "code": "from math import square_root\nprint(square_root(9))\n",
+    "error_log": "Traceback (most recent call last):\n  File \"import_error.py\", line 1, in <module>\n    from math import square_root\nImportError: cannot import name 'square_root' from 'math' (unknown location)",
+    "error_type": "ImportError",
+    "cause": "読み込みたい名前が存在しない、バージョンが違う、またはファイル同士が互いを読み込んでいる可能性があります。",
+    "checkpoints": [
+      "from ... import ... の右側の名前が存在するか確認してください。",
+      "使用しているライブラリのバージョンと公式ドキュメントを確認してください。",
+      "自作ファイル名がライブラリ名と同じでないか、互いにimportしていないか確認してください。"
+    ],
+    "fix_example": "from math import sqrt\nprint(sqrt(9))\n"
+  },
+  {
+    "id": "file_not_found",
+    "title": "FileNotFoundError｜ファイルが見つからない",
+    "code": "with open(\"missing_data.txt\", encoding=\"utf-8\") as file:\n    print(file.read())\n",
+    "error_log": "Traceback (most recent call last):\n  File \"file_not_found.py\", line 1, in <module>\n    with open(\"missing_data.txt\", encoding=\"utf-8\") as file:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: 'missing_data.txt'",
+    "error_type": "FileNotFoundError",
+    "cause": "ファイル名やパスが違う、または実行時の作業フォルダが想定と違う可能性があります。",
+    "checkpoints": [
+      "ファイル名・拡張子・大文字と小文字を確認してください。",
+      "Path.cwd() で現在の作業フォルダを確認してください。相対パスはそこから探します。",
+      "ファイルが実際にあるか、必要なフォルダも含めて確認してください。"
+    ],
+    "fix_example": "from pathlib import Path\n\npath = Path(\"missing_data.txt\")\nif path.is_file():\n    print(path.read_text(encoding=\"utf-8\"))\nelse:\n    print(\"ファイル名と作業フォルダを確認してください\")\n"
+  },
+  {
+    "id": "zero_division",
+    "title": "ZeroDivisionError｜0で割ってしまう",
+    "code": "total = 10\ncount = 0\nprint(total / count)\n",
+    "error_log": "Traceback (most recent call last):\n  File \"zero_division.py\", line 3, in <module>\n    print(total / count)\n          ~~~~~~^~~~~~~\nZeroDivisionError: division by zero",
+    "error_type": "ZeroDivisionError",
+    "cause": "割り算 / や //、余りを求める % の右側の値が0になっている可能性があります。",
+    "checkpoints": [
+      "割る数（演算子の右側）が0か確認してください。",
+      "計算途中で0になっていないか、元の値も確認してください。",
+      "0の入力を許す場合は、計算前に分岐して案内してください。"
+    ],
+    "fix_example": "total = 10\ncount = 0\nif count != 0:\n    print(total / count)\nelse:\n    print(\"件数が0なので平均を計算できません\")\n"
+  }
+]

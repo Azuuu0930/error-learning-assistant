@@ -1,0 +1,772 @@
+{
+  "dataset_name": "python_error_learning_assistant_eval",
+  "version": "1.0",
+  "description": "初心者向けプログラミングエラー解析アシスタントの評価用データセット。初心者あるある、レアケース、誤警告耐性を測る正常コード、制御フロー難例を含む。",
+  "language": "python",
+  "num_cases": 42,
+  "recommended_metrics": [
+    "exception_type_accuracy",
+    "analysis_precision",
+    "analysis_recall",
+    "false_positive_rate_on_no_error_cases",
+    "hint_quality_manual_score"
+  ],
+  "cases": [
+    {
+      "id": "PY-001",
+      "title": "変数名のタイプミス",
+      "difficulty": "beginner",
+      "code": "username = \"Taro\"\nprint(user_name)\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "NameError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "未定義変数 user_name",
+          "類似候補 username"
+        ],
+        "should_not_claim": [
+          "username が確実な正解"
+        ]
+      }
+    },
+    {
+      "id": "PY-002",
+      "title": "定義前に変数を使用",
+      "difficulty": "beginner",
+      "code": "print(score)\nscore = 100\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "NameError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "score が使用時点では未定義",
+          "後続行で score が代入される"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-003",
+      "title": "文字列と整数の加算",
+      "difficulty": "beginner",
+      "code": "age = 18\nprint(\"年齢：\" + age)\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "TypeError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "str と int の不正な加算"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-004",
+      "title": "inputの戻り値を整数として使用",
+      "difficulty": "beginner",
+      "code": "age = input(\"年齢：\")\nprint(age + 1)\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "TypeError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "input の戻り値は文字列",
+          "数値変換が必要な可能性"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-005",
+      "title": "リストの範囲外アクセス",
+      "difficulty": "beginner",
+      "code": "scores = [80, 90, 100]\nprint(scores[3])\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "IndexError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "scores の長さは3",
+          "index 3 は範囲外"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-006",
+      "title": "辞書に存在しないキー",
+      "difficulty": "beginner",
+      "code": "user = {\"name\": \"Taro\"}\nprint(user[\"age\"])\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "KeyError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "辞書に age キーが存在しない"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-007",
+      "title": "ゼロ除算",
+      "difficulty": "beginner",
+      "code": "a = 10\nb = 0\nprint(a / b)\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "ZeroDivisionError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "0 で除算している"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-008",
+      "title": "存在しないメソッド",
+      "difficulty": "beginner",
+      "code": "text = \"hello\"\ntext.apend(\"!\")\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "AttributeError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "str に apend 属性がない"
+        ],
+        "should_not_claim": [
+          "append に直せば必ず正しい"
+        ]
+      }
+    },
+    {
+      "id": "PY-009",
+      "title": "存在しないモジュール",
+      "difficulty": "beginner",
+      "code": "import pandasaaaa\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "ModuleNotFoundError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "import 対象 pandasaaaa"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-010",
+      "title": "存在しない名前をimport",
+      "difficulty": "beginner",
+      "code": "from math import banana\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "ImportError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "math から banana を import しようとしている"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-011",
+      "title": "存在しないファイルを開く",
+      "difficulty": "beginner",
+      "code": "with open(\"絶対に存在しないファイル_12345.txt\") as f:\n    print(f.read())\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "FileNotFoundError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "ファイルパスの確認が必要"
+        ],
+        "should_not_claim": [
+          "ファイルが必ず存在しない"
+        ]
+      }
+    },
+    {
+      "id": "PY-012",
+      "title": "int変換失敗",
+      "difficulty": "beginner",
+      "code": "number = int(\"hello\")\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "ValueError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "hello を整数に変換できない"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-013",
+      "title": "if文のコロン忘れ",
+      "difficulty": "beginner",
+      "code": "if True\n    print(\"hello\")\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "SyntaxError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "if 文の構文エラー",
+          "コロン不足の可能性"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-014",
+      "title": "閉じ括弧忘れ",
+      "difficulty": "beginner",
+      "code": "print(\"hello\"\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "SyntaxError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "括弧が閉じられていない可能性"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-015",
+      "title": "インデント忘れ",
+      "difficulty": "beginner",
+      "code": "if True:\nprint(\"hello\")\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "IndentationError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "if ブロック内のインデント不足"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-016",
+      "title": "予期しない深いインデント",
+      "difficulty": "beginner",
+      "code": "if True:\n    print(\"A\")\n        print(\"B\")\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "IndentationError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "不要な追加インデント"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-017",
+      "title": "代入演算子と比較演算子の混同",
+      "difficulty": "beginner",
+      "code": "score = 100\nif score = 100:\n    print(\"満点\")\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "SyntaxError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "条件式で = を使用",
+          "== の可能性"
+        ],
+        "should_not_claim": [
+          "常に == が正解"
+        ]
+      }
+    },
+    {
+      "id": "PY-018",
+      "title": "文字列の閉じ忘れ",
+      "difficulty": "beginner",
+      "code": "name = \"Taro\nprint(name)\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "SyntaxError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "文字列リテラルが閉じられていない"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-019",
+      "title": "ローカル変数の参照前代入",
+      "difficulty": "intermediate",
+      "code": "count = 10\n\ndef test():\n    print(count)\n    count = 20\n\ntest()\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "UnboundLocalError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "関数内の count はローカル変数として扱われる",
+          "代入前に参照される"
+        ],
+        "should_not_claim": [
+          "単純なグローバル変数未定義"
+        ]
+      }
+    },
+    {
+      "id": "PY-020",
+      "title": "Noneにメソッドを呼び出す",
+      "difficulty": "intermediate",
+      "code": "result = None\nresult.upper()\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "AttributeError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "result が None",
+          "NoneType に upper がない"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-021",
+      "title": "関数の引数不足",
+      "difficulty": "beginner",
+      "code": "def add(a, b):\n    return a + b\n\nadd(1)\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "TypeError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "add は2引数必要",
+          "1引数しか渡していない"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-022",
+      "title": "関数へ引数を渡しすぎる",
+      "difficulty": "beginner",
+      "code": "def hello(name):\n    print(name)\n\nhello(\"A\", \"B\")\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "TypeError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "hello の定義より多い位置引数"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-023",
+      "title": "存在しないキーワード引数",
+      "difficulty": "beginner",
+      "code": "def hello(name):\n    print(name)\n\nhello(username=\"Taro\")\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "TypeError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "hello に username 引数は定義されていない"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-024",
+      "title": "リストと整数の大小比較",
+      "difficulty": "intermediate",
+      "code": "numbers = [1, 2, 3]\n\nif numbers > 5:\n    print(\"large\")\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "TypeError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "list と int の大小比較"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-025",
+      "title": "無限再帰",
+      "difficulty": "rare",
+      "code": "def loop():\n    return loop()\n\nloop()\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "RecursionError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "再帰が終了条件なしで続く可能性"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-026",
+      "title": "空イテレータへのnext",
+      "difficulty": "rare",
+      "code": "x = iter([])\nnext(x)\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "StopIteration",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "空のイテレータに next を呼んでいる"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-027",
+      "title": "assert失敗",
+      "difficulty": "rare",
+      "code": "age = 15\nassert age >= 18, \"18歳以上である必要があります\"\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "AssertionError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "assert 条件が False"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-028",
+      "title": "辞書を反復中に変更",
+      "difficulty": "rare",
+      "code": "data = {\"a\": 1, \"b\": 2}\n\nfor key in data:\n    del data[key]\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "RuntimeError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "辞書を走査中にサイズ変更"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-029",
+      "title": "setを反復中に変更",
+      "difficulty": "rare",
+      "code": "values = {1, 2, 3}\n\nfor x in values:\n    values.remove(x)\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "RuntimeError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "set を走査中にサイズ変更"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-030",
+      "title": "Unicodeデコード失敗",
+      "difficulty": "rare",
+      "code": "data = b\"\\xff\"\ndata.decode(\"utf-8\")\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "UnicodeDecodeError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "UTF-8 として不正なバイト列"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-031",
+      "title": "bytesとstrの加算",
+      "difficulty": "rare",
+      "code": "text = b\"hello\"\nprint(text + \" world\")\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "TypeError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "bytes と str の混在"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-032",
+      "title": "リスト添字にfloat",
+      "difficulty": "rare",
+      "code": "items = [1, 2, 3]\nprint(items[1.5])\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "TypeError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "リストの添字が float"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-033",
+      "title": "hash化できないリストを辞書キーに使用",
+      "difficulty": "rare",
+      "code": "data = {}\ndata[[1, 2]] = \"hello\"\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "TypeError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "list は辞書キーとして使えない"
+        ],
+        "should_not_claim": []
+      }
+    },
+    {
+      "id": "PY-034",
+      "title": "自作クラスの存在しない属性",
+      "difficulty": "intermediate",
+      "code": "class User:\n    def __init__(self):\n        self.name = \"Taro\"\n\nuser = User()\nprint(user.age)\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "AttributeError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "User に age 属性が定義されていない可能性",
+          "name 属性は存在"
+        ],
+        "should_not_claim": [
+          "name が age の確実な修正候補"
+        ]
+      }
+    },
+    {
+      "id": "PY-035",
+      "title": "似た変数名が複数存在",
+      "difficulty": "adversarial",
+      "code": "user_name = \"A\"\nusername = \"B\"\nuserName = \"C\"\n\nprint(usrname)\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "NameError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "usrname が未定義",
+          "複数の類似名候補"
+        ],
+        "should_not_claim": [
+          "特定の1候補だけが正解"
+        ]
+      }
+    },
+    {
+      "id": "PY-036",
+      "title": "builtinsを未定義扱いしない",
+      "difficulty": "adversarial",
+      "code": "print(len([1, 2, 3]))\n",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "print と len は builtins"
+        ],
+        "should_not_claim": [
+          "print が未定義",
+          "len が未定義"
+        ]
+      }
+    },
+    {
+      "id": "PY-037",
+      "title": "import済みモジュールを未定義扱いしない",
+      "difficulty": "adversarial",
+      "code": "import math\nprint(math.sqrt(4))\n",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "math は import 済み"
+        ],
+        "should_not_claim": [
+          "math が未定義",
+          "sqrt が未定義"
+        ]
+      }
+    },
+    {
+      "id": "PY-038",
+      "title": "from import済み名称を未定義扱いしない",
+      "difficulty": "adversarial",
+      "code": "from math import sqrt\nprint(sqrt(4))\n",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "sqrt は import 済み"
+        ],
+        "should_not_claim": [
+          "sqrt が未定義"
+        ]
+      }
+    },
+    {
+      "id": "PY-039",
+      "title": "分岐次第で未定義になる変数",
+      "difficulty": "adversarial",
+      "code": "condition = False\n\nif condition:\n    result = 100\n\nprint(result)\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "NameError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "result は一部の経路でしか定義されない"
+        ],
+        "should_not_claim": [
+          "result は必ず定義済み"
+        ]
+      }
+    },
+    {
+      "id": "PY-040",
+      "title": "空ループ後の未定義変数",
+      "difficulty": "adversarial",
+      "code": "for x in []:\n    result = x\n\nprint(result)\n",
+      "expected": {
+        "execution": "error",
+        "exception_type": "NameError",
+        "should_warn": true
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "ループが一度も実行されないと result が未定義"
+        ],
+        "should_not_claim": [
+          "result はループ内で代入されるので安全"
+        ]
+      }
+    },
+    {
+      "id": "PY-041",
+      "title": "関数スコープとグローバルの同名変数",
+      "difficulty": "adversarial",
+      "code": "value = 10\n\ndef test():\n    value = 20\n    print(value)\n\ntest()\nprint(value)\n",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "関数内 value とグローバル value は別スコープ"
+        ],
+        "should_not_claim": [
+          "value が未定義",
+          "スコープエラー"
+        ]
+      }
+    },
+    {
+      "id": "PY-042",
+      "title": "例外処理済みのZeroDivisionError",
+      "difficulty": "adversarial",
+      "code": "try:\n    x = 1 / 0\nexcept ZeroDivisionError:\n    x = 0\n\nprint(x)\n",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [
+          "ZeroDivisionError は except で処理される"
+        ],
+        "should_not_claim": [
+          "プログラムが ZeroDivisionError で停止する"
+        ]
+      }
+    }
+  ]
+}

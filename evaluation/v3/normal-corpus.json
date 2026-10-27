@@ -1,0 +1,610 @@
+{
+  "dataset_name": "Post-freeze normal-code corpus v3",
+  "num_cases": 30,
+  "created_at_utc": "2026-10-27T02:51:59.693313+00:00",
+  "implementation_frozen_at_utc": "2026-10-27T02:49:18.349202+00:00",
+  "purpose": "False-positive study only; no should_detect labels, so AST diagnosis accuracy is N/A. No app tuning after execution.",
+  "provenance_summary": "10 adapted official Python tutorial examples, 20 newly authored structural cases. Adapted examples are not an external blind benchmark.",
+  "cases": [
+    {
+      "id": "N-01",
+      "title": "公式例：スタック操作",
+      "difficulty": "adversarial",
+      "code": "stack = [3, 4, 5]\nstack.append(6)\nstack.append(7)\nstack.pop()\nstack.pop()\nprint(stack)",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "official_python_documentation",
+        "source_url": "https://docs.python.org/3.12/tutorial/datastructures.html#using-lists-as-stacks",
+        "adaptation": "Remove REPL prompts; combine operations into one executable snippet and print remaining stack."
+      }
+    },
+    {
+      "id": "N-02",
+      "title": "公式例：平方数の内包表記",
+      "difficulty": "adversarial",
+      "code": "squares = [x**2 for x in range(10)]\nprint(squares)",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "official_python_documentation",
+        "source_url": "https://docs.python.org/3.12/tutorial/datastructures.html#list-comprehensions",
+        "adaptation": "Remove REPL prompts and print the result."
+      }
+    },
+    {
+      "id": "N-03",
+      "title": "公式例：フィルタとabs",
+      "difficulty": "adversarial",
+      "code": "vec = [-4, -2, 0, 2, 4]\nprint([abs(x) for x in vec if x >= 0])",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "official_python_documentation",
+        "source_url": "https://docs.python.org/3.12/tutorial/datastructures.html#list-comprehensions",
+        "adaptation": "Combine the filtering and abs examples, remove REPL prompts, print result."
+      }
+    },
+    {
+      "id": "N-04",
+      "title": "公式例：入れ子リストの平坦化",
+      "difficulty": "adversarial",
+      "code": "vec = [[1,2,3], [4,5,6], [7,8,9]]\nprint([num for elem in vec for num in elem])",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "official_python_documentation",
+        "source_url": "https://docs.python.org/3.12/tutorial/datastructures.html#list-comprehensions",
+        "adaptation": "Remove REPL prompts and print result."
+      }
+    },
+    {
+      "id": "N-05",
+      "title": "公式例：文字列の長さを走査",
+      "difficulty": "adversarial",
+      "code": "words = [\"cat\", \"window\", \"defenestrate\"]\nfor w in words:\n    print(w, len(w))",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "official_python_documentation",
+        "source_url": "https://docs.python.org/3.12/tutorial/controlflow.html#for-statements",
+        "adaptation": "Remove REPL prompts; preserve strings and loop."
+      }
+    },
+    {
+      "id": "N-06",
+      "title": "公式例：コピーの走査中に元辞書を変更",
+      "difficulty": "adversarial",
+      "code": "users = {\"Hans\": \"active\", \"Éléonore\": \"inactive\", \"景太郎\": \"active\"}\nfor user, status in users.copy().items():\n    if status == \"inactive\":\n        del users[user]\nprint(users)",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "official_python_documentation",
+        "source_url": "https://docs.python.org/3.12/tutorial/controlflow.html#for-statements",
+        "adaptation": "Keep copy-based strategy only and print resulting dictionary."
+      }
+    },
+    {
+      "id": "N-07",
+      "title": "公式例：素数とfor else",
+      "difficulty": "adversarial",
+      "code": "for n in range(2, 10):\n    for x in range(2, n):\n        if n % x == 0:\n            break\n    else:\n        print(n, \"is prime\")",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "official_python_documentation",
+        "source_url": "https://docs.python.org/3.12/tutorial/controlflow.html#else-clauses-on-loops",
+        "adaptation": "Remove REPL prompts and explanatory comments; omit composite-number print."
+      }
+    },
+    {
+      "id": "N-08",
+      "title": "公式例：if elif elseとinput",
+      "difficulty": "adversarial",
+      "code": "x = int(input(\"integer: \"))\nif x < 0:\n    x = 0\n    print(\"negative\")\nelif x == 0:\n    print(\"zero\")\nelif x == 1:\n    print(\"single\")\nelse:\n    print(\"more\")",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "official_python_documentation",
+        "source_url": "https://docs.python.org/3.12/tutorial/controlflow.html#if-statements",
+        "adaptation": "Shorten display strings; preserve branches and fixture-driven input."
+      }
+    },
+    {
+      "id": "N-09",
+      "title": "公式例：tryを含む入力ループ",
+      "difficulty": "adversarial",
+      "code": "while True:\n    try:\n        x = int(input(\"number: \"))\n        break\n    except ValueError:\n        print(\"try again\")\nprint(x)",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "official_python_documentation",
+        "source_url": "https://docs.python.org/3.12/tutorial/errors.html#handling-exceptions",
+        "adaptation": "Remove REPL prompts, shorten prompts, print accepted value. Fixed stdin20 terminates on first iteration."
+      }
+    },
+    {
+      "id": "N-10",
+      "title": "公式例：finallyによる後処理",
+      "difficulty": "adversarial",
+      "code": "try:\n    print(\"operation\")\nfinally:\n    print(\"cleanup\")",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "official_python_documentation",
+        "source_url": "https://docs.python.org/3.12/tutorial/errors.html#defining-clean-up-actions",
+        "adaptation": "Replace deliberately raised KeyboardInterrupt in documentation with successful print; preserve unconditional finally cleanup. This is an adaptation, not an unchanged external benchmark."
+      }
+    },
+    {
+      "id": "N-11",
+      "title": "既定値とkeyword-onlyの正常呼び出し",
+      "difficulty": "adversarial",
+      "code": "def greeting(name=\"reader\", *, punctuation=\"!\"):\n    return name + punctuation\nprint(greeting(punctuation=\".\"))",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "post_freeze_authored",
+        "source_url": null,
+        "adaptation": "Fresh structural normal-code case, not a rename of the 42 cases."
+      }
+    },
+    {
+      "id": "N-12",
+      "title": "位置専用とkeyword-onlyを同時に渡す",
+      "difficulty": "adversarial",
+      "code": "def ratio(amount, /, *, total=100):\n    return amount / total\nprint(ratio(25, total=50))",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "post_freeze_authored",
+        "source_url": null,
+        "adaptation": "Fresh structural normal-code case, not a rename of the 42 cases."
+      }
+    },
+    {
+      "id": "N-13",
+      "title": "呼び出し側のkeyword展開",
+      "difficulty": "adversarial",
+      "code": "def rgb(red, green, blue):\n    return red + green + blue\nchannels = {\"red\": 3, \"green\": 5, \"blue\": 7}\nprint(rgb(**channels))",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "post_freeze_authored",
+        "source_url": null,
+        "adaptation": "Fresh structural normal-code case, not a rename of the 42 cases."
+      }
+    },
+    {
+      "id": "N-14",
+      "title": "複数回呼び出す可変default",
+      "difficulty": "adversarial",
+      "code": "def append_entry(entry, bucket=[]):\n    bucket.append(entry)\n    return bucket\nappend_entry(\"first\")\nprint(append_entry(\"second\"))",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "post_freeze_authored",
+        "source_url": null,
+        "adaptation": "Fresh structural normal-code case, not a rename of the 42 cases."
+      }
+    },
+    {
+      "id": "N-15",
+      "title": "単純クラスの対象外となる通常メソッド",
+      "difficulty": "adversarial",
+      "code": "class Label:\n    def __init__(self, text):\n        self.text = text\n    def upper(self):\n        return self.text.upper()\nlabel = Label(\"ready\")\nprint(label.upper())",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "post_freeze_authored",
+        "source_url": null,
+        "adaptation": "Fresh structural normal-code case, not a rename of the 42 cases."
+      }
+    },
+    {
+      "id": "N-16",
+      "title": "条件付き初期化が実行されるクラス",
+      "difficulty": "adversarial",
+      "code": "class Flag:\n    def __init__(self, enabled):\n        if enabled:\n            self.message = \"ready\"\nflag = Flag(True)\nprint(flag.message)",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "post_freeze_authored",
+        "source_url": null,
+        "adaptation": "Fresh structural normal-code case, not a rename of the 42 cases."
+      }
+    },
+    {
+      "id": "N-17",
+      "title": "生成後に属性を追加",
+      "difficulty": "adversarial",
+      "code": "class Empty:\n    pass\nrecord = Empty()\nrecord.token = \"ready\"\nprint(record.token)",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "post_freeze_authored",
+        "source_url": null,
+        "adaptation": "Fresh structural normal-code case, not a rename of the 42 cases."
+      }
+    },
+    {
+      "id": "N-18",
+      "title": "関数経由でインスタンスへ属性を追加",
+      "difficulty": "adversarial",
+      "code": "def prepare(record):\n    record.active = True\nclass Record:\n    pass\nrecord = Record()\nprepare(record)\nprint(record.active)",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "post_freeze_authored",
+        "source_url": null,
+        "adaptation": "Fresh structural normal-code case, not a rename of the 42 cases."
+      }
+    },
+    {
+      "id": "N-19",
+      "title": "リスト化したキーを走査して元辞書を削除",
+      "difficulty": "adversarial",
+      "code": "mapping = {\"a\": 1, \"b\": 2}\nfor key in list(mapping):\n    del mapping[key]\nprint(mapping)",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "post_freeze_authored",
+        "source_url": null,
+        "adaptation": "Fresh structural normal-code case, not a rename of the 42 cases."
+      }
+    },
+    {
+      "id": "N-20",
+      "title": "集合の変更後に即break",
+      "difficulty": "adversarial",
+      "code": "members = {1, 2}\nfor member in members:\n    members.remove(member)\n    break\nprint(members)",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "post_freeze_authored",
+        "source_url": null,
+        "adaptation": "Fresh structural normal-code case, not a rename of the 42 cases."
+      }
+    },
+    {
+      "id": "N-21",
+      "title": "空ではないリストのpopとassert",
+      "difficulty": "adversarial",
+      "code": "items = [\"first\"]\nassert items\nprint(items.pop())",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "post_freeze_authored",
+        "source_url": null,
+        "adaptation": "Fresh structural normal-code case, not a rename of the 42 cases."
+      }
+    },
+    {
+      "id": "N-22",
+      "title": "AssertionErrorを捕捉して復旧",
+      "difficulty": "adversarial",
+      "code": "try:\n    assert False\nexcept AssertionError:\n    recovered = True\nprint(recovered)",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "post_freeze_authored",
+        "source_url": null,
+        "adaptation": "Fresh structural normal-code case, not a rename of the 42 cases."
+      }
+    },
+    {
+      "id": "N-23",
+      "title": "空イテレータにnextの既定値",
+      "difficulty": "adversarial",
+      "code": "iterator = iter(())\nprint(next(iterator, \"done\"))",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "post_freeze_authored",
+        "source_url": null,
+        "adaptation": "Fresh structural normal-code case, not a rename of the 42 cases."
+      }
+    },
+    {
+      "id": "N-24",
+      "title": "消費後のnextに既定値を指定",
+      "difficulty": "adversarial",
+      "code": "iterator = iter([7])\nprint(next(iterator))\nprint(next(iterator, \"done\"))",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "post_freeze_authored",
+        "source_url": null,
+        "adaptation": "Fresh structural normal-code case, not a rename of the 42 cases."
+      }
+    },
+    {
+      "id": "N-25",
+      "title": "finally returnが例外を抑制",
+      "difficulty": "adversarial",
+      "code": "def choose(value):\n    try:\n        return 1 / 0\n    finally:\n        return value\nprint(choose(2))",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "post_freeze_authored",
+        "source_url": null,
+        "adaptation": "Fresh structural normal-code case, not a rename of the 42 cases."
+      }
+    },
+    {
+      "id": "N-26",
+      "title": "NoneとFalseの比較で到達しない枝",
+      "difficulty": "adversarial",
+      "code": "if None == False:\n    print(1 / 0)\nelse:\n    print(\"skipped\")",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "post_freeze_authored",
+        "source_url": null,
+        "adaptation": "Fresh structural normal-code case, not a rename of the 42 cases."
+      }
+    },
+    {
+      "id": "N-27",
+      "title": "入力文字列のメソッドと変換",
+      "difficulty": "adversarial",
+      "code": "text = input().strip()\nprint(int(text) + 1)",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "post_freeze_authored",
+        "source_url": null,
+        "adaptation": "Fresh structural normal-code case, not a rename of the 42 cases."
+      }
+    },
+    {
+      "id": "N-28",
+      "title": "外側のローカル変数を内側から参照",
+      "difficulty": "adversarial",
+      "code": "def outer():\n    prefix = \"hello\"\n    def inner():\n        return prefix\n    return inner()\nprint(outer())",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "post_freeze_authored",
+        "source_url": null,
+        "adaptation": "Fresh structural normal-code case, not a rename of the 42 cases."
+      }
+    },
+    {
+      "id": "N-29",
+      "title": "辞書の走査中に値だけを変更",
+      "difficulty": "adversarial",
+      "code": "mapping = {\"a\": 1, \"b\": 2}\nfor key in mapping:\n    mapping[key] = 99\nprint(mapping)",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "post_freeze_authored",
+        "source_url": null,
+        "adaptation": "Fresh structural normal-code case, not a rename of the 42 cases."
+      }
+    },
+    {
+      "id": "N-30",
+      "title": "enumerateを使う辞書内包表記",
+      "difficulty": "adversarial",
+      "code": "results = {key: value + 1 for key, value in enumerate([2, 3])}\nprint(results)",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "provenance": {
+        "origin": "post_freeze_authored",
+        "source_url": null,
+        "adaptation": "Fresh structural normal-code case, not a rename of the 42 cases."
+      }
+    }
+  ]
+}

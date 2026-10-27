@@ -1,0 +1,48 @@
+{
+  "frozen_at_utc": "2026-10-15T07:24:39.062743+00:00",
+  "purpose": "Implementation and evaluator frozen before creating any holdout code. No app/evaluator tuning after holdout.",
+  "files": {
+    "app.py": "7faab5e04d7196390bd22be3bf0bdc46053cee6b5d3ae32ee01157731caae842",
+    "evaluation/__init__.py": "03eca24771f4471ca9706e3fe3fbc1ab8557a9128e10f33e91c467c7421d54b4",
+    "evaluation/evaluate.py": "84320d579cd3b97757aeb28d9fd6b27622cec9949f01f04c3b1e87cf50b0b2fe",
+    "evaluation/runner.py": "ea2e52a70186f8e8eb793af51c4ecc78735b7e4f41346d3d945d4c54f6590a00",
+    "evaluation/scoring.py": "05adeb8aaae22e8a4df63266b9d07e4302fc28ad99e067b6a4d1fe990882566c",
+    "evaluation/tests/test_evaluator.py": "e1caa2ecb24580b90bd9a5826b96519a59fb325d3c20d86dad2553abbf6c6c18",
+    "evaluation/tests/test_version_comparison.py": "3a45c3ffe6ddbaca11df37961c1b1e88ecbf001ea5f106c959250de568f60b82",
+    "src/__init__.py": "109f4dc96c3c03b72b4a739b0803ff8aa762ecbb5e864dca31ccf9bfd79ae570",
+    "src/analyzer.py": "e119d6de0d259b09654cca185be1bc50559379abb692834f10cfa301316b657e",
+    "src/code_analysis.py": "493069c47f4bb6de909a6333d1fe2c5a6abe4f336be83bb579edd80092c43668",
+    "src/explanations.py": "b063760146626c6422f2cce9e5a57bb22ec58b6f6c3a6d2ac4642344273c2652",
+    "src/hints.py": "0d007674abc0b69fa3937a80ea00783642fb64754ec2a22c5abbee373a6500a9",
+    "src/literal_analysis.py": "32059b237512b3b1c58c5cfe35d81e43457da18b2eda611228bbe952d9f10cad",
+    "src/models.py": "8a35ed0e48791e0e4934f613c9a1a2d73c0f8eb040bea6b01ff8ad16099a3758",
+    "src/parser.py": "feb5e4ff83245e48a99e559926f37798ca30776b5a66ccab569697b992999bd5",
+    "src/view.py": "9ee151b805a5cb81ff6946d7bca0b05e0c3d14a33a2ddce150233b2e526fca1c",
+    "tests/test_analyzer.py": "95a756ce5e66749d1f893ca96d42d71fb7196ec0c5f291bb77dda81ce0279085",
+    "tests/test_app.py": "9d68bb9a749964b45c55be7a4bbbd5f11c03075923824d64ae314e88170e37b0",
+    "tests/test_app_ast.py": "2cdb31fd1f44a718f5e240c6bfc645918010538c3a10ed490bfba7727163f63c",
+    "tests/test_code_analysis.py": "30cd0aa3fc6f19747c12f542380ea71f7f271020f89cb49cddc16ebcc4f0992f",
+    "tests/test_diagnostics_v2.py": "cf06f06ad1a0b1b7e373c3537d2b93d0b51e2f480e4c4d458a30f0cf6fc06488",
+    "tests/test_parser.py": "bafc30101b98b8c0737d22f36aee2036d699a15ad69f69e2734758ea9c870320",
+    "tests/test_samples.py": "e99f5d8c36a19626be87fda6f7f28d811539d7b3825865188189133c05dec8d9"
+  },
+  "original_app_test_files_unchanged": {
+    "tests/test_analyzer.py": "95a756ce5e66749d1f893ca96d42d71fb7196ec0c5f291bb77dda81ce0279085",
+    "tests/test_app.py": "9d68bb9a749964b45c55be7a4bbbd5f11c03075923824d64ae314e88170e37b0",
+    "tests/test_app_ast.py": "2cdb31fd1f44a718f5e240c6bfc645918010538c3a10ed490bfba7727163f63c",
+    "tests/test_code_analysis.py": "30cd0aa3fc6f19747c12f542380ea71f7f271020f89cb49cddc16ebcc4f0992f",
+    "tests/test_parser.py": "bafc30101b98b8c0737d22f36aee2036d699a15ad69f69e2734758ea9c870320",
+    "tests/test_samples.py": "e99f5d8c36a19626be87fda6f7f28d811539d7b3825865188189133c05dec8d9"
+  },
+  "pytest": {
+    "baseline_app": 208,
+    "baseline_evaluator": 34,
+    "app": 319,
+    "evaluator": 42,
+    "total": 361,
+    "passed": 361,
+    "seconds": 27.49,
+    "command": "python -X utf8 -m pytest tests evaluation/tests -q --basetemp <fresh-workspace-temp> -o cache_dir=<workspace-cache> --tb=short"
+  },
+  "holdout_existed_at_freeze": false
+}

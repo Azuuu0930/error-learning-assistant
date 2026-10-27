@@ -1,0 +1,6446 @@
+{
+  "schema_version": 1,
+  "version_label": "normal-v3",
+  "started_at": "2026-10-27T02:56:57.232849+00:00",
+  "completed_at": "2026-10-27T02:57:09.967686+00:00",
+  "dataset": {
+    "dataset_name": "Post-freeze normal-code corpus v3",
+    "num_cases": 30,
+    "created_at_utc": "2026-10-27T02:51:59.693313+00:00",
+    "implementation_frozen_at_utc": "2026-10-27T02:49:18.349202+00:00",
+    "purpose": "False-positive study only; no should_detect labels, so AST diagnosis accuracy is N/A. No app tuning after execution.",
+    "provenance_summary": "10 adapted official Python tutorial examples, 20 newly authored structural cases. Adapted examples are not an external blind benchmark.",
+    "sha256": "376627029451a34aa45ab8c597f9624b0c222351e6f2fa9988daba1d3109c48e"
+  },
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "execution_timeout_seconds": 5.0,
+    "analysis_timeout_seconds": 10.0,
+    "stdin_fixture": "20\n20\n20\n20\n20\n20\n20\n20\n20\n20\n20\n20\n20\n20\n20\n20\n",
+    "execution_flags": "-I -S -X utf8",
+    "security": "reviewed educational snippets, restrictive AST preflight; subprocess is not an OS security sandbox"
+  },
+  "evaluation_method": {
+    "scoring_mode": "structured",
+    "source_sha256_before_run": {
+      "compare.py": "a899cd56cf350881dcfa6284d443956b6bdc7e0d9c47dd8647e2162917feb63a",
+      "evaluate.py": "c10fd953a5753f932f56bc3e1f4430b4b21ea898fa36983834c96d03e1e6e2bc",
+      "runner.py": "ea2e52a70186f8e8eb793af51c4ecc78735b7e4f41346d3d945d4c54f6590a00",
+      "scoring.py": "05adeb8aaae22e8a4df63266b9d07e4302fc28ad99e067b6a4d1fe990882566c",
+      "structured_scoring.py": "6163271127877417720c154da2fa152b4770ece41fe9f0750687a70d7883d569",
+      "verify_results.py": "59d27d507e5ccb67e2e964fca80845cc0794229c1a2c062b08156d571bfbcb6d",
+      "__init__.py": "03eca24771f4471ca9706e3fe3fbc1ab8557a9128e10f33e91c467c7421d54b4"
+    },
+    "unchanged_during_run": true
+  },
+  "baseline": {
+    "manifest": {
+      "snapshot_at": "2026-10-05T06:23:54.212529+00:00",
+      "baseline": "Existing AST MVP before 42-case evaluation; no application changes",
+      "python_version": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+      "dataset_source": "<local-path>",
+      "dataset_sha256": "c9f2ff620a01a0524006b8962fb6c0a6a5f688b958648266f65d3bf14d8570fa",
+      "jsonl_source": "Generated lossless case export from supplied JSON; JSONL attachment not present at specified path",
+      "files": {
+        "app.py": "7faab5e04d7196390bd22be3bf0bdc46053cee6b5d3ae32ee01157731caae842",
+        "requirements.txt": "26a0a31aa844b98180989f532d56b0dc089efada2802b55661627d9b301f6fb4",
+        "pytest.ini": "c28d7ee43186a578bc0f8867e26fdf7edcb0f1275b12d71d85a20e95a524c4ef",
+        "README.md": "40c27e7cac4ba6c02e49ad704450851d13f277b8b025101686a345271ff1c631",
+        "VERIFICATION.md": "40073ac52ae3b75dd68479875e493b941fe06010609c85aa01346996e7adc392",
+        "src/__init__.py": "109f4dc96c3c03b72b4a739b0803ff8aa762ecbb5e864dca31ccf9bfd79ae570",
+        "src/analyzer.py": "2f1597f2de15d3a4ffc5aef9f8a46735b8dbd88bddcaf15a12fafcc1c910d95b",
+        "src/code_analysis.py": "b64e35f2fb27290fa9438043cc186fe7a5628fd87128710651f71400fb28d303",
+        "src/explanations.py": "6821792241a7f497b69d31bde5fe5fd2f9cf5b72557aa6ae30eb72f2052e5c0f",
+        "src/hints.py": "75add73dcebba7baac4e585b20564b411a4efa5477ab045ad9fcbf75b52466b5",
+        "src/models.py": "8a35ed0e48791e0e4934f613c9a1a2d73c0f8eb040bea6b01ff8ad16099a3758",
+        "src/parser.py": "feb5e4ff83245e48a99e559926f37798ca30776b5a66ccab569697b992999bd5",
+        "src/view.py": "9ee151b805a5cb81ff6946d7bca0b05e0c3d14a33a2ddce150233b2e526fca1c",
+        "tests/test_analyzer.py": "95a756ce5e66749d1f893ca96d42d71fb7196ec0c5f291bb77dda81ce0279085",
+        "tests/test_app.py": "9d68bb9a749964b45c55be7a4bbbd5f11c03075923824d64ae314e88170e37b0",
+        "tests/test_app_ast.py": "2cdb31fd1f44a718f5e240c6bfc645918010538c3a10ed490bfba7727163f63c",
+        "tests/test_code_analysis.py": "30cd0aa3fc6f19747c12f542380ea71f7f271020f89cb49cddc16ebcc4f0992f",
+        "tests/test_parser.py": "bafc30101b98b8c0737d22f36aee2036d699a15ad69f69e2734758ea9c870320",
+        "tests/test_samples.py": "e99f5d8c36a19626be87fda6f7f28d811539d7b3825865188189133c05dec8d9",
+        ".streamlit/config.toml": "4dff8e7b4c4027bc1f8d33fbccbc0a84505c60d84690e04fa42cbf8a4eca4123"
+      }
+    },
+    "unchanged": false,
+    "changed_files": [
+      "app.py",
+      "README.md",
+      "VERIFICATION.md",
+      "src/analyzer.py",
+      "src/code_analysis.py",
+      "src/explanations.py",
+      "src/hints.py",
+      "src/models.py",
+      "src/view.py",
+      ".streamlit/config.toml",
+      "src/error_catalog.py",
+      "src/literal_analysis.py",
+      "src/safe_summaries.py",
+      "src/ui.py"
+    ]
+  },
+  "application": {
+    "project": "<local-path>",
+    "source_sha256_before_run": {
+      "app.py": "feab2921ba4f2c0dfd16508e245337a9cf1cd6eb6de2b796cd7aa2747ff93c42",
+      "src/__init__.py": "109f4dc96c3c03b72b4a739b0803ff8aa762ecbb5e864dca31ccf9bfd79ae570",
+      "src/analyzer.py": "e119d6de0d259b09654cca185be1bc50559379abb692834f10cfa301316b657e",
+      "src/code_analysis.py": "59becead53d1957213d13ed9f6c2e33b35a84387edec40b7a3cb5c7a22fa0ff1",
+      "src/error_catalog.py": "4dabb15763a6ba2b36802a7e717cd4fe329676a1ed7ceb29b336d8373868fca8",
+      "src/explanations.py": "b063760146626c6422f2cce9e5a57bb22ec58b6f6c3a6d2ac4642344273c2652",
+      "src/hints.py": "2755ec4d4200d2222c83bd92e0310c241752dfcb741a2d579c63791377bdc903",
+      "src/literal_analysis.py": "8f40ebb744d1712f7e6bb1f221de079bee9bee83df228d2bddf211143f71fdb1",
+      "src/models.py": "a2b0fe253baafa31e2ded0b2d4a829e169ab2969d1edc0dd9a976514fad5c4ff",
+      "src/parser.py": "feb5e4ff83245e48a99e559926f37798ca30776b5a66ccab569697b992999bd5",
+      "src/safe_summaries.py": "e21132838695798d595b200160d5eb79b86b01f75c590cab190df2c5e33760b2",
+      "src/ui.py": "4fade973d641776f6af1087685ebea856aab56edf765aa91f2408b8c48892546",
+      "src/view.py": "f3dde7159840481b30a036fb7753c970f31e1229e92066633de11c14871f9ba9"
+    },
+    "unchanged_during_run": true
+  },
+  "metrics": {
+    "error_type_accuracy": {
+      "numerator": 0,
+      "denominator": 0,
+      "percent": null
+    },
+    "error_no_error_accuracy_static": {
+      "numerator": 29,
+      "denominator": 30,
+      "percent": 96.67
+    },
+    "error_no_error_accuracy_log_assisted": {
+      "numerator": 29,
+      "denominator": 30,
+      "percent": 96.67
+    },
+    "false_positive_rate": {
+      "numerator": 1,
+      "denominator": 30,
+      "percent": 3.33
+    },
+    "normal_cases_unevaluable": 0,
+    "ast_diagnosis_accuracy": {
+      "numerator": 0,
+      "denominator": 0,
+      "percent": null
+    },
+    "ast_expectation_recall": {
+      "numerator": 0,
+      "denominator": 0,
+      "percent": null
+    },
+    "combined_diagnosis_accuracy": {
+      "numerator": 0,
+      "denominator": 0,
+      "percent": null
+    },
+    "combined_expectation_recall": {
+      "numerator": 0,
+      "denominator": 0,
+      "percent": null
+    },
+    "incorrect_claim_rate": {
+      "numerator": 0,
+      "denominator": 0,
+      "percent": null
+    },
+    "incorrect_claim_rate_all_cases": {
+      "numerator": 0,
+      "denominator": 30,
+      "percent": 0.0
+    },
+    "coverage": {
+      "numerator": 30,
+      "denominator": 30,
+      "percent": 100.0
+    },
+    "strict_pass": {
+      "numerator": 29,
+      "denominator": 30,
+      "percent": 96.67
+    },
+    "runtime_validated": {
+      "numerator": 30,
+      "denominator": 30,
+      "percent": 100.0
+    },
+    "confusion_matrix_static": {
+      "true_positive": 0,
+      "false_negative": 0,
+      "true_negative": 29,
+      "false_positive": 1,
+      "unevaluable": 0
+    },
+    "unmapped_detection_items": 0,
+    "unmapped_prohibited_items": 0,
+    "prohibited_items": 0,
+    "confidence_labels": {
+      "medium": 1
+    }
+  },
+  "by_difficulty": {
+    "adversarial": {
+      "error_type_accuracy": {
+        "numerator": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "error_no_error_accuracy_static": {
+        "numerator": 29,
+        "denominator": 30,
+        "percent": 96.67
+      },
+      "error_no_error_accuracy_log_assisted": {
+        "numerator": 29,
+        "denominator": 30,
+        "percent": 96.67
+      },
+      "false_positive_rate": {
+        "numerator": 1,
+        "denominator": 30,
+        "percent": 3.33
+      },
+      "normal_cases_unevaluable": 0,
+      "ast_diagnosis_accuracy": {
+        "numerator": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "ast_expectation_recall": {
+        "numerator": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "combined_diagnosis_accuracy": {
+        "numerator": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "combined_expectation_recall": {
+        "numerator": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "incorrect_claim_rate": {
+        "numerator": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "incorrect_claim_rate_all_cases": {
+        "numerator": 0,
+        "denominator": 30,
+        "percent": 0.0
+      },
+      "coverage": {
+        "numerator": 30,
+        "denominator": 30,
+        "percent": 100.0
+      },
+      "strict_pass": {
+        "numerator": 29,
+        "denominator": 30,
+        "percent": 96.67
+      },
+      "runtime_validated": {
+        "numerator": 30,
+        "denominator": 30,
+        "percent": 100.0
+      },
+      "confusion_matrix_static": {
+        "true_positive": 0,
+        "false_negative": 0,
+        "true_negative": 29,
+        "false_positive": 1,
+        "unevaluable": 0
+      },
+      "unmapped_detection_items": 0,
+      "unmapped_prohibited_items": 0,
+      "prohibited_items": 0,
+      "confidence_labels": {
+        "medium": 1
+      }
+    }
+  },
+  "failure_categories": {
+    "誤警告／ログparserの問題": 1,
+    "誤警告": 1
+  },
+  "cases": [
+    {
+      "id": "N-01",
+      "title": "公式例：スタック操作",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "[3, 4, 5]\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [
+              {
+                "name": "stack",
+                "line": 1,
+                "scope": "top@0",
+                "kind": "assignment"
+              }
+            ],
+            "uses": [
+              {
+                "name": "stack",
+                "line": 2,
+                "scope": "top@0"
+              },
+              {
+                "name": "stack",
+                "line": 3,
+                "scope": "top@0"
+              },
+              {
+                "name": "stack",
+                "line": 4,
+                "scope": "top@0"
+              },
+              {
+                "name": "stack",
+                "line": 5,
+                "scope": "top@0"
+              },
+              {
+                "name": "print",
+                "line": 6,
+                "scope": "top@0"
+              },
+              {
+                "name": "stack",
+                "line": 6,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [
+              {
+                "expression": "stack.append",
+                "attribute": "append",
+                "line": 2
+              },
+              {
+                "expression": "stack.append",
+                "attribute": "append",
+                "line": 3
+              },
+              {
+                "expression": "stack.pop",
+                "attribute": "pop",
+                "line": 4
+              },
+              {
+                "expression": "stack.pop",
+                "attribute": "pop",
+                "line": 5
+              }
+            ],
+            "notes": [],
+            "facts": []
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [
+            {
+              "name": "stack",
+              "line": 1,
+              "scope": "top@0",
+              "kind": "assignment"
+            }
+          ],
+          "uses": [
+            {
+              "name": "stack",
+              "line": 2,
+              "scope": "top@0"
+            },
+            {
+              "name": "stack",
+              "line": 3,
+              "scope": "top@0"
+            },
+            {
+              "name": "stack",
+              "line": 4,
+              "scope": "top@0"
+            },
+            {
+              "name": "stack",
+              "line": 5,
+              "scope": "top@0"
+            },
+            {
+              "name": "print",
+              "line": 6,
+              "scope": "top@0"
+            },
+            {
+              "name": "stack",
+              "line": 6,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [
+            {
+              "expression": "stack.append",
+              "attribute": "append",
+              "line": 2
+            },
+            {
+              "expression": "stack.append",
+              "attribute": "append",
+              "line": 3
+            },
+            {
+              "expression": "stack.pop",
+              "attribute": "pop",
+              "line": 4
+            },
+            {
+              "expression": "stack.pop",
+              "attribute": "pop",
+              "line": 5
+            }
+          ],
+          "notes": [],
+          "facts": []
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-02",
+      "title": "公式例：平方数の内包表記",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [
+              {
+                "name": "x",
+                "line": 1,
+                "scope": "listcomp@1",
+                "kind": "assignment"
+              },
+              {
+                "name": "squares",
+                "line": 1,
+                "scope": "top@0",
+                "kind": "assignment"
+              }
+            ],
+            "uses": [
+              {
+                "name": "range",
+                "line": 1,
+                "scope": "top@0"
+              },
+              {
+                "name": "x",
+                "line": 1,
+                "scope": "listcomp@1"
+              },
+              {
+                "name": "print",
+                "line": 2,
+                "scope": "top@0"
+              },
+              {
+                "name": "squares",
+                "line": 2,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [],
+            "notes": [],
+            "facts": []
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [
+            {
+              "name": "x",
+              "line": 1,
+              "scope": "listcomp@1",
+              "kind": "assignment"
+            },
+            {
+              "name": "squares",
+              "line": 1,
+              "scope": "top@0",
+              "kind": "assignment"
+            }
+          ],
+          "uses": [
+            {
+              "name": "range",
+              "line": 1,
+              "scope": "top@0"
+            },
+            {
+              "name": "x",
+              "line": 1,
+              "scope": "listcomp@1"
+            },
+            {
+              "name": "print",
+              "line": 2,
+              "scope": "top@0"
+            },
+            {
+              "name": "squares",
+              "line": 2,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [],
+          "notes": [],
+          "facts": []
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-03",
+      "title": "公式例：フィルタとabs",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "[0, 2, 4]\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [
+              {
+                "name": "vec",
+                "line": 1,
+                "scope": "top@0",
+                "kind": "assignment"
+              },
+              {
+                "name": "x",
+                "line": 2,
+                "scope": "listcomp@2",
+                "kind": "assignment"
+              }
+            ],
+            "uses": [
+              {
+                "name": "print",
+                "line": 2,
+                "scope": "top@0"
+              },
+              {
+                "name": "vec",
+                "line": 2,
+                "scope": "top@0"
+              },
+              {
+                "name": "x",
+                "line": 2,
+                "scope": "listcomp@2"
+              },
+              {
+                "name": "abs",
+                "line": 2,
+                "scope": "listcomp@2"
+              },
+              {
+                "name": "x",
+                "line": 2,
+                "scope": "listcomp@2"
+              }
+            ],
+            "imports": [],
+            "attributes": [],
+            "notes": [
+              "print にはbuiltins（組み込み名）としての参照があります。"
+            ],
+            "facts": [
+              {
+                "kind": "builtin_reference",
+                "line": 2,
+                "subject": "print",
+                "details": {}
+              }
+            ]
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [
+            {
+              "name": "vec",
+              "line": 1,
+              "scope": "top@0",
+              "kind": "assignment"
+            },
+            {
+              "name": "x",
+              "line": 2,
+              "scope": "listcomp@2",
+              "kind": "assignment"
+            }
+          ],
+          "uses": [
+            {
+              "name": "print",
+              "line": 2,
+              "scope": "top@0"
+            },
+            {
+              "name": "vec",
+              "line": 2,
+              "scope": "top@0"
+            },
+            {
+              "name": "x",
+              "line": 2,
+              "scope": "listcomp@2"
+            },
+            {
+              "name": "abs",
+              "line": 2,
+              "scope": "listcomp@2"
+            },
+            {
+              "name": "x",
+              "line": 2,
+              "scope": "listcomp@2"
+            }
+          ],
+          "imports": [],
+          "attributes": [],
+          "notes": [
+            "print にはbuiltins（組み込み名）としての参照があります。"
+          ],
+          "facts": [
+            {
+              "kind": "builtin_reference",
+              "line": 2,
+              "subject": "print",
+              "details": {}
+            }
+          ]
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-04",
+      "title": "公式例：入れ子リストの平坦化",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "[1, 2, 3, 4, 5, 6, 7, 8, 9]\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [
+              {
+                "name": "vec",
+                "line": 1,
+                "scope": "top@0",
+                "kind": "assignment"
+              },
+              {
+                "name": "elem",
+                "line": 2,
+                "scope": "listcomp@2",
+                "kind": "assignment"
+              },
+              {
+                "name": "num",
+                "line": 2,
+                "scope": "listcomp@2",
+                "kind": "assignment"
+              }
+            ],
+            "uses": [
+              {
+                "name": "print",
+                "line": 2,
+                "scope": "top@0"
+              },
+              {
+                "name": "vec",
+                "line": 2,
+                "scope": "top@0"
+              },
+              {
+                "name": "elem",
+                "line": 2,
+                "scope": "listcomp@2"
+              },
+              {
+                "name": "num",
+                "line": 2,
+                "scope": "listcomp@2"
+              }
+            ],
+            "imports": [],
+            "attributes": [],
+            "notes": [
+              "print にはbuiltins（組み込み名）としての参照があります。"
+            ],
+            "facts": [
+              {
+                "kind": "builtin_reference",
+                "line": 2,
+                "subject": "print",
+                "details": {}
+              }
+            ]
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [
+            {
+              "name": "vec",
+              "line": 1,
+              "scope": "top@0",
+              "kind": "assignment"
+            },
+            {
+              "name": "elem",
+              "line": 2,
+              "scope": "listcomp@2",
+              "kind": "assignment"
+            },
+            {
+              "name": "num",
+              "line": 2,
+              "scope": "listcomp@2",
+              "kind": "assignment"
+            }
+          ],
+          "uses": [
+            {
+              "name": "print",
+              "line": 2,
+              "scope": "top@0"
+            },
+            {
+              "name": "vec",
+              "line": 2,
+              "scope": "top@0"
+            },
+            {
+              "name": "elem",
+              "line": 2,
+              "scope": "listcomp@2"
+            },
+            {
+              "name": "num",
+              "line": 2,
+              "scope": "listcomp@2"
+            }
+          ],
+          "imports": [],
+          "attributes": [],
+          "notes": [
+            "print にはbuiltins（組み込み名）としての参照があります。"
+          ],
+          "facts": [
+            {
+              "kind": "builtin_reference",
+              "line": 2,
+              "subject": "print",
+              "details": {}
+            }
+          ]
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-05",
+      "title": "公式例：文字列の長さを走査",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "cat 3\r\nwindow 6\r\ndefenestrate 12\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [
+              {
+                "name": "words",
+                "line": 1,
+                "scope": "top@0",
+                "kind": "assignment"
+              },
+              {
+                "name": "w",
+                "line": 2,
+                "scope": "top@0",
+                "kind": "assignment"
+              }
+            ],
+            "uses": [
+              {
+                "name": "words",
+                "line": 2,
+                "scope": "top@0"
+              },
+              {
+                "name": "print",
+                "line": 3,
+                "scope": "top@0"
+              },
+              {
+                "name": "w",
+                "line": 3,
+                "scope": "top@0"
+              },
+              {
+                "name": "len",
+                "line": 3,
+                "scope": "top@0"
+              },
+              {
+                "name": "w",
+                "line": 3,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [],
+            "notes": [
+              "len、print にはbuiltins（組み込み名）としての参照があります。"
+            ],
+            "facts": [
+              {
+                "kind": "builtin_reference",
+                "line": 3,
+                "subject": "print",
+                "details": {}
+              },
+              {
+                "kind": "builtin_reference",
+                "line": 3,
+                "subject": "len",
+                "details": {}
+              }
+            ]
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [
+            {
+              "name": "words",
+              "line": 1,
+              "scope": "top@0",
+              "kind": "assignment"
+            },
+            {
+              "name": "w",
+              "line": 2,
+              "scope": "top@0",
+              "kind": "assignment"
+            }
+          ],
+          "uses": [
+            {
+              "name": "words",
+              "line": 2,
+              "scope": "top@0"
+            },
+            {
+              "name": "print",
+              "line": 3,
+              "scope": "top@0"
+            },
+            {
+              "name": "w",
+              "line": 3,
+              "scope": "top@0"
+            },
+            {
+              "name": "len",
+              "line": 3,
+              "scope": "top@0"
+            },
+            {
+              "name": "w",
+              "line": 3,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [],
+          "notes": [
+            "len、print にはbuiltins（組み込み名）としての参照があります。"
+          ],
+          "facts": [
+            {
+              "kind": "builtin_reference",
+              "line": 3,
+              "subject": "print",
+              "details": {}
+            },
+            {
+              "kind": "builtin_reference",
+              "line": 3,
+              "subject": "len",
+              "details": {}
+            }
+          ]
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-06",
+      "title": "公式例：コピーの走査中に元辞書を変更",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "{'Hans': 'active', '景太郎': 'active'}\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [
+              {
+                "name": "users",
+                "line": 1,
+                "scope": "top@0",
+                "kind": "assignment"
+              },
+              {
+                "name": "user",
+                "line": 2,
+                "scope": "top@0",
+                "kind": "assignment"
+              },
+              {
+                "name": "status",
+                "line": 2,
+                "scope": "top@0",
+                "kind": "assignment"
+              }
+            ],
+            "uses": [
+              {
+                "name": "users",
+                "line": 2,
+                "scope": "top@0"
+              },
+              {
+                "name": "status",
+                "line": 3,
+                "scope": "top@0"
+              },
+              {
+                "name": "users",
+                "line": 4,
+                "scope": "top@0"
+              },
+              {
+                "name": "user",
+                "line": 4,
+                "scope": "top@0"
+              },
+              {
+                "name": "print",
+                "line": 5,
+                "scope": "top@0"
+              },
+              {
+                "name": "users",
+                "line": 5,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [
+              {
+                "expression": "users.copy",
+                "attribute": "copy",
+                "line": 2
+              },
+              {
+                "expression": "users.copy().items",
+                "attribute": "items",
+                "line": 2
+              }
+            ],
+            "notes": [],
+            "facts": []
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [
+            {
+              "name": "users",
+              "line": 1,
+              "scope": "top@0",
+              "kind": "assignment"
+            },
+            {
+              "name": "user",
+              "line": 2,
+              "scope": "top@0",
+              "kind": "assignment"
+            },
+            {
+              "name": "status",
+              "line": 2,
+              "scope": "top@0",
+              "kind": "assignment"
+            }
+          ],
+          "uses": [
+            {
+              "name": "users",
+              "line": 2,
+              "scope": "top@0"
+            },
+            {
+              "name": "status",
+              "line": 3,
+              "scope": "top@0"
+            },
+            {
+              "name": "users",
+              "line": 4,
+              "scope": "top@0"
+            },
+            {
+              "name": "user",
+              "line": 4,
+              "scope": "top@0"
+            },
+            {
+              "name": "print",
+              "line": 5,
+              "scope": "top@0"
+            },
+            {
+              "name": "users",
+              "line": 5,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [
+            {
+              "expression": "users.copy",
+              "attribute": "copy",
+              "line": 2
+            },
+            {
+              "expression": "users.copy().items",
+              "attribute": "items",
+              "line": 2
+            }
+          ],
+          "notes": [],
+          "facts": []
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-07",
+      "title": "公式例：素数とfor else",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "2 is prime\r\n3 is prime\r\n5 is prime\r\n7 is prime\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [
+              {
+                "name": "n",
+                "line": 1,
+                "scope": "top@0",
+                "kind": "assignment"
+              },
+              {
+                "name": "x",
+                "line": 2,
+                "scope": "top@0",
+                "kind": "assignment"
+              }
+            ],
+            "uses": [
+              {
+                "name": "range",
+                "line": 1,
+                "scope": "top@0"
+              },
+              {
+                "name": "range",
+                "line": 2,
+                "scope": "top@0"
+              },
+              {
+                "name": "n",
+                "line": 2,
+                "scope": "top@0"
+              },
+              {
+                "name": "n",
+                "line": 3,
+                "scope": "top@0"
+              },
+              {
+                "name": "x",
+                "line": 3,
+                "scope": "top@0"
+              },
+              {
+                "name": "print",
+                "line": 6,
+                "scope": "top@0"
+              },
+              {
+                "name": "n",
+                "line": 6,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [],
+            "notes": [
+              "range にはbuiltins（組み込み名）としての参照があります。"
+            ],
+            "facts": [
+              {
+                "kind": "builtin_reference",
+                "line": 1,
+                "subject": "range",
+                "details": {}
+              },
+              {
+                "kind": "builtin_reference",
+                "line": 2,
+                "subject": "range",
+                "details": {}
+              }
+            ]
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [
+            {
+              "name": "n",
+              "line": 1,
+              "scope": "top@0",
+              "kind": "assignment"
+            },
+            {
+              "name": "x",
+              "line": 2,
+              "scope": "top@0",
+              "kind": "assignment"
+            }
+          ],
+          "uses": [
+            {
+              "name": "range",
+              "line": 1,
+              "scope": "top@0"
+            },
+            {
+              "name": "range",
+              "line": 2,
+              "scope": "top@0"
+            },
+            {
+              "name": "n",
+              "line": 2,
+              "scope": "top@0"
+            },
+            {
+              "name": "n",
+              "line": 3,
+              "scope": "top@0"
+            },
+            {
+              "name": "x",
+              "line": 3,
+              "scope": "top@0"
+            },
+            {
+              "name": "print",
+              "line": 6,
+              "scope": "top@0"
+            },
+            {
+              "name": "n",
+              "line": 6,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [],
+          "notes": [
+            "range にはbuiltins（組み込み名）としての参照があります。"
+          ],
+          "facts": [
+            {
+              "kind": "builtin_reference",
+              "line": 1,
+              "subject": "range",
+              "details": {}
+            },
+            {
+              "kind": "builtin_reference",
+              "line": 2,
+              "subject": "range",
+              "details": {}
+            }
+          ]
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-08",
+      "title": "公式例：if elif elseとinput",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "integer: more\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [
+              {
+                "name": "x",
+                "line": 1,
+                "scope": "top@0",
+                "kind": "assignment"
+              },
+              {
+                "name": "x",
+                "line": 3,
+                "scope": "top@0",
+                "kind": "assignment"
+              }
+            ],
+            "uses": [
+              {
+                "name": "int",
+                "line": 1,
+                "scope": "top@0"
+              },
+              {
+                "name": "input",
+                "line": 1,
+                "scope": "top@0"
+              },
+              {
+                "name": "x",
+                "line": 2,
+                "scope": "top@0"
+              },
+              {
+                "name": "print",
+                "line": 4,
+                "scope": "top@0"
+              },
+              {
+                "name": "x",
+                "line": 5,
+                "scope": "top@0"
+              },
+              {
+                "name": "print",
+                "line": 6,
+                "scope": "top@0"
+              },
+              {
+                "name": "x",
+                "line": 7,
+                "scope": "top@0"
+              },
+              {
+                "name": "print",
+                "line": 8,
+                "scope": "top@0"
+              },
+              {
+                "name": "print",
+                "line": 10,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [],
+            "notes": [
+              "input、int、print にはbuiltins（組み込み名）としての参照があります。"
+            ],
+            "facts": [
+              {
+                "kind": "builtin_reference",
+                "line": 1,
+                "subject": "int",
+                "details": {}
+              },
+              {
+                "kind": "builtin_reference",
+                "line": 1,
+                "subject": "input",
+                "details": {}
+              }
+            ]
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [
+            {
+              "name": "x",
+              "line": 1,
+              "scope": "top@0",
+              "kind": "assignment"
+            },
+            {
+              "name": "x",
+              "line": 3,
+              "scope": "top@0",
+              "kind": "assignment"
+            }
+          ],
+          "uses": [
+            {
+              "name": "int",
+              "line": 1,
+              "scope": "top@0"
+            },
+            {
+              "name": "input",
+              "line": 1,
+              "scope": "top@0"
+            },
+            {
+              "name": "x",
+              "line": 2,
+              "scope": "top@0"
+            },
+            {
+              "name": "print",
+              "line": 4,
+              "scope": "top@0"
+            },
+            {
+              "name": "x",
+              "line": 5,
+              "scope": "top@0"
+            },
+            {
+              "name": "print",
+              "line": 6,
+              "scope": "top@0"
+            },
+            {
+              "name": "x",
+              "line": 7,
+              "scope": "top@0"
+            },
+            {
+              "name": "print",
+              "line": 8,
+              "scope": "top@0"
+            },
+            {
+              "name": "print",
+              "line": 10,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [],
+          "notes": [
+            "input、int、print にはbuiltins（組み込み名）としての参照があります。"
+          ],
+          "facts": [
+            {
+              "kind": "builtin_reference",
+              "line": 1,
+              "subject": "int",
+              "details": {}
+            },
+            {
+              "kind": "builtin_reference",
+              "line": 1,
+              "subject": "input",
+              "details": {}
+            }
+          ]
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-09",
+      "title": "公式例：tryを含む入力ループ",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "number: 20\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [
+              {
+                "kind": "possibly_unbound",
+                "message": "「x」は例外処理の一部の経路でしか定義されない可能性があります。全ての経路で定義されるとは限りません。",
+                "confidence": "medium",
+                "line": 7,
+                "target": "x",
+                "related_names": [],
+                "evidence": "x",
+                "details": {}
+              }
+            ],
+            "definitions": [
+              {
+                "name": "x",
+                "line": 3,
+                "scope": "top@0",
+                "kind": "assignment"
+              }
+            ],
+            "uses": [
+              {
+                "name": "int",
+                "line": 3,
+                "scope": "top@0"
+              },
+              {
+                "name": "input",
+                "line": 3,
+                "scope": "top@0"
+              },
+              {
+                "name": "ValueError",
+                "line": 5,
+                "scope": "top@0"
+              },
+              {
+                "name": "print",
+                "line": 6,
+                "scope": "top@0"
+              },
+              {
+                "name": "print",
+                "line": 7,
+                "scope": "top@0"
+              },
+              {
+                "name": "x",
+                "line": 7,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [],
+            "notes": [
+              "input、int、print にはbuiltins（組み込み名）としての参照があります。"
+            ],
+            "facts": [
+              {
+                "kind": "builtin_reference",
+                "line": 3,
+                "subject": "int",
+                "details": {}
+              },
+              {
+                "kind": "builtin_reference",
+                "line": 3,
+                "subject": "input",
+                "details": {}
+              },
+              {
+                "kind": "builtin_reference",
+                "line": 7,
+                "subject": "print",
+                "details": {}
+              }
+            ]
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [
+            {
+              "kind": "possibly_unbound",
+              "message": "「x」は例外処理の一部の経路でしか定義されない可能性があります。全ての経路で定義されるとは限りません。",
+              "confidence": "medium",
+              "line": 7,
+              "target": "x",
+              "related_names": [],
+              "evidence": "x",
+              "details": {}
+            }
+          ],
+          "definitions": [
+            {
+              "name": "x",
+              "line": 3,
+              "scope": "top@0",
+              "kind": "assignment"
+            }
+          ],
+          "uses": [
+            {
+              "name": "int",
+              "line": 3,
+              "scope": "top@0"
+            },
+            {
+              "name": "input",
+              "line": 3,
+              "scope": "top@0"
+            },
+            {
+              "name": "ValueError",
+              "line": 5,
+              "scope": "top@0"
+            },
+            {
+              "name": "print",
+              "line": 6,
+              "scope": "top@0"
+            },
+            {
+              "name": "print",
+              "line": 7,
+              "scope": "top@0"
+            },
+            {
+              "name": "x",
+              "line": 7,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [],
+          "notes": [
+            "input、int、print にはbuiltins（組み込み名）としての参照があります。"
+          ],
+          "facts": [
+            {
+              "kind": "builtin_reference",
+              "line": 3,
+              "subject": "int",
+              "details": {}
+            },
+            {
+              "kind": "builtin_reference",
+              "line": 3,
+              "subject": "input",
+              "details": {}
+            },
+            {
+              "kind": "builtin_reference",
+              "line": 7,
+              "subject": "print",
+              "details": {}
+            }
+          ]
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": true,
+        "static_warning_correct": false,
+        "log_assisted_warning": true,
+        "log_assisted_warning_correct": false,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": false,
+      "status": "FAIL",
+      "failure_reasons": [
+        "コードだけの警告: expected=False, actual=True",
+        "ログ併用のError/No-error判定が期待と異なる"
+      ],
+      "failure_classification": [
+        {
+          "category": "誤警告",
+          "disposition": "ツール側を改善可能"
+        },
+        {
+          "category": "誤警告／ログparserの問題",
+          "disposition": "ツール側を改善可能"
+        }
+      ]
+    },
+    {
+      "id": "N-10",
+      "title": "公式例：finallyによる後処理",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "operation\r\ncleanup\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [],
+            "uses": [
+              {
+                "name": "print",
+                "line": 2,
+                "scope": "top@0"
+              },
+              {
+                "name": "print",
+                "line": 4,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [],
+            "notes": [
+              "print にはbuiltins（組み込み名）としての参照があります。"
+            ],
+            "facts": [
+              {
+                "kind": "builtin_reference",
+                "line": 2,
+                "subject": "print",
+                "details": {}
+              },
+              {
+                "kind": "builtin_reference",
+                "line": 4,
+                "subject": "print",
+                "details": {}
+              }
+            ]
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [],
+          "uses": [
+            {
+              "name": "print",
+              "line": 2,
+              "scope": "top@0"
+            },
+            {
+              "name": "print",
+              "line": 4,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [],
+          "notes": [
+            "print にはbuiltins（組み込み名）としての参照があります。"
+          ],
+          "facts": [
+            {
+              "kind": "builtin_reference",
+              "line": 2,
+              "subject": "print",
+              "details": {}
+            },
+            {
+              "kind": "builtin_reference",
+              "line": 4,
+              "subject": "print",
+              "details": {}
+            }
+          ]
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-11",
+      "title": "既定値とkeyword-onlyの正常呼び出し",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "reader.\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [
+              {
+                "name": "greeting",
+                "line": 1,
+                "scope": "top@0",
+                "kind": "function"
+              },
+              {
+                "name": "name",
+                "line": 1,
+                "scope": "greeting@1",
+                "kind": "parameter"
+              },
+              {
+                "name": "punctuation",
+                "line": 1,
+                "scope": "greeting@1",
+                "kind": "parameter"
+              }
+            ],
+            "uses": [
+              {
+                "name": "name",
+                "line": 2,
+                "scope": "greeting@1"
+              },
+              {
+                "name": "punctuation",
+                "line": 2,
+                "scope": "greeting@1"
+              },
+              {
+                "name": "print",
+                "line": 3,
+                "scope": "top@0"
+              },
+              {
+                "name": "greeting",
+                "line": 3,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [],
+            "notes": [
+              "print にはbuiltins（組み込み名）としての参照があります。"
+            ],
+            "facts": [
+              {
+                "kind": "builtin_reference",
+                "line": 3,
+                "subject": "print",
+                "details": {}
+              }
+            ]
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [
+            {
+              "name": "greeting",
+              "line": 1,
+              "scope": "top@0",
+              "kind": "function"
+            },
+            {
+              "name": "name",
+              "line": 1,
+              "scope": "greeting@1",
+              "kind": "parameter"
+            },
+            {
+              "name": "punctuation",
+              "line": 1,
+              "scope": "greeting@1",
+              "kind": "parameter"
+            }
+          ],
+          "uses": [
+            {
+              "name": "name",
+              "line": 2,
+              "scope": "greeting@1"
+            },
+            {
+              "name": "punctuation",
+              "line": 2,
+              "scope": "greeting@1"
+            },
+            {
+              "name": "print",
+              "line": 3,
+              "scope": "top@0"
+            },
+            {
+              "name": "greeting",
+              "line": 3,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [],
+          "notes": [
+            "print にはbuiltins（組み込み名）としての参照があります。"
+          ],
+          "facts": [
+            {
+              "kind": "builtin_reference",
+              "line": 3,
+              "subject": "print",
+              "details": {}
+            }
+          ]
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-12",
+      "title": "位置専用とkeyword-onlyを同時に渡す",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "0.5\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [
+              {
+                "name": "ratio",
+                "line": 1,
+                "scope": "top@0",
+                "kind": "function"
+              },
+              {
+                "name": "amount",
+                "line": 1,
+                "scope": "ratio@1",
+                "kind": "parameter"
+              },
+              {
+                "name": "total",
+                "line": 1,
+                "scope": "ratio@1",
+                "kind": "parameter"
+              }
+            ],
+            "uses": [
+              {
+                "name": "amount",
+                "line": 2,
+                "scope": "ratio@1"
+              },
+              {
+                "name": "total",
+                "line": 2,
+                "scope": "ratio@1"
+              },
+              {
+                "name": "print",
+                "line": 3,
+                "scope": "top@0"
+              },
+              {
+                "name": "ratio",
+                "line": 3,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [],
+            "notes": [
+              "print にはbuiltins（組み込み名）としての参照があります。"
+            ],
+            "facts": [
+              {
+                "kind": "builtin_reference",
+                "line": 3,
+                "subject": "print",
+                "details": {}
+              }
+            ]
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [
+            {
+              "name": "ratio",
+              "line": 1,
+              "scope": "top@0",
+              "kind": "function"
+            },
+            {
+              "name": "amount",
+              "line": 1,
+              "scope": "ratio@1",
+              "kind": "parameter"
+            },
+            {
+              "name": "total",
+              "line": 1,
+              "scope": "ratio@1",
+              "kind": "parameter"
+            }
+          ],
+          "uses": [
+            {
+              "name": "amount",
+              "line": 2,
+              "scope": "ratio@1"
+            },
+            {
+              "name": "total",
+              "line": 2,
+              "scope": "ratio@1"
+            },
+            {
+              "name": "print",
+              "line": 3,
+              "scope": "top@0"
+            },
+            {
+              "name": "ratio",
+              "line": 3,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [],
+          "notes": [
+            "print にはbuiltins（組み込み名）としての参照があります。"
+          ],
+          "facts": [
+            {
+              "kind": "builtin_reference",
+              "line": 3,
+              "subject": "print",
+              "details": {}
+            }
+          ]
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-13",
+      "title": "呼び出し側のkeyword展開",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "15\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [
+              {
+                "name": "rgb",
+                "line": 1,
+                "scope": "top@0",
+                "kind": "function"
+              },
+              {
+                "name": "blue",
+                "line": 1,
+                "scope": "rgb@1",
+                "kind": "parameter"
+              },
+              {
+                "name": "green",
+                "line": 1,
+                "scope": "rgb@1",
+                "kind": "parameter"
+              },
+              {
+                "name": "red",
+                "line": 1,
+                "scope": "rgb@1",
+                "kind": "parameter"
+              },
+              {
+                "name": "channels",
+                "line": 3,
+                "scope": "top@0",
+                "kind": "assignment"
+              }
+            ],
+            "uses": [
+              {
+                "name": "red",
+                "line": 2,
+                "scope": "rgb@1"
+              },
+              {
+                "name": "green",
+                "line": 2,
+                "scope": "rgb@1"
+              },
+              {
+                "name": "blue",
+                "line": 2,
+                "scope": "rgb@1"
+              },
+              {
+                "name": "print",
+                "line": 4,
+                "scope": "top@0"
+              },
+              {
+                "name": "rgb",
+                "line": 4,
+                "scope": "top@0"
+              },
+              {
+                "name": "channels",
+                "line": 4,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [],
+            "notes": [
+              "print にはbuiltins（組み込み名）としての参照があります。"
+            ],
+            "facts": [
+              {
+                "kind": "builtin_reference",
+                "line": 4,
+                "subject": "print",
+                "details": {}
+              }
+            ]
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [
+            {
+              "name": "rgb",
+              "line": 1,
+              "scope": "top@0",
+              "kind": "function"
+            },
+            {
+              "name": "blue",
+              "line": 1,
+              "scope": "rgb@1",
+              "kind": "parameter"
+            },
+            {
+              "name": "green",
+              "line": 1,
+              "scope": "rgb@1",
+              "kind": "parameter"
+            },
+            {
+              "name": "red",
+              "line": 1,
+              "scope": "rgb@1",
+              "kind": "parameter"
+            },
+            {
+              "name": "channels",
+              "line": 3,
+              "scope": "top@0",
+              "kind": "assignment"
+            }
+          ],
+          "uses": [
+            {
+              "name": "red",
+              "line": 2,
+              "scope": "rgb@1"
+            },
+            {
+              "name": "green",
+              "line": 2,
+              "scope": "rgb@1"
+            },
+            {
+              "name": "blue",
+              "line": 2,
+              "scope": "rgb@1"
+            },
+            {
+              "name": "print",
+              "line": 4,
+              "scope": "top@0"
+            },
+            {
+              "name": "rgb",
+              "line": 4,
+              "scope": "top@0"
+            },
+            {
+              "name": "channels",
+              "line": 4,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [],
+          "notes": [
+            "print にはbuiltins（組み込み名）としての参照があります。"
+          ],
+          "facts": [
+            {
+              "kind": "builtin_reference",
+              "line": 4,
+              "subject": "print",
+              "details": {}
+            }
+          ]
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-14",
+      "title": "複数回呼び出す可変default",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "['first', 'second']\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [
+              {
+                "name": "append_entry",
+                "line": 1,
+                "scope": "top@0",
+                "kind": "function"
+              },
+              {
+                "name": "bucket",
+                "line": 1,
+                "scope": "append_entry@1",
+                "kind": "parameter"
+              },
+              {
+                "name": "entry",
+                "line": 1,
+                "scope": "append_entry@1",
+                "kind": "parameter"
+              }
+            ],
+            "uses": [
+              {
+                "name": "bucket",
+                "line": 2,
+                "scope": "append_entry@1"
+              },
+              {
+                "name": "entry",
+                "line": 2,
+                "scope": "append_entry@1"
+              },
+              {
+                "name": "bucket",
+                "line": 3,
+                "scope": "append_entry@1"
+              },
+              {
+                "name": "append_entry",
+                "line": 4,
+                "scope": "top@0"
+              },
+              {
+                "name": "print",
+                "line": 5,
+                "scope": "top@0"
+              },
+              {
+                "name": "append_entry",
+                "line": 5,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [
+              {
+                "expression": "bucket.append",
+                "attribute": "append",
+                "line": 2
+              }
+            ],
+            "notes": [],
+            "facts": []
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [
+            {
+              "name": "append_entry",
+              "line": 1,
+              "scope": "top@0",
+              "kind": "function"
+            },
+            {
+              "name": "bucket",
+              "line": 1,
+              "scope": "append_entry@1",
+              "kind": "parameter"
+            },
+            {
+              "name": "entry",
+              "line": 1,
+              "scope": "append_entry@1",
+              "kind": "parameter"
+            }
+          ],
+          "uses": [
+            {
+              "name": "bucket",
+              "line": 2,
+              "scope": "append_entry@1"
+            },
+            {
+              "name": "entry",
+              "line": 2,
+              "scope": "append_entry@1"
+            },
+            {
+              "name": "bucket",
+              "line": 3,
+              "scope": "append_entry@1"
+            },
+            {
+              "name": "append_entry",
+              "line": 4,
+              "scope": "top@0"
+            },
+            {
+              "name": "print",
+              "line": 5,
+              "scope": "top@0"
+            },
+            {
+              "name": "append_entry",
+              "line": 5,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [
+            {
+              "expression": "bucket.append",
+              "attribute": "append",
+              "line": 2
+            }
+          ],
+          "notes": [],
+          "facts": []
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-15",
+      "title": "単純クラスの対象外となる通常メソッド",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "READY\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [
+              {
+                "name": "__init__",
+                "line": 2,
+                "scope": "Label@1",
+                "kind": "function"
+              },
+              {
+                "name": "self",
+                "line": 2,
+                "scope": "__init__@2",
+                "kind": "parameter"
+              },
+              {
+                "name": "text",
+                "line": 2,
+                "scope": "__init__@2",
+                "kind": "parameter"
+              },
+              {
+                "name": "upper",
+                "line": 4,
+                "scope": "Label@1",
+                "kind": "function"
+              },
+              {
+                "name": "self",
+                "line": 4,
+                "scope": "upper@4",
+                "kind": "parameter"
+              },
+              {
+                "name": "Label",
+                "line": 1,
+                "scope": "top@0",
+                "kind": "class"
+              },
+              {
+                "name": "label",
+                "line": 6,
+                "scope": "top@0",
+                "kind": "assignment"
+              }
+            ],
+            "uses": [
+              {
+                "name": "text",
+                "line": 3,
+                "scope": "__init__@2"
+              },
+              {
+                "name": "self",
+                "line": 3,
+                "scope": "__init__@2"
+              },
+              {
+                "name": "self",
+                "line": 5,
+                "scope": "upper@4"
+              },
+              {
+                "name": "Label",
+                "line": 6,
+                "scope": "top@0"
+              },
+              {
+                "name": "print",
+                "line": 7,
+                "scope": "top@0"
+              },
+              {
+                "name": "label",
+                "line": 7,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [
+              {
+                "expression": "self.text",
+                "attribute": "text",
+                "line": 5
+              },
+              {
+                "expression": "self.text.upper",
+                "attribute": "upper",
+                "line": 5
+              },
+              {
+                "expression": "label.upper",
+                "attribute": "upper",
+                "line": 7
+              }
+            ],
+            "notes": [],
+            "facts": []
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [
+            {
+              "name": "__init__",
+              "line": 2,
+              "scope": "Label@1",
+              "kind": "function"
+            },
+            {
+              "name": "self",
+              "line": 2,
+              "scope": "__init__@2",
+              "kind": "parameter"
+            },
+            {
+              "name": "text",
+              "line": 2,
+              "scope": "__init__@2",
+              "kind": "parameter"
+            },
+            {
+              "name": "upper",
+              "line": 4,
+              "scope": "Label@1",
+              "kind": "function"
+            },
+            {
+              "name": "self",
+              "line": 4,
+              "scope": "upper@4",
+              "kind": "parameter"
+            },
+            {
+              "name": "Label",
+              "line": 1,
+              "scope": "top@0",
+              "kind": "class"
+            },
+            {
+              "name": "label",
+              "line": 6,
+              "scope": "top@0",
+              "kind": "assignment"
+            }
+          ],
+          "uses": [
+            {
+              "name": "text",
+              "line": 3,
+              "scope": "__init__@2"
+            },
+            {
+              "name": "self",
+              "line": 3,
+              "scope": "__init__@2"
+            },
+            {
+              "name": "self",
+              "line": 5,
+              "scope": "upper@4"
+            },
+            {
+              "name": "Label",
+              "line": 6,
+              "scope": "top@0"
+            },
+            {
+              "name": "print",
+              "line": 7,
+              "scope": "top@0"
+            },
+            {
+              "name": "label",
+              "line": 7,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [
+            {
+              "expression": "self.text",
+              "attribute": "text",
+              "line": 5
+            },
+            {
+              "expression": "self.text.upper",
+              "attribute": "upper",
+              "line": 5
+            },
+            {
+              "expression": "label.upper",
+              "attribute": "upper",
+              "line": 7
+            }
+          ],
+          "notes": [],
+          "facts": []
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-16",
+      "title": "条件付き初期化が実行されるクラス",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "ready\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [
+              {
+                "name": "__init__",
+                "line": 2,
+                "scope": "Flag@1",
+                "kind": "function"
+              },
+              {
+                "name": "enabled",
+                "line": 2,
+                "scope": "__init__@2",
+                "kind": "parameter"
+              },
+              {
+                "name": "self",
+                "line": 2,
+                "scope": "__init__@2",
+                "kind": "parameter"
+              },
+              {
+                "name": "Flag",
+                "line": 1,
+                "scope": "top@0",
+                "kind": "class"
+              },
+              {
+                "name": "flag",
+                "line": 5,
+                "scope": "top@0",
+                "kind": "assignment"
+              }
+            ],
+            "uses": [
+              {
+                "name": "enabled",
+                "line": 3,
+                "scope": "__init__@2"
+              },
+              {
+                "name": "self",
+                "line": 4,
+                "scope": "__init__@2"
+              },
+              {
+                "name": "Flag",
+                "line": 5,
+                "scope": "top@0"
+              },
+              {
+                "name": "print",
+                "line": 6,
+                "scope": "top@0"
+              },
+              {
+                "name": "flag",
+                "line": 6,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [
+              {
+                "expression": "flag.message",
+                "attribute": "message",
+                "line": 6
+              }
+            ],
+            "notes": [],
+            "facts": []
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [
+            {
+              "name": "__init__",
+              "line": 2,
+              "scope": "Flag@1",
+              "kind": "function"
+            },
+            {
+              "name": "enabled",
+              "line": 2,
+              "scope": "__init__@2",
+              "kind": "parameter"
+            },
+            {
+              "name": "self",
+              "line": 2,
+              "scope": "__init__@2",
+              "kind": "parameter"
+            },
+            {
+              "name": "Flag",
+              "line": 1,
+              "scope": "top@0",
+              "kind": "class"
+            },
+            {
+              "name": "flag",
+              "line": 5,
+              "scope": "top@0",
+              "kind": "assignment"
+            }
+          ],
+          "uses": [
+            {
+              "name": "enabled",
+              "line": 3,
+              "scope": "__init__@2"
+            },
+            {
+              "name": "self",
+              "line": 4,
+              "scope": "__init__@2"
+            },
+            {
+              "name": "Flag",
+              "line": 5,
+              "scope": "top@0"
+            },
+            {
+              "name": "print",
+              "line": 6,
+              "scope": "top@0"
+            },
+            {
+              "name": "flag",
+              "line": 6,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [
+            {
+              "expression": "flag.message",
+              "attribute": "message",
+              "line": 6
+            }
+          ],
+          "notes": [],
+          "facts": []
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-17",
+      "title": "生成後に属性を追加",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "ready\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [
+              {
+                "name": "Empty",
+                "line": 1,
+                "scope": "top@0",
+                "kind": "class"
+              },
+              {
+                "name": "record",
+                "line": 3,
+                "scope": "top@0",
+                "kind": "assignment"
+              }
+            ],
+            "uses": [
+              {
+                "name": "Empty",
+                "line": 3,
+                "scope": "top@0"
+              },
+              {
+                "name": "record",
+                "line": 4,
+                "scope": "top@0"
+              },
+              {
+                "name": "print",
+                "line": 5,
+                "scope": "top@0"
+              },
+              {
+                "name": "record",
+                "line": 5,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [
+              {
+                "expression": "record.token",
+                "attribute": "token",
+                "line": 5
+              }
+            ],
+            "notes": [
+              "print にはbuiltins（組み込み名）としての参照があります。"
+            ],
+            "facts": [
+              {
+                "kind": "builtin_reference",
+                "line": 5,
+                "subject": "print",
+                "details": {}
+              }
+            ]
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [
+            {
+              "name": "Empty",
+              "line": 1,
+              "scope": "top@0",
+              "kind": "class"
+            },
+            {
+              "name": "record",
+              "line": 3,
+              "scope": "top@0",
+              "kind": "assignment"
+            }
+          ],
+          "uses": [
+            {
+              "name": "Empty",
+              "line": 3,
+              "scope": "top@0"
+            },
+            {
+              "name": "record",
+              "line": 4,
+              "scope": "top@0"
+            },
+            {
+              "name": "print",
+              "line": 5,
+              "scope": "top@0"
+            },
+            {
+              "name": "record",
+              "line": 5,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [
+            {
+              "expression": "record.token",
+              "attribute": "token",
+              "line": 5
+            }
+          ],
+          "notes": [
+            "print にはbuiltins（組み込み名）としての参照があります。"
+          ],
+          "facts": [
+            {
+              "kind": "builtin_reference",
+              "line": 5,
+              "subject": "print",
+              "details": {}
+            }
+          ]
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-18",
+      "title": "関数経由でインスタンスへ属性を追加",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "True\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [
+              {
+                "name": "prepare",
+                "line": 1,
+                "scope": "top@0",
+                "kind": "function"
+              },
+              {
+                "name": "record",
+                "line": 1,
+                "scope": "prepare@1",
+                "kind": "parameter"
+              },
+              {
+                "name": "Record",
+                "line": 3,
+                "scope": "top@0",
+                "kind": "class"
+              },
+              {
+                "name": "record",
+                "line": 5,
+                "scope": "top@0",
+                "kind": "assignment"
+              }
+            ],
+            "uses": [
+              {
+                "name": "record",
+                "line": 2,
+                "scope": "prepare@1"
+              },
+              {
+                "name": "Record",
+                "line": 5,
+                "scope": "top@0"
+              },
+              {
+                "name": "prepare",
+                "line": 6,
+                "scope": "top@0"
+              },
+              {
+                "name": "record",
+                "line": 6,
+                "scope": "top@0"
+              },
+              {
+                "name": "print",
+                "line": 7,
+                "scope": "top@0"
+              },
+              {
+                "name": "record",
+                "line": 7,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [
+              {
+                "expression": "record.active",
+                "attribute": "active",
+                "line": 7
+              }
+            ],
+            "notes": [],
+            "facts": []
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [
+            {
+              "name": "prepare",
+              "line": 1,
+              "scope": "top@0",
+              "kind": "function"
+            },
+            {
+              "name": "record",
+              "line": 1,
+              "scope": "prepare@1",
+              "kind": "parameter"
+            },
+            {
+              "name": "Record",
+              "line": 3,
+              "scope": "top@0",
+              "kind": "class"
+            },
+            {
+              "name": "record",
+              "line": 5,
+              "scope": "top@0",
+              "kind": "assignment"
+            }
+          ],
+          "uses": [
+            {
+              "name": "record",
+              "line": 2,
+              "scope": "prepare@1"
+            },
+            {
+              "name": "Record",
+              "line": 5,
+              "scope": "top@0"
+            },
+            {
+              "name": "prepare",
+              "line": 6,
+              "scope": "top@0"
+            },
+            {
+              "name": "record",
+              "line": 6,
+              "scope": "top@0"
+            },
+            {
+              "name": "print",
+              "line": 7,
+              "scope": "top@0"
+            },
+            {
+              "name": "record",
+              "line": 7,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [
+            {
+              "expression": "record.active",
+              "attribute": "active",
+              "line": 7
+            }
+          ],
+          "notes": [],
+          "facts": []
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-19",
+      "title": "リスト化したキーを走査して元辞書を削除",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "{}\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [
+              {
+                "name": "mapping",
+                "line": 1,
+                "scope": "top@0",
+                "kind": "assignment"
+              },
+              {
+                "name": "key",
+                "line": 2,
+                "scope": "top@0",
+                "kind": "assignment"
+              }
+            ],
+            "uses": [
+              {
+                "name": "list",
+                "line": 2,
+                "scope": "top@0"
+              },
+              {
+                "name": "mapping",
+                "line": 2,
+                "scope": "top@0"
+              },
+              {
+                "name": "mapping",
+                "line": 3,
+                "scope": "top@0"
+              },
+              {
+                "name": "key",
+                "line": 3,
+                "scope": "top@0"
+              },
+              {
+                "name": "print",
+                "line": 4,
+                "scope": "top@0"
+              },
+              {
+                "name": "mapping",
+                "line": 4,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [],
+            "notes": [
+              "list にはbuiltins（組み込み名）としての参照があります。"
+            ],
+            "facts": [
+              {
+                "kind": "builtin_reference",
+                "line": 2,
+                "subject": "list",
+                "details": {}
+              }
+            ]
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [
+            {
+              "name": "mapping",
+              "line": 1,
+              "scope": "top@0",
+              "kind": "assignment"
+            },
+            {
+              "name": "key",
+              "line": 2,
+              "scope": "top@0",
+              "kind": "assignment"
+            }
+          ],
+          "uses": [
+            {
+              "name": "list",
+              "line": 2,
+              "scope": "top@0"
+            },
+            {
+              "name": "mapping",
+              "line": 2,
+              "scope": "top@0"
+            },
+            {
+              "name": "mapping",
+              "line": 3,
+              "scope": "top@0"
+            },
+            {
+              "name": "key",
+              "line": 3,
+              "scope": "top@0"
+            },
+            {
+              "name": "print",
+              "line": 4,
+              "scope": "top@0"
+            },
+            {
+              "name": "mapping",
+              "line": 4,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [],
+          "notes": [
+            "list にはbuiltins（組み込み名）としての参照があります。"
+          ],
+          "facts": [
+            {
+              "kind": "builtin_reference",
+              "line": 2,
+              "subject": "list",
+              "details": {}
+            }
+          ]
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-20",
+      "title": "集合の変更後に即break",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "{2}\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [
+              {
+                "name": "members",
+                "line": 1,
+                "scope": "top@0",
+                "kind": "assignment"
+              },
+              {
+                "name": "member",
+                "line": 2,
+                "scope": "top@0",
+                "kind": "assignment"
+              }
+            ],
+            "uses": [
+              {
+                "name": "members",
+                "line": 2,
+                "scope": "top@0"
+              },
+              {
+                "name": "members",
+                "line": 3,
+                "scope": "top@0"
+              },
+              {
+                "name": "member",
+                "line": 3,
+                "scope": "top@0"
+              },
+              {
+                "name": "print",
+                "line": 5,
+                "scope": "top@0"
+              },
+              {
+                "name": "members",
+                "line": 5,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [
+              {
+                "expression": "members.remove",
+                "attribute": "remove",
+                "line": 3
+              }
+            ],
+            "notes": [],
+            "facts": []
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [
+            {
+              "name": "members",
+              "line": 1,
+              "scope": "top@0",
+              "kind": "assignment"
+            },
+            {
+              "name": "member",
+              "line": 2,
+              "scope": "top@0",
+              "kind": "assignment"
+            }
+          ],
+          "uses": [
+            {
+              "name": "members",
+              "line": 2,
+              "scope": "top@0"
+            },
+            {
+              "name": "members",
+              "line": 3,
+              "scope": "top@0"
+            },
+            {
+              "name": "member",
+              "line": 3,
+              "scope": "top@0"
+            },
+            {
+              "name": "print",
+              "line": 5,
+              "scope": "top@0"
+            },
+            {
+              "name": "members",
+              "line": 5,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [
+            {
+              "expression": "members.remove",
+              "attribute": "remove",
+              "line": 3
+            }
+          ],
+          "notes": [],
+          "facts": []
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-21",
+      "title": "空ではないリストのpopとassert",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "first\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [
+              {
+                "name": "items",
+                "line": 1,
+                "scope": "top@0",
+                "kind": "assignment"
+              }
+            ],
+            "uses": [
+              {
+                "name": "items",
+                "line": 2,
+                "scope": "top@0"
+              },
+              {
+                "name": "print",
+                "line": 3,
+                "scope": "top@0"
+              },
+              {
+                "name": "items",
+                "line": 3,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [
+              {
+                "expression": "items.pop",
+                "attribute": "pop",
+                "line": 3
+              }
+            ],
+            "notes": [
+              "print にはbuiltins（組み込み名）としての参照があります。"
+            ],
+            "facts": [
+              {
+                "kind": "builtin_reference",
+                "line": 3,
+                "subject": "print",
+                "details": {}
+              }
+            ]
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [
+            {
+              "name": "items",
+              "line": 1,
+              "scope": "top@0",
+              "kind": "assignment"
+            }
+          ],
+          "uses": [
+            {
+              "name": "items",
+              "line": 2,
+              "scope": "top@0"
+            },
+            {
+              "name": "print",
+              "line": 3,
+              "scope": "top@0"
+            },
+            {
+              "name": "items",
+              "line": 3,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [
+            {
+              "expression": "items.pop",
+              "attribute": "pop",
+              "line": 3
+            }
+          ],
+          "notes": [
+            "print にはbuiltins（組み込み名）としての参照があります。"
+          ],
+          "facts": [
+            {
+              "kind": "builtin_reference",
+              "line": 3,
+              "subject": "print",
+              "details": {}
+            }
+          ]
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-22",
+      "title": "AssertionErrorを捕捉して復旧",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "True\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [
+              {
+                "name": "recovered",
+                "line": 4,
+                "scope": "top@0",
+                "kind": "assignment"
+              }
+            ],
+            "uses": [
+              {
+                "name": "AssertionError",
+                "line": 3,
+                "scope": "top@0"
+              },
+              {
+                "name": "print",
+                "line": 5,
+                "scope": "top@0"
+              },
+              {
+                "name": "recovered",
+                "line": 5,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [],
+            "notes": [
+              "2行目のAssertionErrorは、exceptで捕捉・処理される経路です。プログラム全体の正常動作を保証する情報ではありません。",
+              "print にはbuiltins（組み込み名）としての参照があります。"
+            ],
+            "facts": [
+              {
+                "kind": "handled_exception",
+                "line": 2,
+                "subject": "AssertionError",
+                "details": {}
+              },
+              {
+                "kind": "builtin_reference",
+                "line": 5,
+                "subject": "print",
+                "details": {}
+              }
+            ]
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [
+            {
+              "name": "recovered",
+              "line": 4,
+              "scope": "top@0",
+              "kind": "assignment"
+            }
+          ],
+          "uses": [
+            {
+              "name": "AssertionError",
+              "line": 3,
+              "scope": "top@0"
+            },
+            {
+              "name": "print",
+              "line": 5,
+              "scope": "top@0"
+            },
+            {
+              "name": "recovered",
+              "line": 5,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [],
+          "notes": [
+            "2行目のAssertionErrorは、exceptで捕捉・処理される経路です。プログラム全体の正常動作を保証する情報ではありません。",
+            "print にはbuiltins（組み込み名）としての参照があります。"
+          ],
+          "facts": [
+            {
+              "kind": "handled_exception",
+              "line": 2,
+              "subject": "AssertionError",
+              "details": {}
+            },
+            {
+              "kind": "builtin_reference",
+              "line": 5,
+              "subject": "print",
+              "details": {}
+            }
+          ]
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-23",
+      "title": "空イテレータにnextの既定値",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "done\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [
+              {
+                "name": "iterator",
+                "line": 1,
+                "scope": "top@0",
+                "kind": "assignment"
+              }
+            ],
+            "uses": [
+              {
+                "name": "iter",
+                "line": 1,
+                "scope": "top@0"
+              },
+              {
+                "name": "print",
+                "line": 2,
+                "scope": "top@0"
+              },
+              {
+                "name": "next",
+                "line": 2,
+                "scope": "top@0"
+              },
+              {
+                "name": "iterator",
+                "line": 2,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [],
+            "notes": [
+              "iter、next、print にはbuiltins（組み込み名）としての参照があります。"
+            ],
+            "facts": [
+              {
+                "kind": "builtin_reference",
+                "line": 1,
+                "subject": "iter",
+                "details": {}
+              },
+              {
+                "kind": "builtin_reference",
+                "line": 2,
+                "subject": "print",
+                "details": {}
+              },
+              {
+                "kind": "builtin_reference",
+                "line": 2,
+                "subject": "next",
+                "details": {}
+              }
+            ]
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [
+            {
+              "name": "iterator",
+              "line": 1,
+              "scope": "top@0",
+              "kind": "assignment"
+            }
+          ],
+          "uses": [
+            {
+              "name": "iter",
+              "line": 1,
+              "scope": "top@0"
+            },
+            {
+              "name": "print",
+              "line": 2,
+              "scope": "top@0"
+            },
+            {
+              "name": "next",
+              "line": 2,
+              "scope": "top@0"
+            },
+            {
+              "name": "iterator",
+              "line": 2,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [],
+          "notes": [
+            "iter、next、print にはbuiltins（組み込み名）としての参照があります。"
+          ],
+          "facts": [
+            {
+              "kind": "builtin_reference",
+              "line": 1,
+              "subject": "iter",
+              "details": {}
+            },
+            {
+              "kind": "builtin_reference",
+              "line": 2,
+              "subject": "print",
+              "details": {}
+            },
+            {
+              "kind": "builtin_reference",
+              "line": 2,
+              "subject": "next",
+              "details": {}
+            }
+          ]
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-24",
+      "title": "消費後のnextに既定値を指定",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "7\r\ndone\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [
+              {
+                "name": "iterator",
+                "line": 1,
+                "scope": "top@0",
+                "kind": "assignment"
+              }
+            ],
+            "uses": [
+              {
+                "name": "iter",
+                "line": 1,
+                "scope": "top@0"
+              },
+              {
+                "name": "print",
+                "line": 2,
+                "scope": "top@0"
+              },
+              {
+                "name": "next",
+                "line": 2,
+                "scope": "top@0"
+              },
+              {
+                "name": "iterator",
+                "line": 2,
+                "scope": "top@0"
+              },
+              {
+                "name": "print",
+                "line": 3,
+                "scope": "top@0"
+              },
+              {
+                "name": "next",
+                "line": 3,
+                "scope": "top@0"
+              },
+              {
+                "name": "iterator",
+                "line": 3,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [],
+            "notes": [
+              "iter、next、print にはbuiltins（組み込み名）としての参照があります。"
+            ],
+            "facts": [
+              {
+                "kind": "builtin_reference",
+                "line": 1,
+                "subject": "iter",
+                "details": {}
+              },
+              {
+                "kind": "builtin_reference",
+                "line": 2,
+                "subject": "print",
+                "details": {}
+              },
+              {
+                "kind": "builtin_reference",
+                "line": 2,
+                "subject": "next",
+                "details": {}
+              }
+            ]
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [
+            {
+              "name": "iterator",
+              "line": 1,
+              "scope": "top@0",
+              "kind": "assignment"
+            }
+          ],
+          "uses": [
+            {
+              "name": "iter",
+              "line": 1,
+              "scope": "top@0"
+            },
+            {
+              "name": "print",
+              "line": 2,
+              "scope": "top@0"
+            },
+            {
+              "name": "next",
+              "line": 2,
+              "scope": "top@0"
+            },
+            {
+              "name": "iterator",
+              "line": 2,
+              "scope": "top@0"
+            },
+            {
+              "name": "print",
+              "line": 3,
+              "scope": "top@0"
+            },
+            {
+              "name": "next",
+              "line": 3,
+              "scope": "top@0"
+            },
+            {
+              "name": "iterator",
+              "line": 3,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [],
+          "notes": [
+            "iter、next、print にはbuiltins（組み込み名）としての参照があります。"
+          ],
+          "facts": [
+            {
+              "kind": "builtin_reference",
+              "line": 1,
+              "subject": "iter",
+              "details": {}
+            },
+            {
+              "kind": "builtin_reference",
+              "line": 2,
+              "subject": "print",
+              "details": {}
+            },
+            {
+              "kind": "builtin_reference",
+              "line": 2,
+              "subject": "next",
+              "details": {}
+            }
+          ]
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-25",
+      "title": "finally returnが例外を抑制",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "2\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [
+              {
+                "name": "choose",
+                "line": 1,
+                "scope": "top@0",
+                "kind": "function"
+              },
+              {
+                "name": "value",
+                "line": 1,
+                "scope": "choose@1",
+                "kind": "parameter"
+              }
+            ],
+            "uses": [
+              {
+                "name": "value",
+                "line": 5,
+                "scope": "choose@1"
+              },
+              {
+                "name": "print",
+                "line": 6,
+                "scope": "top@0"
+              },
+              {
+                "name": "choose",
+                "line": 6,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [],
+            "notes": [
+              "print にはbuiltins（組み込み名）としての参照があります。"
+            ],
+            "facts": [
+              {
+                "kind": "builtin_reference",
+                "line": 6,
+                "subject": "print",
+                "details": {}
+              }
+            ]
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [
+            {
+              "name": "choose",
+              "line": 1,
+              "scope": "top@0",
+              "kind": "function"
+            },
+            {
+              "name": "value",
+              "line": 1,
+              "scope": "choose@1",
+              "kind": "parameter"
+            }
+          ],
+          "uses": [
+            {
+              "name": "value",
+              "line": 5,
+              "scope": "choose@1"
+            },
+            {
+              "name": "print",
+              "line": 6,
+              "scope": "top@0"
+            },
+            {
+              "name": "choose",
+              "line": 6,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [],
+          "notes": [
+            "print にはbuiltins（組み込み名）としての参照があります。"
+          ],
+          "facts": [
+            {
+              "kind": "builtin_reference",
+              "line": 6,
+              "subject": "print",
+              "details": {}
+            }
+          ]
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-26",
+      "title": "NoneとFalseの比較で到達しない枝",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "skipped\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [],
+            "uses": [
+              {
+                "name": "print",
+                "line": 2,
+                "scope": "top@0"
+              },
+              {
+                "name": "print",
+                "line": 4,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [],
+            "notes": [
+              "print にはbuiltins（組み込み名）としての参照があります。"
+            ],
+            "facts": [
+              {
+                "kind": "builtin_reference",
+                "line": 4,
+                "subject": "print",
+                "details": {}
+              }
+            ]
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [],
+          "uses": [
+            {
+              "name": "print",
+              "line": 2,
+              "scope": "top@0"
+            },
+            {
+              "name": "print",
+              "line": 4,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [],
+          "notes": [
+            "print にはbuiltins（組み込み名）としての参照があります。"
+          ],
+          "facts": [
+            {
+              "kind": "builtin_reference",
+              "line": 4,
+              "subject": "print",
+              "details": {}
+            }
+          ]
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-27",
+      "title": "入力文字列のメソッドと変換",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "21\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [
+              {
+                "name": "text",
+                "line": 1,
+                "scope": "top@0",
+                "kind": "assignment"
+              }
+            ],
+            "uses": [
+              {
+                "name": "input",
+                "line": 1,
+                "scope": "top@0"
+              },
+              {
+                "name": "print",
+                "line": 2,
+                "scope": "top@0"
+              },
+              {
+                "name": "int",
+                "line": 2,
+                "scope": "top@0"
+              },
+              {
+                "name": "text",
+                "line": 2,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [
+              {
+                "expression": "input().strip",
+                "attribute": "strip",
+                "line": 1
+              }
+            ],
+            "notes": [
+              "input にはbuiltins（組み込み名）としての参照があります。"
+            ],
+            "facts": [
+              {
+                "kind": "builtin_reference",
+                "line": 1,
+                "subject": "input",
+                "details": {}
+              }
+            ]
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [
+            {
+              "name": "text",
+              "line": 1,
+              "scope": "top@0",
+              "kind": "assignment"
+            }
+          ],
+          "uses": [
+            {
+              "name": "input",
+              "line": 1,
+              "scope": "top@0"
+            },
+            {
+              "name": "print",
+              "line": 2,
+              "scope": "top@0"
+            },
+            {
+              "name": "int",
+              "line": 2,
+              "scope": "top@0"
+            },
+            {
+              "name": "text",
+              "line": 2,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [
+            {
+              "expression": "input().strip",
+              "attribute": "strip",
+              "line": 1
+            }
+          ],
+          "notes": [
+            "input にはbuiltins（組み込み名）としての参照があります。"
+          ],
+          "facts": [
+            {
+              "kind": "builtin_reference",
+              "line": 1,
+              "subject": "input",
+              "details": {}
+            }
+          ]
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-28",
+      "title": "外側のローカル変数を内側から参照",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "hello\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [
+              {
+                "name": "outer",
+                "line": 1,
+                "scope": "top@0",
+                "kind": "function"
+              },
+              {
+                "name": "prefix",
+                "line": 2,
+                "scope": "outer@1",
+                "kind": "assignment"
+              },
+              {
+                "name": "inner",
+                "line": 3,
+                "scope": "outer@1",
+                "kind": "function"
+              }
+            ],
+            "uses": [
+              {
+                "name": "prefix",
+                "line": 4,
+                "scope": "inner@3"
+              },
+              {
+                "name": "inner",
+                "line": 5,
+                "scope": "outer@1"
+              },
+              {
+                "name": "print",
+                "line": 6,
+                "scope": "top@0"
+              },
+              {
+                "name": "outer",
+                "line": 6,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [],
+            "notes": [
+              "print にはbuiltins（組み込み名）としての参照があります。"
+            ],
+            "facts": [
+              {
+                "kind": "builtin_reference",
+                "line": 6,
+                "subject": "print",
+                "details": {}
+              }
+            ]
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [
+            {
+              "name": "outer",
+              "line": 1,
+              "scope": "top@0",
+              "kind": "function"
+            },
+            {
+              "name": "prefix",
+              "line": 2,
+              "scope": "outer@1",
+              "kind": "assignment"
+            },
+            {
+              "name": "inner",
+              "line": 3,
+              "scope": "outer@1",
+              "kind": "function"
+            }
+          ],
+          "uses": [
+            {
+              "name": "prefix",
+              "line": 4,
+              "scope": "inner@3"
+            },
+            {
+              "name": "inner",
+              "line": 5,
+              "scope": "outer@1"
+            },
+            {
+              "name": "print",
+              "line": 6,
+              "scope": "top@0"
+            },
+            {
+              "name": "outer",
+              "line": 6,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [],
+          "notes": [
+            "print にはbuiltins（組み込み名）としての参照があります。"
+          ],
+          "facts": [
+            {
+              "kind": "builtin_reference",
+              "line": 6,
+              "subject": "print",
+              "details": {}
+            }
+          ]
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-29",
+      "title": "辞書の走査中に値だけを変更",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "{'a': 99, 'b': 99}\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [
+              {
+                "name": "mapping",
+                "line": 1,
+                "scope": "top@0",
+                "kind": "assignment"
+              },
+              {
+                "name": "key",
+                "line": 2,
+                "scope": "top@0",
+                "kind": "assignment"
+              }
+            ],
+            "uses": [
+              {
+                "name": "mapping",
+                "line": 2,
+                "scope": "top@0"
+              },
+              {
+                "name": "mapping",
+                "line": 3,
+                "scope": "top@0"
+              },
+              {
+                "name": "key",
+                "line": 3,
+                "scope": "top@0"
+              },
+              {
+                "name": "print",
+                "line": 4,
+                "scope": "top@0"
+              },
+              {
+                "name": "mapping",
+                "line": 4,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [],
+            "notes": [],
+            "facts": []
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [
+            {
+              "name": "mapping",
+              "line": 1,
+              "scope": "top@0",
+              "kind": "assignment"
+            },
+            {
+              "name": "key",
+              "line": 2,
+              "scope": "top@0",
+              "kind": "assignment"
+            }
+          ],
+          "uses": [
+            {
+              "name": "mapping",
+              "line": 2,
+              "scope": "top@0"
+            },
+            {
+              "name": "mapping",
+              "line": 3,
+              "scope": "top@0"
+            },
+            {
+              "name": "key",
+              "line": 3,
+              "scope": "top@0"
+            },
+            {
+              "name": "print",
+              "line": 4,
+              "scope": "top@0"
+            },
+            {
+              "name": "mapping",
+              "line": 4,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [],
+          "notes": [],
+          "facts": []
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    },
+    {
+      "id": "N-30",
+      "title": "enumerateを使う辞書内包表記",
+      "difficulty": "adversarial",
+      "expected": {
+        "execution": "no_error",
+        "exception_type": null,
+        "should_warn": false
+      },
+      "analysis_expectations": {
+        "should_detect": [],
+        "should_not_claim": []
+      },
+      "runtime": {
+        "status": "completed",
+        "returncode": 0,
+        "execution": "no_error",
+        "exception_type": null,
+        "stdout": "{0: 3, 1: 4}\r\n",
+        "stderr": "",
+        "output_truncated": false
+      },
+      "actual": {
+        "status": "returned",
+        "pipeline": {
+          "error": {
+            "language": "python",
+            "error_type": null,
+            "message": "",
+            "file": null,
+            "line": null,
+            "target": null,
+            "category": "unknown",
+            "frames": [],
+            "status": "unrecognized",
+            "warnings": [
+              "エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。"
+            ]
+          },
+          "explanation": {
+            "summary": "ログからエラーの種類を読み取れませんでした。",
+            "cause": "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
+            "checkpoints": [
+              "Traceback から最後のエラー行までコピーしてください。",
+              "最後に「エラー種類: メッセージ」があるか確認してください。",
+              "Pythonで発生したログか確認してください。"
+            ],
+            "reading_tip": "まず最後のエラー行、次に直前の File と line を読みます。",
+            "fix_example": null,
+            "fix_note": "入力コードを自動修正したものではなく、考え方を示す学習用の例です。"
+          },
+          "hints": [
+            "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。",
+            "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+            "Traceback から最後のエラー行までコピーしてください。"
+          ],
+          "code_context": [],
+          "notes": [
+            "行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。"
+          ],
+          "code_analysis": {
+            "status": "parsed",
+            "findings": [],
+            "definitions": [
+              {
+                "name": "key",
+                "line": 1,
+                "scope": "dictcomp@1",
+                "kind": "assignment"
+              },
+              {
+                "name": "value",
+                "line": 1,
+                "scope": "dictcomp@1",
+                "kind": "assignment"
+              },
+              {
+                "name": "results",
+                "line": 1,
+                "scope": "top@0",
+                "kind": "assignment"
+              }
+            ],
+            "uses": [
+              {
+                "name": "enumerate",
+                "line": 1,
+                "scope": "top@0"
+              },
+              {
+                "name": "key",
+                "line": 1,
+                "scope": "dictcomp@1"
+              },
+              {
+                "name": "value",
+                "line": 1,
+                "scope": "dictcomp@1"
+              },
+              {
+                "name": "print",
+                "line": 2,
+                "scope": "top@0"
+              },
+              {
+                "name": "results",
+                "line": 2,
+                "scope": "top@0"
+              }
+            ],
+            "imports": [],
+            "attributes": [],
+            "notes": [],
+            "facts": []
+          }
+        },
+        "static": {
+          "status": "parsed",
+          "findings": [],
+          "definitions": [
+            {
+              "name": "key",
+              "line": 1,
+              "scope": "dictcomp@1",
+              "kind": "assignment"
+            },
+            {
+              "name": "value",
+              "line": 1,
+              "scope": "dictcomp@1",
+              "kind": "assignment"
+            },
+            {
+              "name": "results",
+              "line": 1,
+              "scope": "top@0",
+              "kind": "assignment"
+            }
+          ],
+          "uses": [
+            {
+              "name": "enumerate",
+              "line": 1,
+              "scope": "top@0"
+            },
+            {
+              "name": "key",
+              "line": 1,
+              "scope": "dictcomp@1"
+            },
+            {
+              "name": "value",
+              "line": 1,
+              "scope": "dictcomp@1"
+            },
+            {
+              "name": "print",
+              "line": 2,
+              "scope": "top@0"
+            },
+            {
+              "name": "results",
+              "line": 2,
+              "scope": "top@0"
+            }
+          ],
+          "imports": [],
+          "attributes": [],
+          "notes": [],
+          "facts": []
+        }
+      },
+      "checks": {
+        "runtime_validated": true,
+        "error_type_correct": true,
+        "expected_warning": false,
+        "static_warning": false,
+        "static_warning_correct": true,
+        "log_assisted_warning": false,
+        "log_assisted_warning_correct": true,
+        "ast_eligible": true,
+        "ast_diagnosis": [],
+        "combined_diagnosis": [],
+        "prohibited_claims": [],
+        "category_correct": null,
+        "preferred_confidence": null
+      },
+      "pass": true,
+      "status": "PASS",
+      "failure_reasons": [],
+      "failure_classification": []
+    }
+  ]
+}

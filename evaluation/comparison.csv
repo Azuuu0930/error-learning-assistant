@@ -1,0 +1,63 @@
+﻿dataset,id,title,difficulty,before,after,strict_transition,diagnostic_transition,remaining_failure_reasons
+42_cases,PY-001,変数名のタイプミス,beginner,PASS,PASS,unchanged,unchanged,
+42_cases,PY-002,定義前に変数を使用,beginner,PASS,PASS,unchanged,unchanged,
+42_cases,PY-003,文字列と整数の加算,beginner,FAIL,PASS,improved,improved,
+42_cases,PY-004,inputの戻り値を整数として使用,beginner,FAIL,PASS,improved,improved,
+42_cases,PY-005,リストの範囲外アクセス,beginner,PASS,PASS,unchanged,unchanged,
+42_cases,PY-006,辞書に存在しないキー,beginner,FAIL,PASS,improved,improved,
+42_cases,PY-007,ゼロ除算,beginner,FAIL,PASS,improved,improved,
+42_cases,PY-008,存在しないメソッド,beginner,FAIL,PASS,improved,improved,
+42_cases,PY-009,存在しないモジュール,beginner,FAIL,FAIL,unchanged,unchanged,"コードだけの警告: expected=True, actual=False"
+42_cases,PY-010,存在しない名前をimport,beginner,FAIL,FAIL,unchanged,unchanged,"コードだけの警告: expected=True, actual=False"
+42_cases,PY-011,存在しないファイルを開く,beginner,FAIL,FAIL,unchanged,unchanged,"コードだけの警告: expected=True, actual=False"
+42_cases,PY-012,int変換失敗,beginner,FAIL,PASS,improved,improved,
+42_cases,PY-013,if文のコロン忘れ,beginner,FAIL,PASS,improved,improved,
+42_cases,PY-014,閉じ括弧忘れ,beginner,PASS,PASS,unchanged,unchanged,
+42_cases,PY-015,インデント忘れ,beginner,PASS,PASS,unchanged,unchanged,
+42_cases,PY-016,予期しない深いインデント,beginner,PASS,PASS,unchanged,unchanged,
+42_cases,PY-017,代入演算子と比較演算子の混同,beginner,FAIL,PASS,improved,improved,
+42_cases,PY-018,文字列の閉じ忘れ,beginner,PASS,PASS,unchanged,unchanged,
+42_cases,PY-019,ローカル変数の参照前代入,intermediate,PASS,PASS,unchanged,unchanged,
+42_cases,PY-020,Noneにメソッドを呼び出す,intermediate,FAIL,PASS,improved,improved,
+42_cases,PY-021,関数の引数不足,beginner,FAIL,PASS,improved,improved,
+42_cases,PY-022,関数へ引数を渡しすぎる,beginner,FAIL,FAIL,unchanged,improved,期待した診断が欠落: hello の定義より多い位置引数 (too_many_arguments)
+42_cases,PY-023,存在しないキーワード引数,beginner,FAIL,PASS,improved,improved,
+42_cases,PY-024,リストと整数の大小比較,intermediate,FAIL,PASS,improved,improved,
+42_cases,PY-025,無限再帰,rare,FAIL,FAIL,unchanged,improved,"コードだけの警告: expected=True, actual=False"
+42_cases,PY-026,空イテレータへのnext,rare,FAIL,FAIL,unchanged,improved,"コードだけの警告: expected=True, actual=False"
+42_cases,PY-027,assert失敗,rare,FAIL,FAIL,unchanged,improved,"コードだけの警告: expected=True, actual=False"
+42_cases,PY-028,辞書を反復中に変更,rare,FAIL,FAIL,unchanged,improved,"コードだけの警告: expected=True, actual=False"
+42_cases,PY-029,setを反復中に変更,rare,FAIL,FAIL,unchanged,improved,"コードだけの警告: expected=True, actual=False"
+42_cases,PY-030,Unicodeデコード失敗,rare,FAIL,FAIL,unchanged,improved,"コードだけの警告: expected=True, actual=False"
+42_cases,PY-031,bytesとstrの加算,rare,FAIL,FAIL,unchanged,improved,期待した診断が欠落: bytes と str の混在 (mixed_bytes_string)
+42_cases,PY-032,リスト添字にfloat,rare,FAIL,PASS,improved,improved,
+42_cases,PY-033,hash化できないリストを辞書キーに使用,rare,FAIL,PASS,improved,improved,
+42_cases,PY-034,自作クラスの存在しない属性,intermediate,FAIL,FAIL,unchanged,unchanged,"コードだけの警告: expected=True, actual=False / 期待した診断が欠落: User に age 属性が定義されていない可能性 (missing_attribute) / 期待した診断が欠落: name 属性は存在 (present_attribute)"
+42_cases,PY-035,似た変数名が複数存在,adversarial,PASS,PASS,unchanged,unchanged,
+42_cases,PY-036,builtinsを未定義扱いしない,adversarial,FAIL,FAIL,unchanged,unchanged,期待した診断が欠落: print と len は builtins (builtin_resolution)
+42_cases,PY-037,import済みモジュールを未定義扱いしない,adversarial,PASS,PASS,unchanged,unchanged,
+42_cases,PY-038,from import済み名称を未定義扱いしない,adversarial,PASS,PASS,unchanged,unchanged,
+42_cases,PY-039,分岐次第で未定義になる変数,adversarial,FAIL,PASS,improved,improved,
+42_cases,PY-040,空ループ後の未定義変数,adversarial,FAIL,PASS,improved,improved,
+42_cases,PY-041,関数スコープとグローバルの同名変数,adversarial,PASS,PASS,unchanged,unchanged,
+42_cases,PY-042,例外処理済みのZeroDivisionError,adversarial,FAIL,FAIL,unchanged,unchanged,期待した診断が欠落: ZeroDivisionError は except で処理される (handled_exception)
+20_case_holdout,H-01,必須keyword-only引数の省略,intermediate,FAIL,PASS,improved,improved,
+20_case_holdout,H-02,位置引数とkeywordによる同一引数の重複,intermediate,FAIL,PASS,improved,improved,
+20_case_holdout,H-03,boolキー辞書で別のboolキーを参照,intermediate,FAIL,PASS,improved,improved,
+20_case_holdout,H-04,負の位置変数でタプルを参照,intermediate,FAIL,PASS,improved,improved,
+20_case_holdout,H-05,直接呼び出す関数内部のNone属性参照,intermediate,FAIL,PASS,improved,improved,
+20_case_holdout,H-06,両分岐で異なる文字列を代入した後の加算,intermediate,FAIL,PASS,improved,improved,
+20_case_holdout,H-07,関数内の小数添字,intermediate,FAIL,PASS,improved,improved,
+20_case_holdout,H-08,Falseを法とした剰余演算,intermediate,FAIL,PASS,improved,improved,
+20_case_holdout,H-09,二つの条件分岐を越えた未束縛候補,intermediate,FAIL,PASS,improved,improved,
+20_case_holdout,H-10,関数内部の複数行リストが閉じていない,intermediate,PASS,PASS,unchanged,unchanged,
+20_case_holdout,H-11,位置専用・可変長・既定・任意keywordを併用,intermediate,PASS,PASS,unchanged,unchanged,
+20_case_holdout,H-12,両分岐で初期化してから安全に連結,intermediate,PASS,PASS,unchanged,unchanged,
+20_case_holdout,H-13,辞書の別名からupdateした後の参照,intermediate,PASS,PASS,unchanged,unchanged,
+20_case_holdout,H-14,関数に渡したリストへの追加後の参照,intermediate,PASS,PASS,unchanged,unchanged,
+20_case_holdout,H-15,例外型タプルでTypeErrorを処理,intermediate,FAIL,FAIL,unchanged,unchanged,期待した診断が欠落: TypeError は except で処理 (handled_exception)
+20_case_holdout,H-16,変換エラーを別の例外にして外側で処理,intermediate,PASS,PASS,unchanged,unchanged,
+20_case_holdout,H-17,generator式のローカル変数とbuiltins,intermediate,PASS,PASS,unchanged,unchanged,
+20_case_holdout,H-18,import別名と関数呼び出し結果のリスト,intermediate,PASS,PASS,unchanged,unchanged,
+20_case_holdout,H-19,boolの添字は正常な整数添字,intermediate,PASS,PASS,unchanged,unchanged,
+20_case_holdout,H-20,実行されない枝のNone属性参照,intermediate,PASS,PASS,unchanged,unchanged,

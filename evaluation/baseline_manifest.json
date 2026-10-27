@@ -1,0 +1,30 @@
+{
+  "snapshot_at": "2026-10-05T06:23:54.212529+00:00",
+  "baseline": "Existing AST MVP before 42-case evaluation; no application changes",
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "dataset_source": "<local-path>",
+  "dataset_sha256": "c9f2ff620a01a0524006b8962fb6c0a6a5f688b958648266f65d3bf14d8570fa",
+  "jsonl_source": "Generated lossless case export from supplied JSON; JSONL attachment not present at specified path",
+  "files": {
+    "app.py": "7faab5e04d7196390bd22be3bf0bdc46053cee6b5d3ae32ee01157731caae842",
+    "requirements.txt": "26a0a31aa844b98180989f532d56b0dc089efada2802b55661627d9b301f6fb4",
+    "pytest.ini": "c28d7ee43186a578bc0f8867e26fdf7edcb0f1275b12d71d85a20e95a524c4ef",
+    "README.md": "40c27e7cac4ba6c02e49ad704450851d13f277b8b025101686a345271ff1c631",
+    "VERIFICATION.md": "40073ac52ae3b75dd68479875e493b941fe06010609c85aa01346996e7adc392",
+    "src/__init__.py": "109f4dc96c3c03b72b4a739b0803ff8aa762ecbb5e864dca31ccf9bfd79ae570",
+    "src/analyzer.py": "2f1597f2de15d3a4ffc5aef9f8a46735b8dbd88bddcaf15a12fafcc1c910d95b",
+    "src/code_analysis.py": "b64e35f2fb27290fa9438043cc186fe7a5628fd87128710651f71400fb28d303",
+    "src/explanations.py": "6821792241a7f497b69d31bde5fe5fd2f9cf5b72557aa6ae30eb72f2052e5c0f",
+    "src/hints.py": "75add73dcebba7baac4e585b20564b411a4efa5477ab045ad9fcbf75b52466b5",
+    "src/models.py": "8a35ed0e48791e0e4934f613c9a1a2d73c0f8eb040bea6b01ff8ad16099a3758",
+    "src/parser.py": "feb5e4ff83245e48a99e559926f37798ca30776b5a66ccab569697b992999bd5",
+    "src/view.py": "9ee151b805a5cb81ff6946d7bca0b05e0c3d14a33a2ddce150233b2e526fca1c",
+    "tests/test_analyzer.py": "95a756ce5e66749d1f893ca96d42d71fb7196ec0c5f291bb77dda81ce0279085",
+    "tests/test_app.py": "9d68bb9a749964b45c55be7a4bbbd5f11c03075923824d64ae314e88170e37b0",
+    "tests/test_app_ast.py": "2cdb31fd1f44a718f5e240c6bfc645918010538c3a10ed490bfba7727163f63c",
+    "tests/test_code_analysis.py": "30cd0aa3fc6f19747c12f542380ea71f7f271020f89cb49cddc16ebcc4f0992f",
+    "tests/test_parser.py": "bafc30101b98b8c0737d22f36aee2036d699a15ad69f69e2734758ea9c870320",
+    "tests/test_samples.py": "e99f5d8c36a19626be87fda6f7f28d811539d7b3825865188189133c05dec8d9",
+    ".streamlit/config.toml": "4dff8e7b4c4027bc1f8d33fbccbc0a84505c60d84690e04fa42cbf8a4eca4123"
+  }
+}
