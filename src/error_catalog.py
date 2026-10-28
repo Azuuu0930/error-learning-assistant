@@ -22,7 +22,7 @@ _KEYWORDS = {
     "IndentationError": "字下げ・インデント", "TypeError": "型・文字列・数値・引数",
     "ValueError": "値・変換", "IndexError": "リスト・範囲・位置",
     "KeyError": "辞書・キー", "AttributeError": "属性・メソッド",
-    "ModuleNotFoundError": "モジュール・インストール", "ImportError": "読み込み・import",
+    "ModuleNotFoundError": "モジュール・インストール", "ImportError": "読み込み・モジュール",
     "FileNotFoundError": "ファイル・パス", "ZeroDivisionError": "計算・ゼロ・割り算",
 }
 _SAMPLES = json.loads((Path(__file__).resolve().parents[1] / "examples" / "sample_errors.json").read_text(encoding="utf-8"))

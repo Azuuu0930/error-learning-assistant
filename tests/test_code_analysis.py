@@ -227,7 +227,7 @@ def test_no_code_preserves_original_result_and_hints():
     result = analyze_error("NameError: name 'user_name' is not defined")
     assert result.code_analysis is None
     assert "user_name" in result.hints[1]
-    assert "line" in result.hints[0]
+    assert "行番号" in result.hints[0]
 
 
 def test_ast_hints_reveal_similar_name_only_at_third_step():

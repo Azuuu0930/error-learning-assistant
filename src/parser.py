@@ -70,7 +70,7 @@ def parse_python_traceback(log: str) -> ParsedError:
     status/warningsで返し、取得できない値を推測で補わない。
     """
     if not log.strip():
-        return ParsedError(warnings=("エラーログが空です。Tracebackと最後のエラー行を貼り付けてください。",))
+        return ParsedError(warnings=("エラーログが空です。エラー履歴と最後のエラー行を貼り付けてください。",))
     lines = _ANSI.sub("", log).replace("\r\n", "\n").splitlines()
     candidates = [(i, match) for i, line in enumerate(lines) if (match := _exception(line))]
     if candidates:
@@ -109,7 +109,7 @@ def parse_python_traceback(log: str) -> ParsedError:
         if continuation:
             message = "\n".join(part for part in (message, continuation) if part)
         if not last_frame:
-            warnings.append("ファイル名と行番号を取得できませんでした。Traceback全体を貼ると場所も確認できます。")
+            warnings.append("ファイル名と行番号を取得できませんでした。エラー履歴全体を貼ると場所も確認できます。")
         if not message:
             warnings.append("エラーメッセージがありません。最後のエラー行が途中で切れていないか確認してください。")
         status = "complete" if last_frame and message else "partial"

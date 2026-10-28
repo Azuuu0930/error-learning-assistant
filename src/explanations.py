@@ -49,7 +49,7 @@ def _explain_c_family(error: ParsedError) -> Explanation:
             ("宣言だけでなく、その関数を定義したソースファイルもビルドしているか確認してください。",
              "関数名・引数・名前空間が宣言側と定義側で一致するか確認してください。",
              "外部ライブラリを使う場合、リンク設定に追加されているか確認してください。"),
-            "undefined reference / unresolved external は、ソースの文法ではなくリンク段階の診断です。",
+            "関数やシンボルを見つけられないという診断は、ソースの文法ではなくリンク段階の問題を示します。",
             "int add(int a, int b) { return a + b; }\nint main() { return add(2, 3); }",
         )
     if error.error_type == "SegmentationFault":
@@ -78,7 +78,7 @@ def _explain_c_family(error: ParsedError) -> Explanation:
             ("診断に表示された名前の綴りと大文字・小文字を確認してください。",
              "使う前に変数や関数を宣言しているか確認してください。",
              "宣言がブロックや関数の内側にあり、利用箇所から見えなくなっていないか確認してください。"),
-            "was not declared / undeclared identifier は、その位置から名前を解決できないという診断です。",
+            "この名前を、その場所から参照できないことを示す診断です。",
             "#include <iostream>\nint main() { int total = 0; std::cout << total; }",
         )
     if error.category == "type":
@@ -126,7 +126,7 @@ class RuleBasedExplanationProvider:
                 ('終了条件と、それに近づくよう引数を変えているか確認してください。',
                  '直接の自分自身だけでなく、複数の関数が互いを呼んでいないか確認してください。',
                  '上限を安易に増やす前に、ループで表現できないか検討してください。'),
-                'maximum recursion depth は再帰の呼び出し深さの上限です。無限再帰だと断定する情報ではありません。',
+                '再帰呼び出しの深さが上限を超えたことを示します。無限再帰だと断定できる情報ではありません。',
                 'def countdown(number):\n    if number <= 0:\n        return\n    countdown(number - 1)\n\ncountdown(3)',
             )
         if name == 'StopIteration':
@@ -207,7 +207,7 @@ class RuleBasedExplanationProvider:
                 ("if / for / def の次の行を字下げしているか確認してください。",
                  "同じまとまりの行は、空白の数を揃えてください。",
                  "タブとスペースを混ぜていないか、エディタの空白表示で確認してください。"),
-                "expected an indented block は「この後に字下げされた処理が必要」という意味です。",
+                "この後に字下げされた処理が必要という意味です。",
                 'if True:\n    print("字下げを揃えます")',
             )
         if name == "TypeError":
@@ -241,7 +241,7 @@ class RuleBasedExplanationProvider:
                 ("変換・処理しようとした元の値を確認してください。",
                  "空文字や数値ではない文字が混じっていないか確認してください。",
                  "想定外の入力を受け付ける場合は、失敗したときの案内も用意してください。"),
-                "invalid literal は、変換先の形式で読み取れない内容が含まれる、という意味です。",
+                "指定した形式では読み取れない内容が含まれることを示しています。",
                 'text = "20"\ntry:\n    age = int(text)\nexcept ValueError:\n    print("整数を入力してください")\nelse:\n    print(age)',
             )
         if name == "IndexError":
@@ -251,7 +251,7 @@ class RuleBasedExplanationProvider:
                 ("len(対象) で要素の数を確認してください。",
                  "正の位置は 0 以上 len(対象) 未満か確認してください。負の位置にも範囲があります。",
                  "空のリストになっていないか、ループが最後を越えていないか確認してください。"),
-                "out of range は、指定した位置が取り出せる範囲の外、という意味です。",
+                "指定した位置が、取り出せる範囲の外であることを示しています。",
                 'names = ["Taro", "Hanako"]\nindex = 1\nif 0 <= index < len(names):\n    print(names[index])',
             )
         if name == "KeyError":
@@ -273,7 +273,7 @@ class RuleBasedExplanationProvider:
                 ("ドットの左側にある値を type() で確認してください。",
                  "その種類のデータに、指定した機能があるか確認してください。",
                  "名前のスペルや、関数が None を返していないか確認してください。"),
-                "has no attribute の後ろに、存在しない機能の名前が書かれています。",
+                "元のエラーメッセージで、その値に存在しない機能の名前を確認できます。",
                 'names = ["Taro"]\nnames.append("Hanako")\nprint(names)',
             )
         if name == "ModuleNotFoundError":
@@ -284,7 +284,7 @@ class RuleBasedExplanationProvider:
                 ("import に書いたモジュール名が正しいか確認してください。",
                  "配布名とimport名は違う場合があります。公式のインストール方法を確認してください。",
                  "実行中のPythonと同じ環境に入っているか、python -m pip show 配布名 で確認してください。"),
-                "No module named の後ろが、Pythonが探した名前です。",
+                "元のエラーメッセージに、Pythonが見つけられなかったモジュール名が表示されます。",
                 'import math\nprint(math.sqrt(9))',
             )
         if name == "ImportError":
@@ -294,7 +294,7 @@ class RuleBasedExplanationProvider:
                 ("from ... import ... の右側の名前が存在するか確認してください。",
                  "使用しているライブラリのバージョンと公式ドキュメントを確認してください。",
                  "自作ファイル名がライブラリ名と同じでないか、互いにimportしていないか確認してください。"),
-                "cannot import name の後ろに、読み込めなかった名前が書かれています。",
+                "元のエラーメッセージに、読み込めなかった名前が表示されます。",
                 'from math import sqrt\nprint(sqrt(9))',
             )
         if name == "FileNotFoundError":
@@ -314,17 +314,17 @@ class RuleBasedExplanationProvider:
                 ("割る数（演算子の右側）が0か確認してください。",
                  "計算途中で0になっていないか、元の値も確認してください。",
                  "0の入力を許す場合は、計算前に分岐して案内してください。"),
-                "division by zero は0での割り算、modulo by zero は0での余りの計算です。",
+                "割る数が0のときや、0で余りを求めたときに起きます。",
                 'total = 10\ncount = 0\nif count != 0:\n    print(total / count)\nelse:\n    print("件数が0なので平均を計算できません")',
             )
         if not error.error_type:
             return _make(
                 "ログからエラーの種類を読み取れませんでした。",
                 "ログが途中で切れている、またはPythonの標準的な形式と異なる可能性があります。",
-                ("Traceback から最後のエラー行までコピーしてください。",
+                ("エラーの履歴全体から、最後のエラー行までコピーしてください。",
                  "最後に「エラー種類: メッセージ」があるか確認してください。",
                  "Pythonで発生したログか確認してください。"),
-                "まず最後のエラー行、次に直前の File と line を読みます。",
+                "まず最後のエラー行を読み、次に直前のファイル名と行番号を確認します。",
             )
         return _make(
             f"「{error.error_type}」を検出しました。この種類の専用説明はまだありません。",

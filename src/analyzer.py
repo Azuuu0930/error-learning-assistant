@@ -36,7 +36,7 @@ def analyze_error(log: str, source_code: str = "", *, language: str = "python",
         elif error.line:
             notes.append(f"ログの {error.line} 行目は、貼り付けたコード（{len(lines)}行）の範囲外です。該当ファイル全体を貼り付けてください。")
         else:
-            notes.append("行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。")
+            notes.append("行番号が取得できないため、コードの該当行を表示できません。エラー履歴全体を貼り付けてください。")
     if len({frame.file for frame in error.frames}) > 1:
         notes.append("複数のファイルが含まれています。最後のフレームはライブラリ内の場合もあります。元のログで呼び出し元も確認してください。")
     code_analysis = analyze_code(source_code, error) if source_code.strip() and language == "python" else None

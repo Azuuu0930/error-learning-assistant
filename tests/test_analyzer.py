@@ -22,7 +22,7 @@ def test_name_error_explanation_uses_target():
     assert "user_name" in result.explanation.summary
     assert "user_name" in result.hints[1]
     assert 'user_name = "Taro"' in result.explanation.fix_example
-    assert "line" in result.hints[0]
+    assert "行番号" in result.hints[0]
 
 
 def test_context_shows_two_lines_around_error_and_marks_only_error():

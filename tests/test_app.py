@@ -78,6 +78,25 @@ def test_cpp_diagnostic_can_be_analyzed_from_the_language_selector(app):
     assert app.session_state["analysis"].code_analysis is None
 
 
+def test_main_screen_navigation_and_brand_are_japanese(app):
+    rendered = "\n".join(block.value for block in app.markdown)
+    assert "エラー学習" in rendered
+    assert "次の一歩をここから" in rendered
+    assert "入力" in rendered
+    assert "YOUR NEXT STEP" not in rendered
+    assert "LEARNING WORKSPACE" not in rendered
+    assert "READY WHEN YOU ARE" not in rendered
+    assert "READ · THINK · LEARN" not in rendered
+
+
+def test_error_heading_and_detailed_fields_are_localized(app):
+    analyze(app)
+    rendered = "\n".join(block.value for block in app.subheader)
+    assert "名前が見つからないエラー" in rendered
+    assert any("エラー名：NameError" in item.value for item in app.caption)
+    assert any(json.loads(item.value)["エラー名"] == "NameError" for item in app.json)
+
+
 def test_empty_input_has_validation_message(app):
     app.button(key="analyze").click().run()
     assert app.warning

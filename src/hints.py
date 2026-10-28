@@ -12,7 +12,7 @@ def generate_hints(error: ParsedError, explanation: Explanation,
     if error.line:
         first = f"{error.file or '該当ファイル'} の {error.line} 行目付近を確認してください。文法エラーでは直前の行も見てみましょう。"
     else:
-        first = "ログの末尾を見てください。最後の File と line に、調べるファイルと行番号があります。"
+        first = "ログの末尾を見てください。最後のエラー行の直前に、調べるファイルと行番号があります。"
     if error.target:
         second = f"メッセージに出てくる「{error.target}」に注目してください。コードのどこで使っていますか？"
     elif error.error_type:

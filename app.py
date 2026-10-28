@@ -16,6 +16,43 @@ from src.coach_ui import clear_coach_state, render_coach
 
 APP_DIR = Path(__file__).resolve().parent
 MAX_INPUT_CHARS = 100_000
+ERROR_NAMES_JA = {
+    "SyntaxError": "文法エラー", "IndentationError": "字下げエラー",
+    "NameError": "名前が見つからないエラー", "UnboundLocalError": "ローカル変数が未設定のエラー",
+    "TypeError": "データ型の使い方エラー", "ValueError": "値の形式エラー",
+    "IndexError": "添字の範囲エラー", "KeyError": "キーが見つからないエラー",
+    "AttributeError": "属性やメソッドが見つからないエラー",
+    "ModuleNotFoundError": "モジュールが見つからないエラー", "ImportError": "読み込みエラー",
+    "FileNotFoundError": "ファイルが見つからないエラー", "ZeroDivisionError": "0で割る計算エラー",
+    "RecursionError": "再帰の呼び出しが深すぎるエラー", "StopIteration": "繰り返しの終了",
+    "AssertionError": "条件確認の失敗", "RuntimeError": "実行時エラー",
+    "UnicodeDecodeError": "文字コードの読み取りエラー", "CompilationError": "コンパイルエラー",
+    "LinkerError": "リンク時エラー", "SegmentationFault": "不正なメモリアクセス",
+}
+
+
+def localized_error_details(error) -> dict:
+    """機械向けの解析結果を、画面用に日本語の項目名で表示する。"""
+    language_names = {"python": "Python", "c": "C", "cpp": "C++"}
+    statuses = {"complete": "解析完了", "partial": "一部を解析", "unrecognized": "判別できず"}
+    frames = [{
+        "ファイル": frame.file,
+        "行番号": frame.line,
+        "関数": frame.function,
+        "該当行": frame.source,
+    } for frame in error.frames]
+    return {
+        "言語": language_names.get(error.language, error.language),
+        "エラー名": error.error_type,
+        "メッセージ": error.message,
+        "ファイル": error.file,
+        "行番号": error.line,
+        "対象": error.target,
+        "分類": CATEGORY_LABELS.get(error.category, "未分類"),
+        "解析状況": statuses.get(error.status, error.status),
+        "呼び出し履歴": frames,
+        "補足": list(error.warnings),
+    }
 
 
 def invalidate_result() -> None:
@@ -87,13 +124,16 @@ def render_code_analysis(analysis, reveal: bool) -> None:
 
 def render_result(result, mode: str) -> None:
     error = result.error
-    ui.section_kicker("02", "ANALYSIS")
+    ui.section_kicker("02", "解析")
     st.subheader("解析結果")
     ui.result_badges(CATEGORY_LABELS[error.category], result.code_analysis is not None)
-    st.subheader(error.error_type or "エラー種類を取得できませんでした")
+    error_name = (error.error_type or "").rsplit(".", 1)[-1]
+    st.subheader(ERROR_NAMES_JA.get(error_name, "エラー種類を特定できませんでした"))
+    if error_name:
+        st.caption(f"エラー名：{error_name}")
     language_label = {"python": "Python", "c": "C", "cpp": "C++"}.get(error.language, "Python")
-    st.caption(f"使用言語：{language_label} · カテゴリ：{CATEGORY_LABELS.get(error.category, '未分類')}")
-    location = f"{error.file} · {error.line}行目" if error.file and error.line else "場所は取得できませんでした"
+    st.caption(f"使用言語：{language_label}・分類：{CATEGORY_LABELS.get(error.category, '未分類')}")
+    location = f"{error.file}・{error.line}行目" if error.file and error.line else "場所は取得できませんでした"
     st.write("**エラー箇所**")
     st.text(location)
     if error.message:
@@ -143,14 +183,14 @@ def render_result(result, mode: str) -> None:
     if error.language == "python":
         render_coach(result, mode, st.session_state.hint_step)
 
-    with st.expander("ログの読み方と構造化データ"):
-        st.write("① 最後の行でエラー種類とメッセージを読む。② 直前の File と line で場所を読む。③ 対象の名前や操作をコードで探す。")
-        st.json(error.to_dict())
+    with st.expander("ログの読み解き方・詳しい情報"):
+        st.write("① 最後の行でエラー名とメッセージを読みます。② 直前のファイル名と行番号で場所を確認します。③ 対象の名前や操作をコードから探します。")
+        st.json(localized_error_details(error))
 
 
 def render_sidebar() -> None:
     with st.sidebar:
-        st.markdown('<div class="sidebar-brand">&gt;_ TRACE / LEARN</div><div class="sidebar-eyebrow">LEARNING WORKSPACE</div>', unsafe_allow_html=True)
+        st.markdown('<div class="sidebar-brand">&gt;_ エラー学習</div><div class="sidebar-eyebrow">学習スペース</div>', unsafe_allow_html=True)
         st.subheader("サンプルで試す")
         st.caption("よくあるエラーから、読み解く練習を。")
         samples = load_samples()
@@ -158,13 +198,13 @@ def render_sidebar() -> None:
         st.button("サンプルを入力", key="load_sample", on_click=load_selected_sample,
                   disabled=st.session_state.sample_choice == "選択してください", use_container_width=True)
         st.markdown('<div class="sidebar-path"><div><b>1</b>ログとコードを用意する</div><div><b>2</b>エラーの場所を読み解く</div><div><b>3</b>ヒントから考えてみる</div></div>', unsafe_allow_html=True)
-        st.markdown('<div class="privacy-note"><b>入力の取り扱い</b>公開版ではログとコードをこのアプリのサーバーへ送り、解析します。入力コードの実行や履歴の保存は行いません。任意のAI機能だけ、同意後に種類・行番号などの限定情報をOpenAIへ送ります。コード・ログ本文・名前・値は送りません。個人情報やAPIキーは取り除いてから入力してください。</div>', unsafe_allow_html=True)
+        st.markdown('<div class="privacy-note"><b>入力の取り扱い</b>公開版ではログとコードをこのアプリのサーバーへ送り、解析します。入力コードの実行や履歴の保存は行いません。任意の人工知能機能だけ、同意後に種類・行番号などの限定情報をOpenAIへ送ります。コード・ログ本文・名前・値は送りません。個人情報やAPIキーは取り除いてから入力してください。</div>', unsafe_allow_html=True)
         st.toggle("動きを減らす", key="reduce_motion", help="このセッションの装飾アニメーションを停止します。OSの「視差効果を減らす」設定にも自動で従います。")
         st.caption("対応：Pythonの18種類のエラー · C/C++のコンパイラ診断と実行時エラー")
 
 
 def main() -> None:
-    st.set_page_config(page_title="TRACE / LEARN｜Python・C・C++のエラー学習", page_icon="🔎", layout="wide")
+    st.set_page_config(page_title="エラー学習｜Python・C・C++のエラー解析", page_icon="🔎", layout="wide")
     for key, value in {"hint_step": 0, "show_fix": False, "error_log": "", "source_code": "", "reduce_motion": False, "source_language": "Python"}.items():
         st.session_state.setdefault(key, value)
     render_sidebar()
@@ -177,7 +217,7 @@ def main() -> None:
             result_area = st.empty()
     with left:
         with st.container(border=True, key="input_panel"):
-            ui.section_kicker("01", "INPUT")
+            ui.section_kicker("01", "入力")
             st.subheader("エラーを貼り付ける")
             st.caption("ログだけでも大丈夫。関連コードがあると、もう少し詳しく。")
             language_label = st.selectbox(
@@ -188,15 +228,15 @@ def main() -> None:
             language = {"Python": "python", "C": "c", "C++": "cpp"}[language_label]
             if language == "python":
                 st.selectbox("エラーを検索して試す", [entry.error_type for entry in ERROR_CATALOG],
-                             index=None, key="error_search", placeholder="名前やキーワードで検索… 例：変数、型、NameError",
-                             format_func=lambda name: CATALOG_BY_TYPE[name].search_label,
+                             index=None, key="error_search", placeholder="種類やキーワードで検索… 例：変数、型、文法",
+                             format_func=lambda name: CATALOG_BY_TYPE[name].keywords,
                              on_change=load_catalog_example,
                              help="Pythonの18種類のエラーを英語名・日本語で検索できます。選ぶとサンプルを入力します。")
             st.text_area("エラーログ", key="error_log", height=205,
                          placeholder=('Traceback (most recent call last):\n  File "main.py", line 8, in <module>\n    print(user_name)\nNameError: name \'user_name\' is not defined'
                                      if language == "python" else
                                      "main.cpp:7:10: error: ‘total’ was not declared in this scope\n    std::cout << total;"),
-                         help=("Traceback全体を貼ると、ファイル名と行番号も確認できます。"
+                         help=("エラー履歴全体を貼ると、ファイル名と行番号も確認できます。"
                                if language == "python" else
                                "GCC/ClangまたはMSVCの診断出力を貼ると、ファイル名と行番号を確認できます。"),
                          on_change=invalidate_result)
@@ -209,7 +249,7 @@ def main() -> None:
                              on_change=invalidate_result)
             mode = st.radio("表示モード", ["ヒントモード", "通常モード"], horizontal=True,
                             key="display_mode", on_change=reset_hints)
-            st.caption("ヒントモード：3段階で考える。修正例は、最後に自分で開けます。")
+            st.caption("ヒント表示：3段階で考えます。修正例は最後に自分で開けます。")
             if st.button("解析する", type="primary", key="analyze", use_container_width=True):
                 invalidate_result()
                 log, source = st.session_state.error_log, st.session_state.source_code

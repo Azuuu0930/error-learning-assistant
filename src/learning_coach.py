@@ -86,7 +86,7 @@ def build_context(result: AnalysisResult, goal: str) -> CoachContext:
     name = name if name in CATEGORIES else "unknown"
     line = _line(result.error.line)
     evidence = [Evidence("log", "reported_error", "reported", line)]
-    general = [Question("locate.log", "最後のTracebackフレームの行番号と、貼り付けたコードの行は対応していますか？", "log", "reported"),
+    general = [Question("locate.log", "エラー履歴の最後に記録された行番号と、貼り付けたコードの行は対応していますか？", "log", "reported"),
                Question("understand.log", "最後の例外行から、失敗した操作を自分の言葉で説明できますか？", "log", "reported"),
                Question("check.log", "表示済みの確認ポイントから、一つだけ確かめるとしたら何を選びますか？", "log", "reported")]
     specific = []

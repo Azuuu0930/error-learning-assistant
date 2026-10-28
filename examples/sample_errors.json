@@ -1,7 +1,7 @@
 [
   {
     "id": "name_error",
-    "title": "NameError｜まだ作っていない変数",
+    "title": "まだ作っていない名前を使った",
     "code": "user_age = 20\n\n# 名前を表示してみましょう\n# user_name はまだ定義されていません\n\n\n\nprint(user_name)\n",
     "error_log": "Traceback (most recent call last):\n  File \"name_error.py\", line 8, in <module>\n    print(user_name)\n          ^^^^^^^^^\nNameError: name 'user_name' is not defined. Did you mean: 'user_age'?",
     "error_type": "NameError",
@@ -15,7 +15,7 @@
   },
   {
     "id": "syntax_error",
-    "title": "SyntaxError｜コロンの付け忘れ",
+    "title": "文の最後のコロンが抜けている",
     "code": "age = 20\nif age >= 18\n    print(\"成人です\")\n",
     "error_log": "File \"syntax_error.py\", line 2\n    if age >= 18\n                ^\nSyntaxError: expected ':'",
     "error_type": "SyntaxError",
@@ -29,7 +29,7 @@
   },
   {
     "id": "indentation_error",
-    "title": "IndentationError｜字下げの不足",
+    "title": "処理のまとまりの字下げが足りない",
     "code": "if True:\nprint(\"こんにちは\")\n",
     "error_log": "File \"indentation_error.py\", line 2\n    print(\"こんにちは\")\n    ^^^^^\nIndentationError: expected an indented block after 'if' statement on line 1",
     "error_type": "IndentationError",
@@ -43,7 +43,7 @@
   },
   {
     "id": "type_error",
-    "title": "TypeError｜文字列と数値を足す",
+    "title": "文字列と数値を足そうとしている",
     "code": "age = \"20\"\nprint(age + 1)\n",
     "error_log": "Traceback (most recent call last):\n  File \"type_error.py\", line 2, in <module>\n    print(age + 1)\n          ~~~~^~~\nTypeError: can only concatenate str (not \"int\") to str",
     "error_type": "TypeError",
@@ -57,7 +57,7 @@
   },
   {
     "id": "value_error",
-    "title": "ValueError｜数字でない文字を変換",
+    "title": "数字にできない文字を変換しようとした",
     "code": "text = \"abc\"\nnumber = int(text)\nprint(number)\n",
     "error_log": "Traceback (most recent call last):\n  File \"value_error.py\", line 2, in <module>\n    number = int(text)\n             ^^^^^^^^^\nValueError: invalid literal for int() with base 10: 'abc'",
     "error_type": "ValueError",
@@ -71,7 +71,7 @@
   },
   {
     "id": "index_error",
-    "title": "IndexError｜リストの範囲外",
+    "title": "リストの範囲外を読み取ろうとした",
     "code": "names = [\"Taro\", \"Hanako\", \"Jiro\"]\nprint(names[3])\n",
     "error_log": "Traceback (most recent call last):\n  File \"index_error.py\", line 2, in <module>\n    print(names[3])\n          ~~~~~^^^\nIndexError: list index out of range",
     "error_type": "IndexError",
@@ -85,7 +85,7 @@
   },
   {
     "id": "key_error",
-    "title": "KeyError｜辞書にないキー",
+    "title": "辞書にないキーを指定した",
     "code": "user = {\"name\": \"Taro\"}\nprint(user[\"age\"])\n",
     "error_log": "Traceback (most recent call last):\n  File \"key_error.py\", line 2, in <module>\n    print(user[\"age\"])\n          ~~~~^^^^^^^\nKeyError: 'age'",
     "error_type": "KeyError",
@@ -99,7 +99,7 @@
   },
   {
     "id": "attribute_error",
-    "title": "AttributeError｜その型にない機能",
+    "title": "値の種類にない機能を呼び出した",
     "code": "names = \"Taro\"\nnames.append(\"Hanako\")\n",
     "error_log": "Traceback (most recent call last):\n  File \"attribute_error.py\", line 2, in <module>\n    names.append(\"Hanako\")\n    ^^^^^^^^^^^^\nAttributeError: 'str' object has no attribute 'append'",
     "error_type": "AttributeError",
@@ -113,7 +113,7 @@
   },
   {
     "id": "module_not_found",
-    "title": "ModuleNotFoundError｜モジュール名の間違い",
+    "title": "読み込むモジュールが見つからない",
     "code": "import mathe\nprint(mathe.sqrt(9))\n",
     "error_log": "Traceback (most recent call last):\n  File \"module_not_found.py\", line 1, in <module>\n    import mathe\nModuleNotFoundError: No module named 'mathe'",
     "error_type": "ModuleNotFoundError",
@@ -127,7 +127,7 @@
   },
   {
     "id": "import_error",
-    "title": "ImportError｜読み込みたい名前がない",
+    "title": "モジュール内に指定した名前がない",
     "code": "from math import square_root\nprint(square_root(9))\n",
     "error_log": "Traceback (most recent call last):\n  File \"import_error.py\", line 1, in <module>\n    from math import square_root\nImportError: cannot import name 'square_root' from 'math' (unknown location)",
     "error_type": "ImportError",
@@ -141,7 +141,7 @@
   },
   {
     "id": "file_not_found",
-    "title": "FileNotFoundError｜ファイルが見つからない",
+    "title": "ファイルが見つからない",
     "code": "with open(\"missing_data.txt\", encoding=\"utf-8\") as file:\n    print(file.read())\n",
     "error_log": "Traceback (most recent call last):\n  File \"file_not_found.py\", line 1, in <module>\n    with open(\"missing_data.txt\", encoding=\"utf-8\") as file:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: 'missing_data.txt'",
     "error_type": "FileNotFoundError",
@@ -155,7 +155,7 @@
   },
   {
     "id": "zero_division",
-    "title": "ZeroDivisionError｜0で割ってしまう",
+    "title": "0で割ろうとした",
     "code": "total = 10\ncount = 0\nprint(total / count)\n",
     "error_log": "Traceback (most recent call last):\n  File \"zero_division.py\", line 3, in <module>\n    print(total / count)\n          ~~~~~~^~~~~~~\nZeroDivisionError: division by zero",
     "error_type": "ZeroDivisionError",

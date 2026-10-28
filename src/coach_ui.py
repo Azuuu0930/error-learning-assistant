@@ -67,23 +67,23 @@ def render_coach(result, mode: str, hint_step: int):
         context = build_context(result, goal)
         if st.button("標準ガイドを見る", key="coach_standard"):
             st.session_state.coach_outcome = CoachOutcome("standard", standard_question(context))
-        st.caption("標準ガイドは外部AIへの送信なしで利用できます。")
-        with st.expander("AIに問いを選んでもらう（任意）"):
-            st.caption("AIは、エラーの種類・診断候補・選んだ目的から、用意された問いを一つ選びます。新しい診断や修正コードは生成しません。")
-            st.caption(f"送信先：OpenAI API（{ENDPOINT}）／モデル：{MODEL}")
-            st.caption("コード・ログ本文・変数名・ファイル名・値は送りません。送信内容は下で確認できます。AI選択の有用性は検証中です。")
+        st.caption("標準ガイドは外部の人工知能へ送信せずに利用できます。")
+        with st.expander("人工知能に問いを選んでもらう（任意）"):
+            st.caption("人工知能は、エラーの種類・診断候補・選んだ目的から、用意された問いを一つ選びます。新しい診断や修正コードは生成しません。")
+            st.caption(f"送信先：OpenAIのAPI（{ENDPOINT}）／利用モデル：{MODEL}")
+            st.caption("コード・ログ本文・変数名・ファイル名・値は送りません。送信内容は下で確認できます。人工知能による問い選びの有用性は検証中です。")
             with st.expander("送信内容を確認する"):
                 st.json(build_request(context))
-                st.caption("ここに表示したJSONが送信本文です。認証用の運営APIキーは別途HTTPSヘッダーに付与されます。")
-            st.markdown("送信先の保存・取扱いは[OpenAIのデータ方針](https://developers.openai.com/api/docs/guides/your-data)をご確認ください。store=falseで要求しますが、提供元での保持がないことを保証するものではありません。")
+                st.caption("ここに表示したデータが送信本文です。認証用の運営APIキーは別途暗号化された通信のヘッダーに付与されます。")
+            st.markdown("送信先での保存・取扱いは[OpenAIのデータ方針](https://developers.openai.com/api/docs/guides/your-data)をご確認ください。データを保持しない設定で送りますが、提供元での保持がないことを保証するものではありません。")
             service = get_coach_service()
             if not service.config.ready:
-                st.info("AIの選択は現在準備中です。上の標準ガイドはそのまま使えます。")
+                st.info("人工知能による問い選びは現在準備中です。上の標準ガイドはそのまま使えます。")
             else:
                 st.caption("試用中の機能です。運営から案内された試用コードを使用してください。")
                 code = st.text_input("試用コード", type="password", max_chars=256, key="coach_access")
                 consent = st.checkbox("送信内容を確認し、OpenAIへの送信に同意する", key="coach_consent")
-                if st.button("AIに確認の問いを選んでもらう", key="coach_request", disabled=not consent or not code):
+                if st.button("人工知能に確認の問いを選んでもらう", key="coach_request", disabled=not consent or not code):
                     with st.spinner("次に考える問いを選んでいます…"):
                         st.session_state.coach_outcome = service.choose(
                             context, consent=consent, access_code=code,
@@ -91,12 +91,12 @@ def render_coach(result, mode: str, hint_step: int):
         outcome = st.session_state.get("coach_outcome")
         if outcome:
             if outcome.status == "ai":
-                st.caption("AIが選んだ確認の問い")
+                st.caption("人工知能が選んだ確認の問い")
             else:
                 messages = {"access_required": "試用コードを確認できませんでした。標準ガイドを表示します。",
                             "limited": "試用の利用上限に達したか、別の処理中です。標準ガイドを表示します。"}
                 if outcome.status not in {"standard", "disabled"}:
-                    st.info(messages.get(outcome.status, "AIを利用できなかったため、標準ガイドを表示します。"))
-                st.caption("標準ガイド（外部AIの選択を使用していません）")
+                    st.info(messages.get(outcome.status, "人工知能を利用できなかったため、標準ガイドを表示します。"))
+                st.caption("標準ガイド（外部の人工知能を使用していません）")
             st.text(outcome.question.text)
             _basis(result, outcome.question)
