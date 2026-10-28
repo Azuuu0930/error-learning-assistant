@@ -197,6 +197,20 @@ python3 -m venv .venv
 終了するときは起動したターミナルで`Ctrl+C`を押します。
 他のアプリがポートを使っている場合は`--server.port 8502`などを追加します。
 
+### ブラウザから共有して使う
+
+既存のStreamlitアプリを [Streamlit Community Cloud](https://share.streamlit.io/) に配置できます。公開設定のアプリURLを共有すると、利用者によるPythonのインストールは不要です。
+
+- Repository: `Azuuu0930/error-learning-assistant`
+- Branch: `main`
+- Main file path: `app.py`
+- Advanced settingsのPython version: `3.12`（既存の検証環境に合わせる）
+- 公開先の共有設定で、リンクを知っている人がログインなしで利用できることを確認します。
+
+公開版では、ブラウザに入力したログとコードはホスティング先のアプリサーバーに送信され、解析に使用されます。アプリから外部LLMへの送信、入力コードの実行、履歴の永続保存は行いません。入力は現在のセッションで表示・解析するためにメモリに保持されます。個人情報、パスワード、APIキーなどは入力から取り除いてください。ホスティングサービス側の運用ログ等は、サービスの規約・プライバシー方針の対象です。
+
+デプロイ手順の詳細は [Streamlit公式ドキュメント](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/deploy) を参照してください。
+
 ### テスト
 
 ```powershell
@@ -398,7 +412,7 @@ print(user_name)
 
 将来の言語追加では専用パーサーを作り、`ParsedError`の構造へ変換して既存UIにつなぎます。
 LLM追加時もログの抽出はPython側で行い、構造化済みの情報から説明を生成する境界を維持します。
-現在はAPIクライアント、外部へのデータ送信、LLMへのフォールバックは実装していません。
+現在はLLM APIクライアント、外部LLMへのデータ送信、LLMへのフォールバックは実装していません。公開版におけるブラウザとアプリサーバー間の通信は「ブラウザから共有して使う」を参照してください。
 
 教員向け統計を追加する場合は、`error_type`や`category`の件数を集計し、
 ソースコード・ファイルパス・対象の名前を保存しない方式を検討します。

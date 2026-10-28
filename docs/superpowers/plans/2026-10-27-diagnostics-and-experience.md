@@ -20,23 +20,23 @@ Preserve original 208 app tests and approved evaluator fixtures. No code executi
 ## Task 1 — Structured and conservative diagnoses
 Files: src/models.py, src/literal_analysis.py, src/code_analysis.py, src/hints.py, focused new helper modules, tests/test_diagnostics_v3.py.
 Interface: exact CodeFinding.details, CodeFact, CodeAnalysis.facts in spec. Existing attributes remain compatible.
-- [ ] Add failing positive/negative tests for facts, assert, next, mutations, pure functions, simple classes.
-- [ ] Run tests red, implement bounded AST rules, run new and all original backend tests green.
-- [ ] Report skipped constructs and review risks. No evaluation fixture reading or special cases.
+- [x] Add failing positive/negative tests for facts, assert, next, mutations, pure functions, simple classes.
+- [x] Run tests red, implement bounded AST rules, run new and all original backend tests green.
+- [x] Report skipped constructs and review risks. No evaluation fixture reading or special cases.
 
 ## Task 2 — Animated Streamlit workspace
 Files: app.py, src/ui.py, src/error_catalog.py, assets/, .streamlit/config.toml, tests/test_experience.py. Preserve src/view.py escaping contract if styling is changed.
 Interface: analyze_error(log, source) unchanged. Preserve existing widget keys, hint stages, sample selection and invalidation callbacks.
-- [ ] Add failing tests for catalog, selection/reset, processing failure/retry, motion preferences.
-- [ ] Implement navy/teal layout, autocomplete, genuine skeleton, animations, reduced motion, empty/result states.
-- [ ] Run AppTest plus original UI tests; root verifies browser/mobile separately.
+- [x] Add failing tests for catalog, selection/reset, processing failure/retry, motion preferences.
+- [x] Implement navy/teal layout, autocomplete, genuine skeleton, animations, reduced motion, empty/result states.
+- [x] Run AppTest plus original UI tests; root verifies browser/mobile separately.
 
 ## Task 3 — Structured evaluation and final validation
 Files: evaluation/structured_scoring.py, evaluation/evaluate.py (opt-in --scoring), evaluation/tests/test_structured_scoring.py, evaluation/v3/, README.md, VERIFICATION.md.
-- [ ] Test that fake prose/evidence or mismatched type/target cannot receive structured credit; legacy functions remain identical.
-- [ ] Implement structured matching, preserving denominator and Strict PASS conditions, and optional new warning kinds. Legacy mode stays reproducible.
-- [ ] Review backend/UI with independent reviewer, run all pytest with a fresh workspace basetemp (Windows elevation required for AppTest).
-- [ ] Measure both versions with both scoring modes. Freeze app/scoring, then create and run new normal-code evaluation with primary-source provenance. Do not tune app afterward.
-- [ ] Save all outcomes, document failure classifications/limits, capture UI screenshots, package current+baseline+v2 and verify ZIP bytes.
+- [x] Test that fake prose/evidence or mismatched type/target cannot receive structured credit; legacy functions remain identical.
+- [x] Implement structured matching, preserving denominator and Strict PASS conditions, and optional new warning kinds. Legacy mode stays reproducible.
+- [x] Review backend/UI with independent reviewer, run all pytest with a fresh workspace basetemp (Windows elevation required for AppTest).
+- [x] Measure both versions with both scoring modes. Freeze app/scoring, then create and run new normal-code evaluation with primary-source provenance. Do not tune app afterward.
+- [x] Save all outcomes, document failure classifications/limits, capture UI screenshots, package current+baseline+v2 and verify ZIP bytes.
 
-No Git repository exists, so no branch/worktree/commit steps apply. Test-first cycles and review findings serve as incremental checkpoints.
+At the time of implementation, no Git repository existed. The delivered v3 was subsequently committed as `37172cd`. The interrupted delivery was resumed on 2026-10-28; see the progress log and `evaluation/v3/RESUME_VERIFICATION.md`. Application and scoring files remain identical to the frozen evaluation version.

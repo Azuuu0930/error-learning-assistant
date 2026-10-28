@@ -151,7 +151,7 @@ def render_sidebar() -> None:
         st.button("サンプルを入力", key="load_sample", on_click=load_selected_sample,
                   disabled=st.session_state.sample_choice == "選択してください", use_container_width=True)
         st.markdown('<div class="sidebar-path"><div><b>1</b>ログとコードを用意する</div><div><b>2</b>エラーの場所を読み解く</div><div><b>3</b>ヒントから考えてみる</div></div>', unsafe_allow_html=True)
-        st.markdown('<div class="privacy-note"><b>ローカルで、安心して学ぶ。</b>APIキー不要のルールベース解析。コードは実行せず、ログとコードの履歴も保存しません。</div>', unsafe_allow_html=True)
+        st.markdown('<div class="privacy-note"><b>入力の取り扱い</b>公開版ではログとコードをこのアプリのサーバーへ送り、解析します。外部LLMには送信せず、入力コードの実行や履歴の保存も行いません。個人情報やAPIキーは取り除いてから入力してください。</div>', unsafe_allow_html=True)
         st.toggle("動きを減らす", key="reduce_motion", help="このセッションの装飾アニメーションを停止します。OSの「視差効果を減らす」設定にも自動で従います。")
         st.caption("対応言語：Python · 18種類のエラー")
 
