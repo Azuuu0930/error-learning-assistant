@@ -91,7 +91,8 @@ def render_result(result, mode: str) -> None:
     st.subheader("解析結果")
     ui.result_badges(CATEGORY_LABELS[error.category], result.code_analysis is not None)
     st.subheader(error.error_type or "エラー種類を取得できませんでした")
-    st.caption(f"使用言語：Python（入力対象） · カテゴリ：{CATEGORY_LABELS[error.category]}")
+    language_label = {"python": "Python", "c": "C", "cpp": "C++"}.get(error.language, "Python")
+    st.caption(f"使用言語：{language_label} · カテゴリ：{CATEGORY_LABELS.get(error.category, '未分類')}")
     location = f"{error.file} · {error.line}行目" if error.file and error.line else "場所は取得できませんでした"
     st.write("**エラー箇所**")
     st.text(location)
@@ -139,7 +140,8 @@ def render_result(result, mode: str) -> None:
             if st.session_state.show_fix:
                 render_fix(result)
 
-    render_coach(result, mode, st.session_state.hint_step)
+    if error.language == "python":
+        render_coach(result, mode, st.session_state.hint_step)
 
     with st.expander("ログの読み方と構造化データ"):
         st.write("① 最後の行でエラー種類とメッセージを読む。② 直前の File と line で場所を読む。③ 対象の名前や操作をコードで探す。")
@@ -158,12 +160,12 @@ def render_sidebar() -> None:
         st.markdown('<div class="sidebar-path"><div><b>1</b>ログとコードを用意する</div><div><b>2</b>エラーの場所を読み解く</div><div><b>3</b>ヒントから考えてみる</div></div>', unsafe_allow_html=True)
         st.markdown('<div class="privacy-note"><b>入力の取り扱い</b>公開版ではログとコードをこのアプリのサーバーへ送り、解析します。入力コードの実行や履歴の保存は行いません。任意のAI機能だけ、同意後に種類・行番号などの限定情報をOpenAIへ送ります。コード・ログ本文・名前・値は送りません。個人情報やAPIキーは取り除いてから入力してください。</div>', unsafe_allow_html=True)
         st.toggle("動きを減らす", key="reduce_motion", help="このセッションの装飾アニメーションを停止します。OSの「視差効果を減らす」設定にも自動で従います。")
-        st.caption("対応言語：Python · 18種類のエラー")
+        st.caption("対応：Pythonの18種類のエラー · C/C++のコンパイラ診断と実行時エラー")
 
 
 def main() -> None:
-    st.set_page_config(page_title="TRACE / LEARN｜Pythonのエラーを、学びに。", page_icon="🔎", layout="wide")
-    for key, value in {"hint_step": 0, "show_fix": False, "error_log": "", "source_code": "", "reduce_motion": False}.items():
+    st.set_page_config(page_title="TRACE / LEARN｜Python・C・C++のエラー学習", page_icon="🔎", layout="wide")
+    for key, value in {"hint_step": 0, "show_fix": False, "error_log": "", "source_code": "", "reduce_motion": False, "source_language": "Python"}.items():
         st.session_state.setdefault(key, value)
     render_sidebar()
     ui.apply_theme(st.session_state.reduce_motion)
@@ -178,19 +180,32 @@ def main() -> None:
             ui.section_kicker("01", "INPUT")
             st.subheader("エラーを貼り付ける")
             st.caption("ログだけでも大丈夫。関連コードがあると、もう少し詳しく。")
-            st.selectbox("エラーを検索して試す", [entry.error_type for entry in ERROR_CATALOG],
-                         index=None, key="error_search", placeholder="名前やキーワードで検索… 例：変数、型、NameError",
-                         format_func=lambda name: CATALOG_BY_TYPE[name].search_label,
-                         on_change=load_catalog_example,
-                         help="18種類のエラーを英語名・日本語で検索できます。選ぶとサンプルを入力します。解析はボタンを押したときに行います。")
+            language_label = st.selectbox(
+                "対象言語", ["Python", "C", "C++"], key="source_language",
+                on_change=invalidate_result,
+                help="貼り付けたログとソースコードの言語を選んでください。コードは実行しません。",
+            )
+            language = {"Python": "python", "C": "c", "C++": "cpp"}[language_label]
+            if language == "python":
+                st.selectbox("エラーを検索して試す", [entry.error_type for entry in ERROR_CATALOG],
+                             index=None, key="error_search", placeholder="名前やキーワードで検索… 例：変数、型、NameError",
+                             format_func=lambda name: CATALOG_BY_TYPE[name].search_label,
+                             on_change=load_catalog_example,
+                             help="Pythonの18種類のエラーを英語名・日本語で検索できます。選ぶとサンプルを入力します。")
             st.text_area("エラーログ", key="error_log", height=205,
-                         placeholder='Traceback (most recent call last):\n  File "main.py", line 8, in <module>\n    print(user_name)\nNameError: name \'user_name\' is not defined',
-                         help="Tracebackから最後のエラー行まで貼ると、ファイル名と行番号も確認できます。",
+                         placeholder=('Traceback (most recent call last):\n  File "main.py", line 8, in <module>\n    print(user_name)\nNameError: name \'user_name\' is not defined'
+                                     if language == "python" else
+                                     "main.cpp:7:10: error: ‘total’ was not declared in this scope\n    std::cout << total;"),
+                         help=("Traceback全体を貼ると、ファイル名と行番号も確認できます。"
+                               if language == "python" else
+                               "GCC/ClangまたはMSVCの診断出力を貼ると、ファイル名と行番号を確認できます。"),
                          on_change=invalidate_result)
             with st.expander("ソースコード（任意）", expanded=False):
-                st.text_area("関連するPythonコード", key="source_code", height=190,
-                             placeholder="# エラーが起きたファイルのコードを1行目から貼り付けます",
-                             help="行番号を合わせるため、最終フレームに表示されたファイル全体を1行目から貼り付けてください。",
+                st.text_area(f"関連する{language_label}コード", key="source_code", height=190,
+                             placeholder=("# エラーが起きたファイルのコードを1行目から貼り付けます"
+                                          if language == "python" else
+                                          "// エラーが起きたファイルのコードを1行目から貼り付けます"),
+                             help="行番号を合わせるため、診断に表示されたファイル全体を1行目から貼り付けてください。",
                              on_change=invalidate_result)
             mode = st.radio("表示モード", ["ヒントモード", "通常モード"], horizontal=True,
                             key="display_mode", on_change=reset_hints)
@@ -206,7 +221,7 @@ def main() -> None:
                     with result_area.container():
                         ui.render_loading()
                     try:
-                        st.session_state.analysis = analyze_error(log, source)
+                        st.session_state.analysis = analyze_error(log, source, language=language)
                     except Exception:
                         # Keep implementation details and potentially sensitive input out of the UI.
                         st.error("解析を完了できませんでした。入力を確認して、もう一度「解析する」を押してください。")

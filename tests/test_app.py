@@ -67,6 +67,17 @@ def test_source_edit_invalidates_result(app):
     assert "analysis" not in app.session_state
 
 
+def test_cpp_diagnostic_can_be_analyzed_from_the_language_selector(app):
+    app.selectbox(key="source_language").set_value("C++")
+    app.text_area(key="error_log").input("main.cpp:4:5: error: ‘score’ was not declared in this scope")
+    app.text_area(key="source_code").input("int main() {\n  return score;\n}")
+    app.button(key="analyze").click().run()
+    assert not app.exception
+    assert app.session_state["analysis"].error.language == "cpp"
+    assert app.session_state["analysis"].error.error_type == "CompilationError"
+    assert app.session_state["analysis"].code_analysis is None
+
+
 def test_empty_input_has_validation_message(app):
     app.button(key="analyze").click().run()
     assert app.warning

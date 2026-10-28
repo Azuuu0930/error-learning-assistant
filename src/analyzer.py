@@ -3,19 +3,26 @@
 from dataclasses import replace
 
 from src.code_analysis import analyze_code
+from src.c_family import parse_c_family_diagnostic
 from src.explanations import CATEGORIES, ExplanationProvider, RuleBasedExplanationProvider, explain_syntax_context
 from src.hints import generate_hints
 from src.models import AnalysisResult, CodeLine
 from src.parser import parse_python_traceback
 
 
-def analyze_error(log: str, source_code: str = "", *,
+def analyze_error(log: str, source_code: str = "", *, language: str = "python",
                   provider: ExplanationProvider | None = None) -> AnalysisResult:
-    parsed = parse_python_traceback(log)
+    language = language.lower()
+    if language in {"c", "cpp", "c++"}:
+        language = "c" if language == "c" else "cpp"
+        parsed = parse_c_family_diagnostic(log, language=language)
+    else:
+        language = "python"
+        parsed = parse_python_traceback(log)
     name = (parsed.error_type or "").rsplit(".", 1)[-1]
-    error = replace(parsed, category=CATEGORIES.get(name, "unknown"))
+    error = replace(parsed, category=CATEGORIES.get(name, parsed.category))
     explanation = (provider or RuleBasedExplanationProvider()).explain(error)
-    if provider is None:
+    if provider is None and language == "python":
         explanation = explain_syntax_context(error, source_code, explanation)
     context = ()
     notes = []
@@ -32,6 +39,6 @@ def analyze_error(log: str, source_code: str = "", *,
             notes.append("行番号が取得できないため、コードの該当行を表示できません。Traceback全体を貼り付けてください。")
     if len({frame.file for frame in error.frames}) > 1:
         notes.append("複数のファイルが含まれています。最後のフレームはライブラリ内の場合もあります。元のログで呼び出し元も確認してください。")
-    code_analysis = analyze_code(source_code, error) if source_code.strip() else None
+    code_analysis = analyze_code(source_code, error) if source_code.strip() and language == "python" else None
     return AnalysisResult(error, explanation, generate_hints(error, explanation, code_analysis),
                           context, tuple(notes), code_analysis)

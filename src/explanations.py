@@ -25,6 +25,7 @@ CATEGORY_LABELS = {
     "import": "読み込み", "file": "ファイル", "arithmetic": "計算", "unknown": "未分類",
     "recursion": "再帰", "iteration": "反復", "assertion": "条件の確認",
     "runtime": "実行時の操作", "encoding": "文字コード",
+    "compile": "コンパイル", "linker": "リンク",
 }
 
 
@@ -39,11 +40,75 @@ def _make(summary: str, cause: str, points: tuple[str, ...], tip: str,
     return Explanation(summary, cause, points, tip, fix)
 
 
+def _explain_c_family(error: ParsedError) -> Explanation:
+    target = f"「{error.target}」" if error.target else "該当箇所"
+    if error.error_type == "LinkerError":
+        return _make(
+            "コンパイル後のリンク処理で、必要な関数やシンボルを見つけられませんでした。",
+            f"{target}の定義がビルド対象に含まれていない、宣言と定義の名前が違う、または必要なライブラリがリンクされていない可能性があります。",
+            ("宣言だけでなく、その関数を定義したソースファイルもビルドしているか確認してください。",
+             "関数名・引数・名前空間が宣言側と定義側で一致するか確認してください。",
+             "外部ライブラリを使う場合、リンク設定に追加されているか確認してください。"),
+            "undefined reference / unresolved external は、ソースの文法ではなくリンク段階の診断です。",
+            "int add(int a, int b) { return a + b; }\nint main() { return add(2, 3); }",
+        )
+    if error.error_type == "SegmentationFault":
+        return _make(
+            "実行中に、プログラムが許可されていないメモリへアクセスした可能性があります。",
+            "無効なポインター、配列の範囲外、解放後のメモリ参照などが候補ですが、このログだけでは原因を特定できません。",
+            ("停止したときのスタックトレースやデバッガの行番号を確認してください。",
+             "ポインターが初期化済みで、有効なオブジェクトを指しているか調べてください。",
+             "配列や文字列の添字が有効範囲内か確認してください。"),
+            "Segmentation fault は実行時の失敗です。コンパイラのエラー行とは別に、デバッガで停止位置を調べます。",
+        )
+    if error.category == "module":
+        return _make(
+            "指定したヘッダーファイルをコンパイラが見つけられませんでした。",
+            f"{target}の名前や綴りが違う、開発環境にヘッダーがない、または検索パスが設定されていない可能性があります。",
+            ("include行の山括弧・引用符とヘッダー名を確認してください。",
+             "そのヘッダーを提供するコンパイラやライブラリがインストールされているか確認してください。",
+             "独自ヘッダーの場合は、コンパイラのinclude検索パスを確認してください。"),
+            "fatal error / file not found は、ビルド環境がinclude先を開けないことを示します。",
+            "#include <iostream>\nint main() { std::cout << \"Hello\"; }",
+        )
+    if error.category == "variable":
+        return _make(
+            f"コードで使った名前{target}を、この場所でコンパイラが見つけられませんでした。",
+            "宣言より前に使っている、名前の綴りが違う、またはその変数が見える範囲の外にある可能性があります。",
+            ("診断に表示された名前の綴りと大文字・小文字を確認してください。",
+             "使う前に変数や関数を宣言しているか確認してください。",
+             "宣言がブロックや関数の内側にあり、利用箇所から見えなくなっていないか確認してください。"),
+            "was not declared / undeclared identifier は、その位置から名前を解決できないという診断です。",
+            "#include <iostream>\nint main() { int total = 0; std::cout << total; }",
+        )
+    if error.category == "type":
+        return _make(
+            "指定した演算や関数呼び出しに、受け取れない型の値が渡された可能性があります。",
+            "C/C++では暗黙変換が許されない場合や、関数の宣言と渡した引数が合わない場合にコンパイルエラーになります。",
+            ("診断に出ている変換元と変換先の型を確認してください。",
+             "関数の宣言が求める引数の数と型を確認してください。",
+             "必要な変換を安全に行えるか、値の範囲も含めて確認してください。"),
+            "cannot convert / no matching function は、値の型や呼び出し方が候補と一致しないことを示します。",
+            "int main() { int count = 3; double ratio = static_cast<double>(count); return ratio > 0; }",
+        )
+    return _make(
+        "コンパイラがコードを受け付けず、実行ファイルを作れませんでした。",
+        "文法、型、宣言などの問題が考えられます。表示された診断メッセージだけで原因を絞れない場合があります。",
+        ("最初に出た error 行と、そのファイル名・行番号を確認してください。",
+         "示された行だけでなく、直前の行の括弧・セミコロン・型も確認してください。",
+         "エラーが複数ある場合は、先頭の診断を直してからもう一度ビルドしてください。"),
+        "警告や後続エラーより、最初の error 診断が原因を探す手がかりになります。",
+        "int main() { return 0; }",
+    )
+
+
 class RuleBasedExplanationProvider:
     def explain(self, error: ParsedError) -> Explanation:
         name = (error.error_type or "").rsplit(".", 1)[-1]
         target = error.target
         message = error.message
+        if error.language in {"c", "cpp"}:
+            return _explain_c_family(error)
         if name == 'UnboundLocalError':
             return _make(
                 '関数のローカル変数を、値が代入される前に参照しました。',
