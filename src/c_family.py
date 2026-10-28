@@ -29,6 +29,9 @@ def _line_number(value: str | None) -> int | None:
 
 def _classify(message: str, code: str | None = None) -> tuple[str, str, str | None]:
     lower = message.lower()
+    if code and re.fullmatch(r"LNK[0-9]{4}", code):
+        _, _, target = _classify(message)
+        return "LinkerError", "linker", target
     if code in MSVC_CATEGORIES:
         name, category = MSVC_CATEGORIES[code]
         # Keep named targets when the existing English message supports them.
@@ -72,6 +75,9 @@ def parse_c_family_diagnostic(log: str, *, language: str = "cpp") -> ParsedError
             return ParsedError(language, error_type, message, file, line, target,
                                category, frame, "complete" if line else "partial", warnings, code)
 
+    # A warning or note can quote error-like words without reporting a failure.
+    lines = [line for line in lines if not re.search(
+        r"(?:^|:\s*)(?:warning|note|警告|注記)(?:\s|:)", line.lstrip(), re.I)]
     text = "\n".join(lines)
     native_linker = next((re.search(r"(?:fatal error|error|エラー)\s+(LNK[0-9]{4}):\s*(.*)$", line) for line in lines
                           if re.search(r"(?:fatal error|error|エラー)\s+LNK[0-9]{4}:", line)), None)
@@ -88,7 +94,7 @@ def parse_c_family_diagnostic(log: str, *, language: str = "cpp") -> ParsedError
         r"undefined reference to|undefined symbol|unresolved external symbol|symbol\(s\) not found",
         line, re.I)), None)
     if linker:
-        error_type, category, target = _classify(linker)
-        return ParsedError(language, error_type, linker, target=target, category=category, status="partial",
+        _, _, target = _classify(linker)
+        return ParsedError(language, "LinkerError", linker, target=target, category="linker", status="partial",
                            warnings=("リンク時の診断です。関連するソースとビルド設定を確認してください。",))
     return ParsedError(language=language, warnings=("C/C++のコンパイラ診断を特定できませんでした。GCC/ClangまたはMSVCのエラー行を貼り付けてください。",))

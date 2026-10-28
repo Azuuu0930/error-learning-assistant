@@ -1,7 +1,7 @@
 # 学生・先生の使い方と匿名相談カードの設計
 
 日付：2026-10-28（日本時間）。基準コミット：e4e6f93。
-状態：設計確認待ち。アプリ本体は未変更。
+状態：ユーザー承認済み（2026-10-28）。承認範囲で実装・検証。
 
 ## 目的と対象
 
@@ -42,7 +42,7 @@
 - phase：compile / link / runtime / unknown。Pythonの構文エラーはcompileとして表示時に「構文確認」と補足する。ログから推定した段階であり再実行した事実ではない。
 - concept_candidates：アプリ分類から保守的に求めた固定語彙の学習概念候補。複数または空を許す。名前未宣言をスコープ理解不足と断定しない。
 - analysis_status：complete / partial / unrecognized。completeは原因確定や解決を意味しない。
-- hint_step：画面で確認した0〜3。
+- hint_step：同じ解析で画面確認した最大段階0〜3。表示モードを変えても履歴を保持し、新しい解析でリセットする。
 - fix_viewed：ヒントモードで実際に開いたかのboolean。通常モードでは開閉を測れないためnullとして未計測を表示する。
 - learning_status：unanswered / stuck / next_step / resolved。解決は自己申告と明記する。
 

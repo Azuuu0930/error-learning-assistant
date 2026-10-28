@@ -76,3 +76,27 @@ def test_card_rejects_inconsistent_native_code_category():
     value.update(category='type', concept_candidates=['types'])
     with pytest.raises(ValueError):
         encode_card(value)
+
+
+@pytest.mark.parametrize('log', ['main.cpp(2): error LNK2005: symbol already defined',
+                                'ld: symbol(s) not found for architecture arm64'])
+def test_recognized_linker_formats_always_export_as_linker(log):
+    result = analyze_error(log, language='cpp')
+    assert result.error.error_type == 'LinkerError'
+    assert result.error.category == 'linker'
+    assert build_card(result, card_id=str(uuid4()))['phase'] == 'link'
+
+
+@pytest.mark.parametrize('log', [
+    'main.c:1:2: warning: #warning undefined symbol [-Wcpp]',
+    'ld: warning: undefined symbol: _foo',
+    'main.c:1:2: warning: possible segmentation fault',
+    'note: undefined reference to render',
+    '警告: access violation の可能性',
+    '  warning: undefined symbol: _foo',
+    '\tnote: undefined reference to render',
+])
+def test_warning_and_note_lines_are_not_reinterpreted_as_runtime_or_link_failure(log):
+    result = analyze_error(log, language='c')
+    assert result.error.error_type is None
+    assert result.explanation.fix_example is None

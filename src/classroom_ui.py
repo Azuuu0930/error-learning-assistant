@@ -7,7 +7,8 @@ from src.classroom import (LANGUAGES, ENVIRONMENTS, LEARNING_STATUSES, PHASES, C
 
 
 def clear_student_card():
-    for key in ("consultation_card", "card_id", "card_learning_status", "card_environment"):
+    for key in ("consultation_card", "card_id", "card_learning_status", "card_environment",
+                "card_hint_max", "card_fix_seen"):
         st.session_state.pop(key, None)
 
 
@@ -23,6 +24,10 @@ def switch_workspace():
 
 def render_student_card(result, mode, hint_step, fix_viewed):
     st.session_state.setdefault("card_id", str(uuid4()))
+    # Display mode may reset the visible hint; the consultation keeps this analysis's history.
+    st.session_state.card_hint_max = max(st.session_state.get("card_hint_max", 0), hint_step)
+    if mode == "ヒントモード":
+        st.session_state.card_fix_seen = st.session_state.get("card_fix_seen", False) or fix_viewed
     with st.expander("先生に相談する（任意）"):
         st.caption("困っている種類と、どこまで試したかをまとめます。保存するかどうかは自分で選べます。")
         status = st.selectbox("今の状態", list(LEARNING_STATUSES), format_func=LEARNING_STATUSES.get, key="card_learning_status")
@@ -31,8 +36,8 @@ def render_student_card(result, mode, hint_step, fix_viewed):
             result.error.language != "python" and k == "python")]
         environment = st.selectbox("実行環境（分かる範囲）", allowed, format_func=ENVIRONMENTS.get, key="card_environment")
         card = build_card(result, card_id=st.session_state.card_id, environment=environment,
-                          learning_status=status, hint_step=hint_step,
-                          fix_viewed=fix_viewed if mode == "ヒントモード" else None)
+                          learning_status=status, hint_step=st.session_state.card_hint_max,
+                          fix_viewed=st.session_state.get("card_fix_seen", False) if mode == "ヒントモード" else None)
         st.session_state.consultation_card = card
         st.info("コード・ログ本文・名前・ファイル名は含みません。カードだけではコードの具体的な問題までは伝わりません。")
         with st.expander("保存する内容を確認"):

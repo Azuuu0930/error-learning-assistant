@@ -79,6 +79,22 @@ def test_normal_mode_fix_viewing_is_reported_as_unmeasured(app):
     assert app.session_state['consultation_card']['fix_viewed'] is None
 
 
+def test_display_mode_changes_do_not_erase_hint_and_fix_history(app):
+    analyze(app)
+    ident = app.session_state['consultation_card']['card_id']
+    for _ in range(3):
+        app.button(key='next_hint').click().run()
+    app.button(key='reveal_fix').click().run()
+    app.radio(key='display_mode').set_value('通常モード').run()
+    assert app.session_state['consultation_card']['hint_step'] == 3
+    assert app.session_state['consultation_card']['fix_viewed'] is None
+    app.radio(key='display_mode').set_value('ヒントモード').run()
+    assert app.session_state['consultation_card']['card_id'] == ident
+    assert app.session_state['consultation_card']['hint_step'] == 3
+    assert app.session_state['consultation_card']['fix_viewed'] is True
+    assert app.session_state['hint_step'] == 0  # 学習画面の開示状態は従来通りリセット。
+
+
 def test_teacher_filter_rerender_and_clear_are_card_based(app):
     py = build_card(analyze_error('NameError: missing'), card_id=str(uuid4()), learning_status='stuck')
     c = build_card(analyze_error('Segmentation fault', language='c'), card_id=str(uuid4()))
