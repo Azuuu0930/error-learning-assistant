@@ -12,6 +12,8 @@ from src.error_catalog import CATALOG_BY_TYPE, ERROR_CATALOG
 from src import ui
 from src.view import render_code_context
 from src.coach_ui import clear_coach_state, render_coach
+from src.classroom_ui import clear_student_card, switch_workspace, render_student_card, render_teacher_workspace
+from src.language_examples import EXAMPLE_LABELS, examples_for
 
 
 APP_DIR = Path(__file__).resolve().parent
@@ -44,6 +46,7 @@ def localized_error_details(error) -> dict:
     return {
         "言語": language_names.get(error.language, error.language),
         "エラー名": error.error_type,
+        "診断コード": getattr(error, "diagnostic_code", None),
         "メッセージ": error.message,
         "ファイル": error.file,
         "行番号": error.line,
@@ -57,6 +60,7 @@ def localized_error_details(error) -> dict:
 
 def invalidate_result() -> None:
     clear_coach_state()
+    clear_student_card()
     st.session_state.pop("analysis", None)
     st.session_state.hint_step = 0
     st.session_state.show_fix = False
@@ -66,6 +70,19 @@ def reset_hints() -> None:
     clear_coach_state()
     st.session_state.hint_step = 0
     st.session_state.show_fix = False
+
+
+def change_language() -> None:
+    invalidate_result()
+    st.session_state.pop("language_example", None)
+
+
+def load_language_example() -> None:
+    language = "c" if st.session_state.source_language == "C" else "cpp"
+    example = examples_for(language).get(st.session_state.get("language_example"))
+    if example:
+        st.session_state.error_log, st.session_state.source_code = example
+        invalidate_result()
 
 
 @st.cache_data
@@ -95,7 +112,7 @@ def load_catalog_example() -> None:
 def render_fix(result) -> None:
     if result.explanation.fix_example:
         st.caption(result.explanation.fix_note)
-        st.code(result.explanation.fix_example, language="python")
+        st.code(result.explanation.fix_example, language=result.error.language)
     else:
         st.info("このエラーの修正例はまだ用意していません。ヒントと元のメッセージをもとに調べてみてください。")
 
@@ -200,8 +217,19 @@ def render_result(result, mode: str) -> None:
         render_coach(result, mode, st.session_state.hint_step)
 
     with st.expander("ログの読み解き方・詳しい情報"):
-        st.write("① 最後の行でエラー名とメッセージを読みます。② 直前のファイル名と行番号で場所を確認します。③ 対象の名前や操作をコードから探します。")
+        if error.language == "python":
+            st.write("① 最後の行でエラー名とメッセージを読みます。② 直前のファイル名と行番号で場所を確認します。③ 対象の名前や操作をコードから探します。")
+        else:
+            st.write("① コンパイル・リンク・実行のどの出力かを確認します。② エラーと警告を区別し、診断のファイル名・行番号を読みます。③ 関係する宣言・定義・ビルド設定を調べます。")
         st.json(localized_error_details(error))
+    render_student_card(result, mode, st.session_state.hint_step, st.session_state.show_fix)
+
+
+def render_python_samples(samples) -> None:
+    st.selectbox("エラーを選択", ["選択してください"] + [item["title"] for item in samples], key="sample_choice",
+                 on_change=load_selected_sample)
+    st.button("サンプルを入力", key="load_sample", on_click=load_selected_sample,
+              disabled=st.session_state.sample_choice == "選択してください", use_container_width=True)
 
 
 def render_sidebar() -> None:
@@ -210,10 +238,15 @@ def render_sidebar() -> None:
         st.subheader("サンプルで試す")
         st.caption("よくあるエラーから、読み解く練習を。")
         samples = load_samples()
-        st.selectbox("エラーを選択", ["選択してください"] + [item["title"] for item in samples], key="sample_choice",
-                     on_change=load_selected_sample)
-        st.button("サンプルを入力", key="load_sample", on_click=load_selected_sample,
-                  disabled=st.session_state.sample_choice == "選択してください", use_container_width=True)
+        if st.session_state.source_language == "Python":
+            render_python_samples(samples)
+        else:
+            st.selectbox(f"{st.session_state.source_language}の練習用エラー", list(EXAMPLE_LABELS),
+                         index=None, format_func=EXAMPLE_LABELS.get, key="language_example",
+                         on_change=load_language_example, placeholder="練習する内容を選択…")
+            with st.expander("Pythonのサンプルへ切り替える"):
+                st.caption("以下はPython用です。選ぶと対象言語もPythonに変わります。")
+                render_python_samples(samples)
         st.markdown('<div class="sidebar-path"><div><b>1</b>ログとコードを用意する</div><div><b>2</b>エラーの場所を読み解く</div><div><b>3</b>ヒントから考えてみる</div></div>', unsafe_allow_html=True)
         st.markdown('<div class="privacy-note"><b>入力の取り扱い</b>公開版ではログとコードをこのアプリのサーバーへ送り、解析します。入力コードの実行や履歴の保存は行いません。任意の人工知能機能だけ、同意後に種類・行番号などの限定情報をOpenAIへ送ります。コード・ログ本文・名前・値は送りません。個人情報やAPIキーは取り除いてから入力してください。</div>', unsafe_allow_html=True)
         st.toggle("動きを減らす", key="reduce_motion", help="このセッションの装飾アニメーションを停止します。OSの「視差効果を減らす」設定にも自動で従います。")
@@ -224,8 +257,17 @@ def main() -> None:
     st.set_page_config(page_title="エラー学習｜Python・C・C++のエラー解析", page_icon="🔎", layout="wide")
     for key, value in {"hint_step": 0, "show_fix": False, "error_log": "", "source_code": "", "reduce_motion": False, "source_language": "Python"}.items():
         st.session_state.setdefault(key, value)
-    render_sidebar()
     ui.apply_theme(st.session_state.reduce_motion)
+    st.radio("使う画面", ["学生", "先生"], horizontal=True, key="workspace_role", on_change=switch_workspace)
+    if st.session_state.workspace_role == "先生":
+        with st.sidebar:
+            st.subheader("先生の使い方")
+            st.caption("学生が任意に保存した相談カードを受け取り、この画面で読み込んでください。別の利用者の入力やカードは自動表示されません。")
+            st.toggle("動きを減らす", key="reduce_motion")
+        render_teacher_workspace()
+        ui.render_footer()
+        return
+    render_sidebar()
     ui.render_hero()
 
     left, right = st.columns([1, 1.06], gap="large")
@@ -239,7 +281,7 @@ def main() -> None:
             st.caption("ログだけでも大丈夫。関連コードがあると、もう少し詳しく。")
             language_label = st.selectbox(
                 "対象言語", ["Python", "C", "C++"], key="source_language",
-                on_change=invalidate_result,
+                on_change=change_language,
                 help="貼り付けたログとソースコードの言語を選んでください。コードは実行しません。",
             )
             language = {"Python": "python", "C": "c", "C++": "cpp"}[language_label]
@@ -252,6 +294,7 @@ def main() -> None:
             st.text_area("エラーログ", key="error_log", height=205,
                          placeholder=('Traceback (most recent call last):\n  File "main.py", line 8, in <module>\n    print(user_name)\nNameError: name \'user_name\' is not defined'
                                      if language == "python" else
+                                     "main.c:7:10: error: 'total' undeclared identifier\n    printf(\"%d\", total);" if language == "c" else
                                      "main.cpp:7:10: error: ‘total’ was not declared in this scope\n    std::cout << total;"),
                          help=("エラー履歴全体を貼ると、ファイル名と行番号も確認できます。"
                                if language == "python" else
