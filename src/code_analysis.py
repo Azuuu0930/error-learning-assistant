@@ -14,9 +14,10 @@ import symtable
 
 from src.models import (
     AttributeAccess, CodeAnalysis, CodeFinding, ImportInfo, NameDefinition, NameUse,
-    ParsedError,
+    ParsedError, SyntaxDiagnostic,
 )
 from src.literal_analysis import analyze_literals
+from src.explanations import RuleBasedExplanationProvider, explain_syntax_context
 
 
 CONFIDENCE_LABELS = {"high": "高", "medium": "中", "low": "低"}
@@ -433,7 +434,19 @@ def analyze_code(code: str, error: ParsedError | None = None) -> CodeAnalysis:
         table = symtable.symtable(code, "<pasted-code>", "exec")
         visitor = _CodeVisitor(code, tree, table)
         visitor.visit(tree)
-    except (SyntaxError, ValueError, RecursionError, MemoryError) as exc:
+    except SyntaxError as exc:
+        # AST生成に失敗しても、Pythonが返した場所と説明は学習に使える。
+        # 入力断片の座標を元ログのファイルや行番号として扱わない。
+        error_type = "IndentationError" if isinstance(exc, IndentationError) else "SyntaxError"
+        syntax = ParsedError(error_type=error_type, message=exc.msg, line=exc.lineno)
+        explanation = explain_syntax_context(syntax, code, RuleBasedExplanationProvider().explain(syntax))
+        lines = code.splitlines()
+        source_line = lines[exc.lineno - 1] if exc.lineno and 0 < exc.lineno <= len(lines) else ""
+        issue = SyntaxDiagnostic(error_type, exc.msg, exc.lineno, exc.offset, source_line, explanation)
+        location = f"{exc.lineno}行目付近で" if exc.lineno else ""
+        return CodeAnalysis("unavailable", notes=(f"{location}文法上の問題があるためASTを生成できません。ログ解析とヒントは引き続き利用できます。",),
+                            syntax_error=issue)
+    except (ValueError, RecursionError, MemoryError) as exc:
         line = getattr(exc, "lineno", None)
         message = getattr(exc, "msg", str(exc))
         location = f"{line}行目付近で" if line else ""

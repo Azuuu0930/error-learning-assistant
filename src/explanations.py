@@ -9,7 +9,7 @@ from src.models import Explanation, ParsedError
 
 
 CATEGORIES = {
-    "SyntaxError": "syntax", "IndentationError": "indentation",
+    "SyntaxError": "syntax", "IncompleteInputError": "syntax", "IndentationError": "indentation",
     "NameError": "variable", "TypeError": "type", "ValueError": "value",
     "IndexError": "index", "KeyError": "key", "AttributeError": "attribute",
     "ModuleNotFoundError": "module", "ImportError": "import",
@@ -189,6 +189,16 @@ class RuleBasedExplanationProvider:
                  "関数の中で作った変数を、関数の外から使っていないか確認してください。"),
                 "最後の行の name の後ろが、Pythonが見つけられなかった名前です。",
                 f'{variable} = "Taro"\nprint({variable})',
+            )
+        if name == "IncompleteInputError":
+            return _make(
+                "Pythonが、入力を未完成の文として受け取りました。",
+                "文を閉じる記号や、文に続く処理が不足している可能性があります。短いログだけでは不足箇所を断定できません。",
+                ("入力した式や文のまとまりと、その直前の行を確認してください。",
+                 "開いた括弧や引用符に、対応する閉じ記号があるか確認してください。",
+                 "if / for / def などの末尾と、次の行の処理を確認してください。"),
+                "対話環境やノートブックでは、入力がまだ続くと判断された場合にこのエラーが出ることがあります。関連コードがあれば構文も別に確認します。",
+                'values = [1, 2, 3]\nprint(values)',
             )
         if name == "SyntaxError":
             return _make(

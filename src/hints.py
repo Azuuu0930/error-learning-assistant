@@ -5,6 +5,13 @@ from src.models import CodeAnalysis, Explanation, ParsedError
 
 def generate_hints(error: ParsedError, explanation: Explanation,
                    code_analysis: CodeAnalysis | None = None) -> tuple[str, str, str]:
+    if ((error.error_type or "").rsplit(".", 1)[-1] == "IncompleteInputError"
+            and code_analysis and code_analysis.syntax_error):
+        issue = code_analysis.syntax_error
+        location = f"{issue.line}行目付近と、その直前の行" if issue.line else "式や文のまとまり"
+        return (f"貼り付けたコードの{location}を確認してください。",
+                "文の始まりから終わりまでを読み、必要な記号や続きの処理が揃っているか考えてみましょう。",
+                "入力コードの構文解析からの手がかり：" + issue.explanation.summary + issue.explanation.cause)
     if code_analysis and code_analysis.status == "parsed":
         context_hints = _code_hints(error, code_analysis)
         if context_hints:

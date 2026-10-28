@@ -97,6 +97,18 @@ class AttributeAccess:
 
 
 @dataclass(frozen=True)
+class SyntaxDiagnostic:
+    """入力コードの構文診断。ログに記録された場所とは別の座標。"""
+
+    error_type: str
+    message: str
+    line: int | None
+    column: int | None
+    source_line: str
+    explanation: Explanation
+
+
+@dataclass(frozen=True)
 class CodeAnalysis:
     status: Literal["parsed", "unavailable"]
     findings: tuple[CodeFinding, ...] = ()
@@ -106,6 +118,7 @@ class CodeAnalysis:
     attributes: tuple[AttributeAccess, ...] = ()
     notes: tuple[str, ...] = ()
     facts: tuple[CodeFact, ...] = ()
+    syntax_error: SyntaxDiagnostic | None = None
 
     @property
     def defined_names(self) -> tuple[str, ...]:

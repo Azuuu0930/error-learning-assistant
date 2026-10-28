@@ -17,7 +17,7 @@ from src.coach_ui import clear_coach_state, render_coach
 APP_DIR = Path(__file__).resolve().parent
 MAX_INPUT_CHARS = 100_000
 ERROR_NAMES_JA = {
-    "SyntaxError": "文法エラー", "IndentationError": "字下げエラー",
+    "SyntaxError": "文法エラー", "IncompleteInputError": "入力が未完成のエラー", "IndentationError": "字下げエラー",
     "NameError": "名前が見つからないエラー", "UnboundLocalError": "ローカル変数が未設定のエラー",
     "TypeError": "データ型の使い方エラー", "ValueError": "値の形式エラー",
     "IndexError": "添字の範囲エラー", "KeyError": "キーが見つからないエラー",
@@ -77,6 +77,7 @@ def load_samples() -> list[dict]:
 def load_selected_sample() -> None:
     sample = next((item for item in load_samples() if item["title"] == st.session_state.sample_choice), None)
     if sample:
+        st.session_state.source_language = "Python"
         st.session_state.error_log = sample["error_log"]
         st.session_state.source_code = sample["code"]
         invalidate_result()
@@ -85,6 +86,7 @@ def load_selected_sample() -> None:
 def load_catalog_example() -> None:
     example = CATALOG_BY_TYPE.get(st.session_state.error_search)
     if example:
+        st.session_state.source_language = "Python"
         st.session_state.error_log = example.error_log
         st.session_state.source_code = example.code
         invalidate_result()
@@ -105,6 +107,18 @@ def render_code_analysis(analysis, reveal: bool) -> None:
     if analysis.status == "unavailable":
         for note in analysis.notes:
             st.info(note)
+        if analysis.syntax_error:
+            issue = analysis.syntax_error
+            st.caption("以下は貼り付けたコード自体の構文診断です。元ログのファイル・行番号とは別に確認しています。")
+            if issue.source_line:
+                st.code(f"{issue.line} | {issue.source_line}", language="python")
+            if reveal:
+                st.text(issue.explanation.summary)
+                st.text(issue.explanation.cause)
+            else:
+                st.caption("文法の手がかりも、段階式ヒントで確認できます。詳しい説明はヒント3まで進むと表示します。")
+            with st.expander("構文解析の詳しい情報"):
+                st.code(issue.message, language=None)
         return
     if not reveal:
         st.caption("コードの補助解析ができました。ヒントを3つ確認すると、信頼度付きの詳しい結果を表示します。")
@@ -128,7 +142,8 @@ def render_result(result, mode: str) -> None:
     st.subheader("解析結果")
     ui.result_badges(CATEGORY_LABELS[error.category], result.code_analysis is not None)
     error_name = (error.error_type or "").rsplit(".", 1)[-1]
-    st.subheader(ERROR_NAMES_JA.get(error_name, "エラー種類を特定できませんでした"))
+    fallback_title = "専用の説明がないエラー" if error_name else "エラー種類を特定できませんでした"
+    st.subheader(ERROR_NAMES_JA.get(error_name, fallback_title))
     if error_name:
         st.caption(f"エラー名：{error_name}")
     language_label = {"python": "Python", "c": "C", "cpp": "C++"}.get(error.language, "Python")
@@ -194,7 +209,8 @@ def render_sidebar() -> None:
         st.subheader("サンプルで試す")
         st.caption("よくあるエラーから、読み解く練習を。")
         samples = load_samples()
-        st.selectbox("エラーを選択", ["選択してください"] + [item["title"] for item in samples], key="sample_choice")
+        st.selectbox("エラーを選択", ["選択してください"] + [item["title"] for item in samples], key="sample_choice",
+                     on_change=load_selected_sample)
         st.button("サンプルを入力", key="load_sample", on_click=load_selected_sample,
                   disabled=st.session_state.sample_choice == "選択してください", use_container_width=True)
         st.markdown('<div class="sidebar-path"><div><b>1</b>ログとコードを用意する</div><div><b>2</b>エラーの場所を読み解く</div><div><b>3</b>ヒントから考えてみる</div></div>', unsafe_allow_html=True)
