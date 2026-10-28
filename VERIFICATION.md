@@ -3,8 +3,8 @@
 ## 未完成入力の診断修正（2026-10-28）
 
 - `IncompleteInputError` の専用説明と分類を追加。AST生成に失敗しても、入力コードの構文診断を位置・説明・ヒントへつなぐ。
-- コロン不足、括弧不足（NumPyの呼び出しを含む）、引用符不足、字下げ、短いログ、ノートブックと断片の行番号差、正常コード、別種類のログの保持、サンプル自動入力、編集時の古い結果の消去を13件の新規回帰テストで確認。
-- Windows / Python 3.12.14。`python -m pytest tests evaluation/tests -q -p no:cacheprovider --basetemp ../../work/test-temp/pytest-syntax-final --tb=short`: **588 passed in 28.80s**。
+- コロン不足、括弧不足（NumPyの呼び出しを含む）、引用符不足、字下げ、短いログ、ノートブックと断片の行番号差、正常コード、別種類のログの保持、サンプル自動入力、編集時の古い結果の消去、更新前セッションの表示を14件の新規回帰テストで確認。
+- Windows / Python 3.12.14。`python -m pytest tests evaluation/tests -q -p no:cacheprovider --basetemp ../../work/test-temp/pytest-syntax-rollout --tb=short`: **589 passed in 29.28s**。
 - 画面テストのローカル通信が制限された環境では停止するため、通常権限で実行。入力コードは実行せず、構文解析のみを利用。
 - 過去の42ケース評価指標や利用者への学習効果は、この修正では再測定していません。
 

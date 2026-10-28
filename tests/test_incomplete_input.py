@@ -1,6 +1,8 @@
 """短い対話環境のログでも、入力し直さずに構文の手がかりを得られる。"""
 
 from pathlib import Path
+from dataclasses import replace
+from types import SimpleNamespace
 
 import pytest
 from streamlit.testing.v1 import AppTest
@@ -106,3 +108,14 @@ def test_unknown_named_exception_is_reported_as_unsupported_instead_of_unidentif
     app.button(key="analyze").click().run()
     assert any("専用の説明がないエラー" in item.value for item in app.subheader)
     assert not app.exception
+
+
+def test_saved_analysis_from_before_update_remains_renderable():
+    app = AppTest.from_file(str(APP), default_timeout=20).run()
+    result = analyze_error(LOG, CODE)
+    # 更新前のセッションには新しいsyntax_error項目がない。
+    old_analysis = SimpleNamespace(status="unavailable", notes=("構文の補助解析を表示します。",))
+    app.session_state["analysis"] = replace(result, code_analysis=old_analysis)
+    app.run()
+    assert not app.exception
+    assert any("入力が未完成" in item.value for item in app.subheader)

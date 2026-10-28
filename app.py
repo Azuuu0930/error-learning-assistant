@@ -107,8 +107,9 @@ def render_code_analysis(analysis, reveal: bool) -> None:
     if analysis.status == "unavailable":
         for note in analysis.notes:
             st.info(note)
-        if analysis.syntax_error:
-            issue = analysis.syntax_error
+        # Community Cloudの更新直後には旧形式のセッション結果も残り得る。
+        issue = getattr(analysis, "syntax_error", None)
+        if issue:
             st.caption("以下は貼り付けたコード自体の構文診断です。元ログのファイル・行番号とは別に確認しています。")
             if issue.source_line:
                 st.code(f"{issue.line} | {issue.source_line}", language="python")
