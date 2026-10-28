@@ -162,7 +162,7 @@ def render_sidebar() -> None:
 
 
 def main() -> None:
-    st.set_page_config(page_title="TRACE / LEARN · エラーを読み解く", page_icon="🔎", layout="wide")
+    st.set_page_config(page_title="TRACE / LEARN｜Pythonのエラーを、学びに。", page_icon="🔎", layout="wide")
     for key, value in {"hint_step": 0, "show_fix": False, "error_log": "", "source_code": "", "reduce_motion": False}.items():
         st.session_state.setdefault(key, value)
     render_sidebar()

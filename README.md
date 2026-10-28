@@ -1,10 +1,12 @@
 # 初心者向けプログラミングエラー解析アシスタント
 
+エラーの意味と確認すべき場所を整理。3段階のヒントで、次に何を確かめるかを考えられるPython学習アシスタント。
+
 **[ブラウザで使う → TRACE / LEARN](https://error-learning-assistant.streamlit.app/)**
 
 **2026-10-28の改良：** ヒント後の「次の一歩を考える」と、送信内容を絞った任意のAI質問選択を追加しました。全563テスト成功。AIは初期無効で、実APIの動作・選択品質と学生への効果は未検証です。[設定と制限](docs/hackathon/AI_SETUP.md)・[学生テストの依頼](docs/hackathon/RESEARCH_REQUEST.md)・[提出用の主張と証拠](docs/hackathon/SUBMISSION_BRIEF.md)を用意しています。
 
-![濃紺と青緑の学習ワークスペース](docs/workspace-desktop-v3.jpg)
+![エラーの意味と確認すべき場所を整理。3段階のヒントで、次に何を確かめるかを考えられるPython学習アシスタント。](docs/workspace-desktop-v3.jpg)
 
 **最新版 v3**は、ASTの診断根拠を広げ、検索候補・段階式ヒント・読み込みスケルトンを備えた画面へ更新しました。実装固定後の30件では誤警告が1件（3.33%）あり、制御フロー解析の限界として記録しています。
 
