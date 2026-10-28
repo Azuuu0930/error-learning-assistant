@@ -24,6 +24,7 @@ class ParsedError:
     frames: tuple[TraceFrame, ...] = ()
     status: Literal["complete", "partial", "unrecognized"] = "unrecognized"
     warnings: tuple[str, ...] = ()
+    diagnostic_code: str | None = None
 
     def to_dict(self) -> dict:
         return asdict(self)

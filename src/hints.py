@@ -5,6 +5,18 @@ from src.models import CodeAnalysis, Explanation, ParsedError
 
 def generate_hints(error: ParsedError, explanation: Explanation,
                    code_analysis: CodeAnalysis | None = None) -> tuple[str, str, str]:
+    if error.language in {"c", "cpp"}:
+        if error.line:
+            first = f"{error.file or '該当ファイル'} の {error.line} 行目と、その直前を確認してください。"
+        elif error.category == "linker":
+            first = "リンク時の診断です。ビルドに含めたソースとライブラリを確認してください。"
+        elif error.error_type == "SegmentationFault":
+            first = "実行時の停止です。停止直前の操作と、デバッガで示された場所を確認してください。"
+        else:
+            first = "この出力がコンパイル・リンク・実行のどの操作で出たか確認してください。"
+        second = (f"診断に出ている名前「{error.target}」と、宣言・定義を比べてください。" if error.target else
+                  "診断文の操作と、ファイル名・行番号を読みます。警告とエラーは区別してください。")
+        return first, second, explanation.checkpoints[0]
     if ((error.error_type or "").rsplit(".", 1)[-1] == "IncompleteInputError"
             and code_analysis and code_analysis.syntax_error):
         issue = code_analysis.syntax_error

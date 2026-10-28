@@ -42,6 +42,15 @@ def _make(summary: str, cause: str, points: tuple[str, ...], tip: str,
 
 def _explain_c_family(error: ParsedError) -> Explanation:
     target = f"「{error.target}」" if error.target else "該当箇所"
+    if error.error_type is None or error.status == "unrecognized":
+        return _make(
+            "このログだけでは、エラーの有無や発生段階を判断できません。",
+            "正常出力、警告だけの出力、未対応の診断形式などが考えられます。コンパイル失敗や正常動作を断定する結果ではありません。",
+            ("この出力がビルド時と実行時のどちらに出たか確認してください。",
+             "コンパイラやIDEの出力欄に、errorやエラーと書かれた診断行があるか確認してください。",
+             "対応形式はGCC/Clang、MSVCの診断です。未対応の文言では種類を絞れない場合があります。"),
+            "警告とエラーを分けて読みます。エラー行を認識できなかったことは、コードが正常という意味ではありません。",
+        )
     if error.error_type == "LinkerError":
         return _make(
             "コンパイル後のリンク処理で、必要な関数やシンボルを見つけられませんでした。",
@@ -69,7 +78,8 @@ def _explain_c_family(error: ParsedError) -> Explanation:
              "そのヘッダーを提供するコンパイラやライブラリがインストールされているか確認してください。",
              "独自ヘッダーの場合は、コンパイラのinclude検索パスを確認してください。"),
             "fatal error / file not found は、ビルド環境がinclude先を開けないことを示します。",
-            "#include <iostream>\nint main() { std::cout << \"Hello\"; }",
+            ('#include <stdio.h>\nint main(void) { puts("Hello"); return 0; }' if error.language == "c"
+             else '#include <iostream>\nint main() { std::cout << "Hello"; }'),
         )
     if error.category == "variable":
         return _make(
@@ -79,7 +89,8 @@ def _explain_c_family(error: ParsedError) -> Explanation:
              "使う前に変数や関数を宣言しているか確認してください。",
              "宣言がブロックや関数の内側にあり、利用箇所から見えなくなっていないか確認してください。"),
             "この名前を、その場所から参照できないことを示す診断です。",
-            "#include <iostream>\nint main() { int total = 0; std::cout << total; }",
+            ('#include <stdio.h>\nint main(void) { int total = 0; printf("%d", total); return 0; }' if error.language == "c"
+             else '#include <iostream>\nint main() { int total = 0; std::cout << total; }'),
         )
     if error.category == "type":
         return _make(
@@ -89,7 +100,8 @@ def _explain_c_family(error: ParsedError) -> Explanation:
              "関数の宣言が求める引数の数と型を確認してください。",
              "必要な変換を安全に行えるか、値の範囲も含めて確認してください。"),
             "cannot convert / no matching function は、値の型や呼び出し方が候補と一致しないことを示します。",
-            "int main() { int count = 3; double ratio = static_cast<double>(count); return ratio > 0; }",
+            ("int main(void) { int count = 3; double ratio = (double)count; return ratio > 0; }" if error.language == "c"
+             else "int main() { int count = 3; double ratio = static_cast<double>(count); return ratio > 0; }"),
         )
     return _make(
         "コンパイラがコードを受け付けず、実行ファイルを作れませんでした。",
