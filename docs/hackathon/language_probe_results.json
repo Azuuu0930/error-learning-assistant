@@ -1,0 +1,321 @@
+{
+  "review_date_jst": "2026-10-28",
+  "app_commit": "e4e6f93",
+  "provenance": "Authored diagnostic-format probes; no compiler execution and no classroom data.",
+  "classroom_environment": "unknown",
+  "cases": [
+    {
+      "id": "gcc-c-syntax",
+      "language": "c",
+      "input_log": "main.c:3:8: error: expected ';' before 'return'",
+      "status": "complete",
+      "error_type": "CompilationError",
+      "category": "syntax",
+      "file": "main.c",
+      "line": 3,
+      "target": null,
+      "summary": "コンパイラがコードを受け付けず、実行ファイルを作れませんでした。",
+      "hints": [
+        "main.c の 3 行目付近を確認してください。文法エラーでは直前の行も見てみましょう。",
+        "最後の行の「CompilationError」と、その後ろのメッセージを読み、失敗した操作を探してみてください。",
+        "最初に出た error 行と、そのファイル名・行番号を確認してください。"
+      ],
+      "fix_example": "int main() { return 0; }",
+      "ast_used": false
+    },
+    {
+      "id": "gcc-cpp-name",
+      "language": "cpp",
+      "input_log": "main.cpp:7:10: error: 'total' was not declared in this scope",
+      "status": "complete",
+      "error_type": "CompilationError",
+      "category": "variable",
+      "file": "main.cpp",
+      "line": 7,
+      "target": "total",
+      "summary": "コードで使った名前「total」を、この場所でコンパイラが見つけられませんでした。",
+      "hints": [
+        "main.cpp の 7 行目付近を確認してください。文法エラーでは直前の行も見てみましょう。",
+        "メッセージに出てくる「total」に注目してください。コードのどこで使っていますか？",
+        "診断に表示された名前の綴りと大文字・小文字を確認してください。"
+      ],
+      "fix_example": "#include <iostream>\nint main() { int total = 0; std::cout << total; }",
+      "ast_used": false
+    },
+    {
+      "id": "clang-cpp-name",
+      "language": "cpp",
+      "input_log": "main.cpp:5:12: error: use of undeclared identifier 'total'",
+      "status": "complete",
+      "error_type": "CompilationError",
+      "category": "variable",
+      "file": "main.cpp",
+      "line": 5,
+      "target": "total",
+      "summary": "コードで使った名前「total」を、この場所でコンパイラが見つけられませんでした。",
+      "hints": [
+        "main.cpp の 5 行目付近を確認してください。文法エラーでは直前の行も見てみましょう。",
+        "メッセージに出てくる「total」に注目してください。コードのどこで使っていますか？",
+        "診断に表示された名前の綴りと大文字・小文字を確認してください。"
+      ],
+      "fix_example": "#include <iostream>\nint main() { int total = 0; std::cout << total; }",
+      "ast_used": false
+    },
+    {
+      "id": "msvc-c-english",
+      "language": "c",
+      "input_log": "main.c(12,5): error C2065: 'count': undeclared identifier",
+      "status": "complete",
+      "error_type": "CompilationError",
+      "category": "variable",
+      "file": "main.c",
+      "line": 12,
+      "target": "count",
+      "summary": "コードで使った名前「count」を、この場所でコンパイラが見つけられませんでした。",
+      "hints": [
+        "main.c の 12 行目付近を確認してください。文法エラーでは直前の行も見てみましょう。",
+        "メッセージに出てくる「count」に注目してください。コードのどこで使っていますか？",
+        "診断に表示された名前の綴りと大文字・小文字を確認してください。"
+      ],
+      "fix_example": "#include <iostream>\nint main() { int total = 0; std::cout << total; }",
+      "ast_used": false
+    },
+    {
+      "id": "msvc-c-japanese-message",
+      "language": "c",
+      "input_log": "main.c(12,5): error C2065: 'count': 定義されていない識別子です。",
+      "status": "complete",
+      "error_type": "CompilationError",
+      "category": "compile",
+      "file": "main.c",
+      "line": 12,
+      "target": null,
+      "summary": "コンパイラがコードを受け付けず、実行ファイルを作れませんでした。",
+      "hints": [
+        "main.c の 12 行目付近を確認してください。文法エラーでは直前の行も見てみましょう。",
+        "最後の行の「CompilationError」と、その後ろのメッセージを読み、失敗した操作を探してみてください。",
+        "最初に出た error 行と、そのファイル名・行番号を確認してください。"
+      ],
+      "fix_example": "int main() { return 0; }",
+      "ast_used": false
+    },
+    {
+      "id": "msvc-c-japanese-severity",
+      "language": "c",
+      "input_log": "main.c(12,5): エラー C2065: 'count': 定義されていない識別子です。",
+      "status": "unrecognized",
+      "error_type": null,
+      "category": "unknown",
+      "file": null,
+      "line": null,
+      "target": null,
+      "summary": "コンパイラがコードを受け付けず、実行ファイルを作れませんでした。",
+      "hints": [
+        "ログの末尾を見てください。最後のエラー行の直前に、調べるファイルと行番号があります。",
+        "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+        "最初に出た error 行と、そのファイル名・行番号を確認してください。"
+      ],
+      "fix_example": "int main() { return 0; }",
+      "ast_used": false
+    },
+    {
+      "id": "gnu-linker",
+      "language": "cpp",
+      "input_log": "undefined reference to `render()'",
+      "status": "partial",
+      "error_type": "LinkerError",
+      "category": "linker",
+      "file": null,
+      "line": null,
+      "target": "render()",
+      "summary": "コンパイル後のリンク処理で、必要な関数やシンボルを見つけられませんでした。",
+      "hints": [
+        "ログの末尾を見てください。最後のエラー行の直前に、調べるファイルと行番号があります。",
+        "メッセージに出てくる「render()」に注目してください。コードのどこで使っていますか？",
+        "宣言だけでなく、その関数を定義したソースファイルもビルドしているか確認してください。"
+      ],
+      "fix_example": "int add(int a, int b) { return a + b; }\nint main() { return add(2, 3); }",
+      "ast_used": false
+    },
+    {
+      "id": "msvc-linker",
+      "language": "cpp",
+      "input_log": "main.obj : error LNK2019: unresolved external symbol render referenced in function main",
+      "status": "partial",
+      "error_type": "LinkerError",
+      "category": "linker",
+      "file": null,
+      "line": null,
+      "target": null,
+      "summary": "コンパイル後のリンク処理で、必要な関数やシンボルを見つけられませんでした。",
+      "hints": [
+        "ログの末尾を見てください。最後のエラー行の直前に、調べるファイルと行番号があります。",
+        "最後の行の「LinkerError」と、その後ろのメッセージを読み、失敗した操作を探してみてください。",
+        "宣言だけでなく、その関数を定義したソースファイルもビルドしているか確認してください。"
+      ],
+      "fix_example": "int add(int a, int b) { return a + b; }\nint main() { return add(2, 3); }",
+      "ast_used": false
+    },
+    {
+      "id": "runtime-access-violation",
+      "language": "cpp",
+      "input_log": "Exception thrown: access violation reading location 0x00000000.",
+      "status": "partial",
+      "error_type": "SegmentationFault",
+      "category": "runtime",
+      "file": null,
+      "line": null,
+      "target": null,
+      "summary": "実行中に、プログラムが許可されていないメモリへアクセスした可能性があります。",
+      "hints": [
+        "ログの末尾を見てください。最後のエラー行の直前に、調べるファイルと行番号があります。",
+        "最後の行の「SegmentationFault」と、その後ろのメッセージを読み、失敗した操作を探してみてください。",
+        "停止したときのスタックトレースやデバッガの行番号を確認してください。"
+      ],
+      "fix_example": null,
+      "ast_used": false
+    },
+    {
+      "id": "runtime-segmentation",
+      "language": "c",
+      "input_log": "Segmentation fault (core dumped)",
+      "status": "partial",
+      "error_type": "SegmentationFault",
+      "category": "runtime",
+      "file": null,
+      "line": null,
+      "target": null,
+      "summary": "実行中に、プログラムが許可されていないメモリへアクセスした可能性があります。",
+      "hints": [
+        "ログの末尾を見てください。最後のエラー行の直前に、調べるファイルと行番号があります。",
+        "最後の行の「SegmentationFault」と、その後ろのメッセージを読み、失敗した操作を探してみてください。",
+        "停止したときのスタックトレースやデバッガの行番号を確認してください。"
+      ],
+      "fix_example": null,
+      "ast_used": false
+    },
+    {
+      "id": "cpp-standard-exception",
+      "language": "cpp",
+      "input_log": "terminate called after throwing an instance of 'std::out_of_range'\n  what(): vector::_M_range_check",
+      "status": "unrecognized",
+      "error_type": null,
+      "category": "unknown",
+      "file": null,
+      "line": null,
+      "target": null,
+      "summary": "コンパイラがコードを受け付けず、実行ファイルを作れませんでした。",
+      "hints": [
+        "ログの末尾を見てください。最後のエラー行の直前に、調べるファイルと行番号があります。",
+        "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+        "最初に出た error 行と、そのファイル名・行番号を確認してください。"
+      ],
+      "fix_example": "int main() { return 0; }",
+      "ast_used": false
+    },
+    {
+      "id": "address-sanitizer",
+      "language": "c",
+      "input_log": "ERROR: AddressSanitizer: heap-buffer-overflow on address 0x1234",
+      "status": "unrecognized",
+      "error_type": null,
+      "category": "unknown",
+      "file": null,
+      "line": null,
+      "target": null,
+      "summary": "コンパイラがコードを受け付けず、実行ファイルを作れませんでした。",
+      "hints": [
+        "ログの末尾を見てください。最後のエラー行の直前に、調べるファイルと行番号があります。",
+        "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+        "最初に出た error 行と、そのファイル名・行番号を確認してください。"
+      ],
+      "fix_example": "int main() { return 0; }",
+      "ast_used": false
+    },
+    {
+      "id": "warning-only",
+      "language": "c",
+      "input_log": "main.c:2:5: warning: unused variable 'count' [-Wunused-variable]",
+      "status": "unrecognized",
+      "error_type": null,
+      "category": "unknown",
+      "file": null,
+      "line": null,
+      "target": null,
+      "summary": "コンパイラがコードを受け付けず、実行ファイルを作れませんでした。",
+      "hints": [
+        "ログの末尾を見てください。最後のエラー行の直前に、調べるファイルと行番号があります。",
+        "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+        "最初に出た error 行と、そのファイル名・行番号を確認してください。"
+      ],
+      "fix_example": "int main() { return 0; }",
+      "ast_used": false
+    },
+    {
+      "id": "build-succeeded",
+      "language": "cpp",
+      "input_log": "Build succeeded",
+      "status": "unrecognized",
+      "error_type": null,
+      "category": "unknown",
+      "file": null,
+      "line": null,
+      "target": null,
+      "summary": "コンパイラがコードを受け付けず、実行ファイルを作れませんでした。",
+      "hints": [
+        "ログの末尾を見てください。最後のエラー行の直前に、調べるファイルと行番号があります。",
+        "「エラー種類: メッセージ」の行はありますか？ ログが途中で切れていないか確認してください。",
+        "最初に出た error 行と、そのファイル名・行番号を確認してください。"
+      ],
+      "fix_example": "int main() { return 0; }",
+      "ast_used": false
+    },
+    {
+      "id": "missing-header-c",
+      "language": "c",
+      "input_log": "main.c:1:10: fatal error: 'missing.h' file not found",
+      "status": "complete",
+      "error_type": "CompilationError",
+      "category": "module",
+      "file": "main.c",
+      "line": 1,
+      "target": "missing.h",
+      "summary": "指定したヘッダーファイルをコンパイラが見つけられませんでした。",
+      "hints": [
+        "main.c の 1 行目付近を確認してください。文法エラーでは直前の行も見てみましょう。",
+        "メッセージに出てくる「missing.h」に注目してください。コードのどこで使っていますか？",
+        "include行の山括弧・引用符とヘッダー名を確認してください。"
+      ],
+      "fix_example": "#include <iostream>\nint main() { std::cout << \"Hello\"; }",
+      "ast_used": false
+    }
+  ],
+  "ui_probes": [
+    {
+      "language": "C",
+      "app_exception": false,
+      "log_placeholder": "main.cpp:7:10: error: ‘total’ was not declared in this scope\n    std::cout << total;",
+      "search_shown": false,
+      "coach_shown": false,
+      "fix_examples": [
+        {
+          "code": "#include <iostream>\nint main() { int total = 0; std::cout << total; }",
+          "highlighting": "python"
+        }
+      ]
+    },
+    {
+      "language": "C++",
+      "app_exception": false,
+      "log_placeholder": "main.cpp:7:10: error: ‘total’ was not declared in this scope\n    std::cout << total;",
+      "search_shown": false,
+      "coach_shown": false,
+      "fix_examples": [
+        {
+          "code": "#include <iostream>\nint main() { int total = 0; std::cout << total; }",
+          "highlighting": "python"
+        }
+      ]
+    }
+  ]
+}
