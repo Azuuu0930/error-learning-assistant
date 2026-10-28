@@ -11,6 +11,7 @@ from src.explanations import CATEGORY_LABELS
 from src.error_catalog import CATALOG_BY_TYPE, ERROR_CATALOG
 from src import ui
 from src.view import render_code_context
+from src.coach_ui import clear_coach_state, render_coach
 
 
 APP_DIR = Path(__file__).resolve().parent
@@ -18,12 +19,14 @@ MAX_INPUT_CHARS = 100_000
 
 
 def invalidate_result() -> None:
+    clear_coach_state()
     st.session_state.pop("analysis", None)
     st.session_state.hint_step = 0
     st.session_state.show_fix = False
 
 
 def reset_hints() -> None:
+    clear_coach_state()
     st.session_state.hint_step = 0
     st.session_state.show_fix = False
 
@@ -136,6 +139,8 @@ def render_result(result, mode: str) -> None:
             if st.session_state.show_fix:
                 render_fix(result)
 
+    render_coach(result, mode, st.session_state.hint_step)
+
     with st.expander("ログの読み方と構造化データ"):
         st.write("① 最後の行でエラー種類とメッセージを読む。② 直前の File と line で場所を読む。③ 対象の名前や操作をコードで探す。")
         st.json(error.to_dict())
@@ -151,7 +156,7 @@ def render_sidebar() -> None:
         st.button("サンプルを入力", key="load_sample", on_click=load_selected_sample,
                   disabled=st.session_state.sample_choice == "選択してください", use_container_width=True)
         st.markdown('<div class="sidebar-path"><div><b>1</b>ログとコードを用意する</div><div><b>2</b>エラーの場所を読み解く</div><div><b>3</b>ヒントから考えてみる</div></div>', unsafe_allow_html=True)
-        st.markdown('<div class="privacy-note"><b>入力の取り扱い</b>公開版ではログとコードをこのアプリのサーバーへ送り、解析します。外部LLMには送信せず、入力コードの実行や履歴の保存も行いません。個人情報やAPIキーは取り除いてから入力してください。</div>', unsafe_allow_html=True)
+        st.markdown('<div class="privacy-note"><b>入力の取り扱い</b>公開版ではログとコードをこのアプリのサーバーへ送り、解析します。入力コードの実行や履歴の保存は行いません。任意のAI機能だけ、同意後に種類・行番号などの限定情報をOpenAIへ送ります。コード・ログ本文・名前・値は送りません。個人情報やAPIキーは取り除いてから入力してください。</div>', unsafe_allow_html=True)
         st.toggle("動きを減らす", key="reduce_motion", help="このセッションの装飾アニメーションを停止します。OSの「視差効果を減らす」設定にも自動で従います。")
         st.caption("対応言語：Python · 18種類のエラー")
 

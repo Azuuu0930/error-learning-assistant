@@ -1,0 +1,34 @@
+{
+  "checked_at_utc": "2026-10-28T03:36:31.314909+00:00",
+  "method": "Current analyzer and static outputs compared to saved outputs using saved stderr; no code execution or AI request.",
+  "runs": [
+    {
+      "name": "42-case",
+      "cases": 42,
+      "identical": 42,
+      "differences": []
+    },
+    {
+      "name": "known-holdout",
+      "cases": 20,
+      "identical": 20,
+      "differences": []
+    },
+    {
+      "name": "normal-corpus",
+      "cases": 30,
+      "identical": 30,
+      "differences": []
+    }
+  ],
+  "core_sha256": {
+    "src/analyzer.py": "e119d6de0d259b09654cca185be1bc50559379abb692834f10cfa301316b657e",
+    "src/parser.py": "feb5e4ff83245e48a99e559926f37798ca30776b5a66ccab569697b992999bd5",
+    "src/code_analysis.py": "59becead53d1957213d13ed9f6c2e33b35a84387edec40b7a3cb5c7a22fa0ff1",
+    "src/literal_analysis.py": "8f40ebb744d1712f7e6bb1f221de079bee9bee83df228d2bddf211143f71fdb1",
+    "src/safe_summaries.py": "e21132838695798d595b200160d5eb79b86b01f75c590cab190df2c5e33760b2",
+    "src/models.py": "a2b0fe253baafa31e2ded0b2d4a829e169ab2969d1edc0dd9a976514fad5c4ff",
+    "src/hints.py": "2755ec4d4200d2222c83bd92e0310c241752dfcb741a2d579c63791377bdc903",
+    "src/explanations.py": "b063760146626c6422f2cce9e5a57bb22ec58b6f6c3a6d2ac4642344273c2652"
+  }
+}
