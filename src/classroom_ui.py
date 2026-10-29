@@ -83,7 +83,7 @@ def render_teacher_workspace():
                     st.session_state.teacher_batch = _read_uploads(uploads)
             except ValueError as exc:
                 st.warning(str(exc))
-        st.caption("ファイルは解析のためアプリサーバーへ届きます。入力履歴の永続保存・他の先生との共有・外部AI送信は行いません。ホスティング先の方針も適用されます。")
+        st.caption("相談カードは集計のためアプリサーバーへ届き、このセッション内だけで扱います。カードの永続保存・他の先生との共有・外部AI送信は行いません。ホスティング先の方針も適用されます。")
     batch = st.session_state.get("teacher_batch")
     if batch is None:
         st.info("まだカードを読み込んでいません。学生は解析結果の「先生に相談する」から保存できます。")
