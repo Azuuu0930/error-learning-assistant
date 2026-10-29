@@ -14,6 +14,7 @@ from src.view import render_code_context
 from src.coach_ui import clear_coach_state, render_coach
 from src.classroom_ui import clear_student_card, switch_workspace, render_student_card, render_teacher_workspace
 from src.language_examples import EXAMPLE_LABELS, examples_for
+from src.history_ui import render_history_notice, begin_history, finish_history
 
 
 APP_DIR = Path(__file__).resolve().parent
@@ -248,7 +249,7 @@ def render_sidebar() -> None:
                 st.caption("以下はPython用です。選ぶと対象言語もPythonに変わります。")
                 render_python_samples(samples)
         st.markdown('<div class="sidebar-path"><div><b>1</b>ログとコードを用意する</div><div><b>2</b>エラーの場所を読み解く</div><div><b>3</b>ヒントから考えてみる</div></div>', unsafe_allow_html=True)
-        st.markdown('<div class="privacy-note"><b>入力の取り扱い</b>公開版ではログとコードをこのアプリのサーバーへ送り、解析します。入力コードの実行や履歴の保存は行いません。任意の人工知能機能だけ、同意後に種類・行番号などの限定情報をOpenAIへ送ります。コード・ログ本文・名前・値は送りません。個人情報やAPIキーは取り除いてから入力してください。</div>', unsafe_allow_html=True)
+        st.markdown('<div class="privacy-note"><b>入力の取り扱い</b>公開版ではログとコードをこのアプリのサーバーへ送り、解析します。入力コードは実行しません。エラー文の保存状況は入力欄の案内を確認してください。任意の人工知能機能だけ、同意後に種類・行番号などの限定情報をOpenAIへ送ります。コード・ログ本文・名前・値は人工知能へ送りません。個人情報やAPIキーは取り除いてから入力してください。</div>', unsafe_allow_html=True)
         st.toggle("動きを減らす", key="reduce_motion", help="このセッションの装飾アニメーションを停止します。OSの「視差効果を減らす」設定にも自動で従います。")
         st.caption("対応：Pythonの18種類のエラー · C/C++のコンパイラ診断と実行時エラー")
 
@@ -291,6 +292,7 @@ def main() -> None:
                              format_func=lambda name: CATALOG_BY_TYPE[name].keywords,
                              on_change=load_catalog_example,
                              help="Pythonの18種類のエラーを英語名・日本語で検索できます。選ぶとサンプルを入力します。")
+            render_history_notice()
             st.text_area("エラーログ", key="error_log", height=205,
                          placeholder=('Traceback (most recent call last):\n  File "main.py", line 8, in <module>\n    print(user_name)\nNameError: name \'user_name\' is not defined'
                                      if language == "python" else
@@ -313,16 +315,20 @@ def main() -> None:
             if st.button("解析する", type="primary", key="analyze", use_container_width=True):
                 invalidate_result()
                 log, source = st.session_state.error_log, st.session_state.source_code
+                history_attempt = begin_history(log, language) if log.strip() else None
                 if not log.strip():
                     st.warning("エラーログを入力してください。検索や左のサンプルからも試せます。")
                 elif max(len(log), len(source)) > MAX_INPUT_CHARS:
+                    finish_history(history_attempt, "rejected")
                     st.warning("入力が長すぎます。ログとコードはそれぞれ10万文字以内にしてください。")
                 else:
                     with result_area.container():
                         ui.render_loading()
                     try:
                         st.session_state.analysis = analyze_error(log, source, language=language)
+                        finish_history(history_attempt, "result", st.session_state.analysis)
                     except Exception:
+                        finish_history(history_attempt, "failed")
                         # Keep implementation details and potentially sensitive input out of the UI.
                         st.error("解析を完了できませんでした。入力を確認して、もう一度「解析する」を押してください。")
                     finally:
